@@ -51,6 +51,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBContext.cs" />
+    <Compile Include="Migrations\202105260928318_add_customer_and_food.cs" />
+    <Compile Include="Migrations\202105260928318_add_customer_and_food.designer.cs">
+      <DependentUpon>202105260928318_add_customer_and_food.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -62,6 +67,11 @@
       <Project>{B7575DBD-3507-49DE-99DC-519BB2FD67AA}</Project>
       <Name>Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202105260928318_add_customer_and_food.resx">
+      <DependentUpon>202105260928318_add_customer_and_food.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
