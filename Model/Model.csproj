@@ -55,6 +55,10 @@
     <Compile Include="Migrations\202105260928318_add_customer_and_food.designer.cs">
       <DependentUpon>202105260928318_add_customer_and_food.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105301113445_add_order_order_items.cs" />
+    <Compile Include="Migrations\202105301113445_add_order_order_items.designer.cs">
+      <DependentUpon>202105301113445_add_order_order_items.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -71,6 +75,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202105260928318_add_customer_and_food.resx">
       <DependentUpon>202105260928318_add_customer_and_food.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105301113445_add_order_order_items.resx">
+      <DependentUpon>202105301113445_add_order_order_items.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
