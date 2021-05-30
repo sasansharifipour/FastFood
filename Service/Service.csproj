@@ -50,6 +50,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OrderItemService.cs" />
+    <Compile Include="OrderService.cs" />
     <Compile Include="FoodService.cs" />
     <Compile Include="CustomerService.cs" />
     <Compile Include="DbContextFactory.cs" />

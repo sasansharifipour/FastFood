@@ -23,10 +23,17 @@ namespace Windows_UI
             container.RegisterSingleton<ICustomerDAO, CustomerDAO>();
             container.RegisterSingleton<ICustomerService, CustomerService>();
 
-
             container.RegisterSingleton<IBaseDAO<Food>, BaseDAO<Food>>();
             container.RegisterSingleton<IFoodDAO, FoodDAO>();
             container.RegisterSingleton<IFoodService, FoodService>();
+
+            container.RegisterSingleton<IBaseDAO<Order>, BaseDAO<Order>>();
+            container.RegisterSingleton<IOrderDAO, OrderDAO>();
+            container.RegisterSingleton<IOrderService, OrderService>();
+
+            container.RegisterSingleton<IBaseDAO<OrderItem>, BaseDAO<OrderItem>>();
+            container.RegisterSingleton<IOrderItemDAO, OrderItemDAO>();
+            container.RegisterSingleton<IOrderItemService, OrderItemService>();
 
             container.RegisterType<Form, Form1>("Form1");
 
