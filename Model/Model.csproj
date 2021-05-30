@@ -59,6 +59,10 @@
     <Compile Include="Migrations\202105301113445_add_order_order_items.designer.cs">
       <DependentUpon>202105301113445_add_order_order_items.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105301152327_change_order_deliver_date_nullable.cs" />
+    <Compile Include="Migrations\202105301152327_change_order_deliver_date_nullable.designer.cs">
+      <DependentUpon>202105301152327_change_order_deliver_date_nullable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -78,6 +82,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105301113445_add_order_order_items.resx">
       <DependentUpon>202105301113445_add_order_order_items.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105301152327_change_order_deliver_date_nullable.resx">
+      <DependentUpon>202105301152327_change_order_deliver_date_nullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
