@@ -2,12 +2,8 @@
 using Domain.BaseClasses;
 using Model;
 using Service;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using Unity;
 
@@ -22,10 +18,15 @@ namespace Windows_UI
             container.RegisterType<DbContext, DBContext>();
             container.RegisterSingleton<IDbContextFactory<DBContext>, DbContextFactory>();
             container.RegisterSingleton<IDbContextFactory<DbContext>, DbContextFactory>();
+
             container.RegisterSingleton<IBaseDAO<Customer>, BaseDAO<Customer>>();
             container.RegisterSingleton<ICustomerDAO, CustomerDAO>();
             container.RegisterSingleton<ICustomerService, CustomerService>();
 
+
+            container.RegisterSingleton<IBaseDAO<Food>, BaseDAO<Food>>();
+            container.RegisterSingleton<IFoodDAO, FoodDAO>();
+            container.RegisterSingleton<IFoodService, FoodService>();
 
             container.RegisterType<Form, Form1>("Form1");
 

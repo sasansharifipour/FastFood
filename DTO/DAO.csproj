@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="BaseDAO.cs" />
     <Compile Include="CustomerDAO.cs" />
+    <Compile Include="FoodDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
