@@ -19,7 +19,7 @@ namespace Windows_UI
         private IEnumerable<Food> _foods;
         private IEnumerable<Customer> _customers;
         private string button_prefix_name = "food_button_";
-        private BindingList<OrderItem> _order_items = new BindingList<OrderItem>();
+        private BindingList<OrderItem> _order_items;
         private IConfigFile _configFile;
         private IOrderService _orderService;
 
@@ -145,6 +145,8 @@ namespace Windows_UI
 
         private void Order_Load(object sender, EventArgs e)
         {
+            _order_items = new BindingList<OrderItem>();
+
             load_info();
 
             show_foods(_foods);
