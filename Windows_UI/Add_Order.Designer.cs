@@ -153,6 +153,7 @@
             // 
             // pnl_Foods
             // 
+            this.pnl_Foods.AutoScroll = true;
             this.pnl_Foods.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnl_Foods.Location = new System.Drawing.Point(501, 0);
             this.pnl_Foods.Name = "pnl_Foods";
