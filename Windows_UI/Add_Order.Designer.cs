@@ -29,21 +29,28 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.dt_gd_viw_orderlist = new System.Windows.Forms.DataGridView();
-            this.cmb_customers = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.pnl_Foods = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
+            this.dt_gd_viw_orderlist = new System.Windows.Forms.DataGridView();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.lbl_sum_price = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.cmb_customers = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.pnl_Foods = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.btn_save_order = new System.Windows.Forms.Button();
+            this.btn_print = new System.Windows.Forms.Button();
+            this.btn_new_order = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dt_gd_viw_orderlist)).BeginInit();
-            this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dt_gd_viw_orderlist)).BeginInit();
+            this.panel3.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.panel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -55,8 +62,17 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(501, 830);
+            this.panel1.Size = new System.Drawing.Size(501, 749);
             this.panel1.TabIndex = 0;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.dt_gd_viw_orderlist);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(0, 130);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(501, 329);
+            this.panel4.TabIndex = 6;
             // 
             // dt_gd_viw_orderlist
             // 
@@ -65,43 +81,38 @@
             this.dt_gd_viw_orderlist.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dt_gd_viw_orderlist.Location = new System.Drawing.Point(0, 0);
             this.dt_gd_viw_orderlist.Name = "dt_gd_viw_orderlist";
-            this.dt_gd_viw_orderlist.Size = new System.Drawing.Size(501, 410);
+            this.dt_gd_viw_orderlist.Size = new System.Drawing.Size(501, 329);
             this.dt_gd_viw_orderlist.TabIndex = 3;
             this.dt_gd_viw_orderlist.CellParsing += new System.Windows.Forms.DataGridViewCellParsingEventHandler(this.dt_gd_viw_orderlist_CellParsing);
             // 
-            // cmb_customers
+            // panel3
             // 
-            this.cmb_customers.FormattingEnabled = true;
-            this.cmb_customers.Location = new System.Drawing.Point(66, 53);
-            this.cmb_customers.Name = "cmb_customers";
-            this.cmb_customers.Size = new System.Drawing.Size(328, 32);
-            this.cmb_customers.TabIndex = 2;
+            this.panel3.Controls.Add(this.panel6);
+            this.panel3.Controls.Add(this.panel5);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel3.Location = new System.Drawing.Point(0, 459);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(501, 290);
+            this.panel3.TabIndex = 5;
             // 
-            // label2
+            // lbl_sum_price
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(400, 56);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(52, 24);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "مشتری :";
+            this.lbl_sum_price.AutoSize = true;
+            this.lbl_sum_price.Location = new System.Drawing.Point(97, 38);
+            this.lbl_sum_price.Name = "lbl_sum_price";
+            this.lbl_sum_price.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lbl_sum_price.Size = new System.Drawing.Size(0, 24);
+            this.lbl_sum_price.TabIndex = 3;
+            this.lbl_sum_price.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label1
+            // label3
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(216, 8);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(98, 24);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "مشخصات سفارش";
-            // 
-            // pnl_Foods
-            // 
-            this.pnl_Foods.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_Foods.Location = new System.Drawing.Point(501, 0);
-            this.pnl_Foods.Name = "pnl_Foods";
-            this.pnl_Foods.Size = new System.Drawing.Size(832, 830);
-            this.pnl_Foods.TabIndex = 1;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(400, 38);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(64, 24);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "جمع کل : ";
             // 
             // panel2
             // 
@@ -114,49 +125,94 @@
             this.panel2.Size = new System.Drawing.Size(501, 130);
             this.panel2.TabIndex = 4;
             // 
-            // panel3
+            // cmb_customers
             // 
-            this.panel3.Controls.Add(this.lbl_sum_price);
-            this.panel3.Controls.Add(this.label3);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(0, 540);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(501, 290);
-            this.panel3.TabIndex = 5;
+            this.cmb_customers.FormattingEnabled = true;
+            this.cmb_customers.Location = new System.Drawing.Point(66, 53);
+            this.cmb_customers.Name = "cmb_customers";
+            this.cmb_customers.Size = new System.Drawing.Size(328, 32);
+            this.cmb_customers.TabIndex = 2;
             // 
-            // panel4
+            // label1
             // 
-            this.panel4.Controls.Add(this.dt_gd_viw_orderlist);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(0, 130);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(501, 410);
-            this.panel4.TabIndex = 6;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(216, 8);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(98, 24);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "مشخصات سفارش";
             // 
-            // label3
+            // label2
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(400, 75);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(64, 24);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "جمع کل : ";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(400, 56);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(52, 24);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "مشتری :";
             // 
-            // lbl_sum_price
+            // pnl_Foods
             // 
-            this.lbl_sum_price.AutoSize = true;
-            this.lbl_sum_price.Location = new System.Drawing.Point(97, 75);
-            this.lbl_sum_price.Name = "lbl_sum_price";
-            this.lbl_sum_price.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lbl_sum_price.Size = new System.Drawing.Size(0, 24);
-            this.lbl_sum_price.TabIndex = 3;
-            this.lbl_sum_price.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.pnl_Foods.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnl_Foods.Location = new System.Drawing.Point(501, 0);
+            this.pnl_Foods.Name = "pnl_Foods";
+            this.pnl_Foods.Size = new System.Drawing.Size(832, 749);
+            this.pnl_Foods.TabIndex = 1;
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.label3);
+            this.panel5.Controls.Add(this.lbl_sum_price);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel5.Location = new System.Drawing.Point(0, 0);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(501, 88);
+            this.panel5.TabIndex = 4;
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.btn_new_order);
+            this.panel6.Controls.Add(this.btn_print);
+            this.panel6.Controls.Add(this.btn_save_order);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel6.Location = new System.Drawing.Point(0, 88);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(501, 202);
+            this.panel6.TabIndex = 5;
+            // 
+            // btn_save_order
+            // 
+            this.btn_save_order.Location = new System.Drawing.Point(337, 86);
+            this.btn_save_order.Name = "btn_save_order";
+            this.btn_save_order.Size = new System.Drawing.Size(111, 47);
+            this.btn_save_order.TabIndex = 0;
+            this.btn_save_order.Text = "ذخیره";
+            this.btn_save_order.UseVisualStyleBackColor = true;
+            this.btn_save_order.Click += new System.EventHandler(this.btn_save_order_Click);
+            // 
+            // btn_print
+            // 
+            this.btn_print.Location = new System.Drawing.Point(199, 86);
+            this.btn_print.Name = "btn_print";
+            this.btn_print.Size = new System.Drawing.Size(111, 47);
+            this.btn_print.TabIndex = 1;
+            this.btn_print.Text = "چاپ";
+            this.btn_print.UseVisualStyleBackColor = true;
+            // 
+            // btn_new_order
+            // 
+            this.btn_new_order.Location = new System.Drawing.Point(66, 86);
+            this.btn_new_order.Name = "btn_new_order";
+            this.btn_new_order.Size = new System.Drawing.Size(111, 47);
+            this.btn_new_order.TabIndex = 2;
+            this.btn_new_order.Text = "سفارش جدید";
+            this.btn_new_order.UseVisualStyleBackColor = true;
             // 
             // Add_Order
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1333, 830);
+            this.ClientSize = new System.Drawing.Size(1333, 749);
             this.Controls.Add(this.pnl_Foods);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("B Nazanin", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
@@ -169,12 +225,14 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Order_Load);
             this.panel1.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dt_gd_viw_orderlist)).EndInit();
+            this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
-            this.panel4.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
+            this.panel6.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -192,5 +250,10 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lbl_sum_price;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Button btn_new_order;
+        private System.Windows.Forms.Button btn_print;
+        private System.Windows.Forms.Button btn_save_order;
+        private System.Windows.Forms.Panel panel5;
     }
 }

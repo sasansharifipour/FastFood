@@ -21,12 +21,15 @@ namespace Windows_UI
         private string button_prefix_name = "food_button_";
         private BindingList<OrderItem> _order_items = new BindingList<OrderItem>();
         private IConfigFile _configFile;
+        private IOrderService _orderService;
 
-        public Add_Order(ICustomerService customerService, IFoodService foodService, IConfigFile configFile)
+        public Add_Order(ICustomerService customerService, IFoodService foodService, IConfigFile configFile
+            ,IOrderService orderService)
         {
             InitializeComponent();
 
             _customerService = customerService;
+            _orderService = orderService;
             _foodService = foodService;
             _configFile = configFile;
         }
@@ -158,6 +161,33 @@ namespace Windows_UI
             current.Count = new_count;
 
             update_order_show();
+        }
+
+        private void btn_save_order_Click(object sender, EventArgs e)
+        {
+            int customer_id = 0;
+            int.TryParse(cmb_customers.SelectedValue.ToString(), out customer_id);
+
+            if (customer_id <= 0)
+                return;
+
+            Order order = new Order()
+            {
+                CustomerID = customer_id,
+                OrderItems = _order_items.ToList(),
+                Insert_time = DateTime.Now
+            };
+
+            bool register = _orderService.add(order);
+
+            if (register)
+            {
+                MessageBox.Show(null, "اطلاعات با موفقیت ثبت گردید", "موفق", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show(null, "در ثبت اطلاعات خطایی رخ داده است", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
