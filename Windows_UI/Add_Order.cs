@@ -22,6 +22,7 @@ namespace Windows_UI
         private BindingList<OrderItem> _order_items;
         private IConfigFile _configFile;
         private IOrderService _orderService;
+        int free_number = 0;
 
         public Add_Order(ICustomerService customerService, IFoodService foodService, IConfigFile configFile
             ,IOrderService orderService)
@@ -36,6 +37,7 @@ namespace Windows_UI
 
         private void load_info()
         {
+            free_number = Math.Max(1, _orderService.get_free_number());
             _foods = _foodService.select(s => s.ID > 0);
             _customers = _customerService.select(s => s.ID > 0);
         }
@@ -127,6 +129,8 @@ namespace Windows_UI
             double sum_price = _order_items.Sum(s => s.All_Price);
             string txt = string.Format("{0:#,##0}", sum_price);
 
+            lbl_order_number.Text = free_number.ToString();
+
             lbl_sum_price.Text = String.Format("{0} {1}", txt, _configFile.get_currency_title());
         }
 
@@ -177,6 +181,7 @@ namespace Windows_UI
             {
                 CustomerID = customer_id,
                 OrderItems = _order_items.ToList(),
+                Number = free_number,
                 Insert_time = DateTime.Now
             };
 

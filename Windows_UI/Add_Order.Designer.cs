@@ -44,6 +44,7 @@
             this.btn_save_order = new System.Windows.Forms.Button();
             this.btn_print = new System.Windows.Forms.Button();
             this.btn_new_order = new System.Windows.Forms.Button();
+            this.lbl_order_number = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dt_gd_viw_orderlist)).BeginInit();
@@ -69,9 +70,9 @@
             // 
             this.panel4.Controls.Add(this.dt_gd_viw_orderlist);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(0, 130);
+            this.panel4.Location = new System.Drawing.Point(0, 178);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(501, 329);
+            this.panel4.Size = new System.Drawing.Size(501, 281);
             this.panel4.TabIndex = 6;
             // 
             // dt_gd_viw_orderlist
@@ -81,7 +82,7 @@
             this.dt_gd_viw_orderlist.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dt_gd_viw_orderlist.Location = new System.Drawing.Point(0, 0);
             this.dt_gd_viw_orderlist.Name = "dt_gd_viw_orderlist";
-            this.dt_gd_viw_orderlist.Size = new System.Drawing.Size(501, 329);
+            this.dt_gd_viw_orderlist.Size = new System.Drawing.Size(501, 281);
             this.dt_gd_viw_orderlist.TabIndex = 3;
             this.dt_gd_viw_orderlist.CellParsing += new System.Windows.Forms.DataGridViewCellParsingEventHandler(this.dt_gd_viw_orderlist_CellParsing);
             // 
@@ -116,13 +117,14 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.lbl_order_number);
             this.panel2.Controls.Add(this.cmb_customers);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(501, 130);
+            this.panel2.Size = new System.Drawing.Size(501, 178);
             this.panel2.TabIndex = 4;
             // 
             // cmb_customers
@@ -209,6 +211,15 @@
             this.btn_new_order.Text = "سفارش جدید";
             this.btn_new_order.UseVisualStyleBackColor = true;
             // 
+            // lbl_order_number
+            // 
+            this.lbl_order_number.AutoSize = true;
+            this.lbl_order_number.Font = new System.Drawing.Font("B Nazanin", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lbl_order_number.Location = new System.Drawing.Point(239, 103);
+            this.lbl_order_number.Name = "lbl_order_number";
+            this.lbl_order_number.Size = new System.Drawing.Size(0, 51);
+            this.lbl_order_number.TabIndex = 3;
+            // 
             // Add_Order
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 24F);
@@ -256,5 +267,6 @@
         private System.Windows.Forms.Button btn_print;
         private System.Windows.Forms.Button btn_save_order;
         private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Label lbl_order_number;
     }
 }
