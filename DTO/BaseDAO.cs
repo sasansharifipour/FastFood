@@ -15,6 +15,8 @@ namespace DAO
 
         bool Delete(T data);
 
+        bool Update(T data);
+
         IEnumerable<T> Select(Expression<Func<T, bool>> filter);
     }
 
@@ -93,6 +95,28 @@ namespace DAO
                 result = new List<T>();
 
             return result;
+        }
+
+        public bool Update(T data)
+        {
+            bool added = false;
+
+            try
+            {
+                using (var db = _db_factory.Create())
+                {
+                    db.Entry(data).State = EntityState.Modified;
+                    int cnt = db.SaveChanges();
+
+                    if (cnt > 0)
+                        added = true;
+                }
+            }
+            catch (Exception e)
+            {
+            }
+
+            return added;
         }
     }
 }

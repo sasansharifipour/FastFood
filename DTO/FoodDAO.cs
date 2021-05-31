@@ -40,5 +40,10 @@ namespace DAO
         {
             return _crud_operator.Select(filter);
         }
+
+        public bool Update(Food data)
+        {
+            return _crud_operator.Update(data);
+        }
     }
 }

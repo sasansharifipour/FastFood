@@ -34,12 +34,14 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btn_save = new System.Windows.Forms.Button();
             this.lbl_currency_title = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cmb_food_list = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(42, 37);
+            this.label1.Location = new System.Drawing.Point(59, 85);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(77, 24);
             this.label1.TabIndex = 0;
@@ -47,14 +49,14 @@
             // 
             // txt_name
             // 
-            this.txt_name.Location = new System.Drawing.Point(125, 34);
+            this.txt_name.Location = new System.Drawing.Point(142, 82);
             this.txt_name.Name = "txt_name";
             this.txt_name.Size = new System.Drawing.Size(219, 31);
             this.txt_name.TabIndex = 1;
             // 
             // txt_price
             // 
-            this.txt_price.Location = new System.Drawing.Point(125, 77);
+            this.txt_price.Location = new System.Drawing.Point(142, 125);
             this.txt_price.Name = "txt_price";
             this.txt_price.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txt_price.Size = new System.Drawing.Size(219, 31);
@@ -64,7 +66,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(27, 80);
+            this.label2.Location = new System.Drawing.Point(44, 128);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(92, 24);
             this.label2.TabIndex = 2;
@@ -72,7 +74,7 @@
             // 
             // btn_save
             // 
-            this.btn_save.Location = new System.Drawing.Point(151, 172);
+            this.btn_save.Location = new System.Drawing.Point(168, 220);
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(108, 45);
             this.btn_save.TabIndex = 4;
@@ -83,16 +85,36 @@
             // lbl_currency_title
             // 
             this.lbl_currency_title.AutoSize = true;
-            this.lbl_currency_title.Location = new System.Drawing.Point(361, 80);
+            this.lbl_currency_title.Location = new System.Drawing.Point(378, 128);
             this.lbl_currency_title.Name = "lbl_currency_title";
             this.lbl_currency_title.Size = new System.Drawing.Size(0, 24);
             this.lbl_currency_title.TabIndex = 5;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(38, 41);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(98, 24);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "انتخاب محصول : ";
+            // 
+            // cmb_food_list
+            // 
+            this.cmb_food_list.FormattingEnabled = true;
+            this.cmb_food_list.Location = new System.Drawing.Point(142, 44);
+            this.cmb_food_list.Name = "cmb_food_list";
+            this.cmb_food_list.Size = new System.Drawing.Size(219, 32);
+            this.cmb_food_list.TabIndex = 7;
+            this.cmb_food_list.SelectedIndexChanged += new System.EventHandler(this.cmb_food_list_SelectedIndexChanged);
             // 
             // Add_Food
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(439, 281);
+            this.ClientSize = new System.Drawing.Size(616, 386);
+            this.Controls.Add(this.cmb_food_list);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.lbl_currency_title);
             this.Controls.Add(this.btn_save);
             this.Controls.Add(this.txt_price);
@@ -106,6 +128,7 @@
             this.RightToLeftLayout = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "تعریف محصول";
+            this.Load += new System.EventHandler(this.Add_Food_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -119,5 +142,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btn_save;
         private System.Windows.Forms.Label lbl_currency_title;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cmb_food_list;
     }
 }
