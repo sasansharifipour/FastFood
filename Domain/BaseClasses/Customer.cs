@@ -16,5 +16,7 @@ namespace Domain.BaseClasses
         public string Mobile { get; set; } = "";
 
         public string Address { get; set; } = "";
+
+        public virtual string FullName { get { return String.Format("{0} {1}",Name, Family); } }
     }
 }

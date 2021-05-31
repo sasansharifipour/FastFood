@@ -31,6 +31,8 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.محصولاتToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.add_food_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.سفارشToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.add_order_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -38,7 +40,8 @@
             // 
             this.menuStrip1.Font = new System.Drawing.Font("B Nazanin", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.محصولاتToolStripMenuItem});
+            this.محصولاتToolStripMenuItem,
+            this.سفارشToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1136, 31);
@@ -59,6 +62,21 @@
             this.add_food_ToolStripMenuItem.Size = new System.Drawing.Size(180, 28);
             this.add_food_ToolStripMenuItem.Text = "افزودن محصول";
             this.add_food_ToolStripMenuItem.Click += new System.EventHandler(this.add_food_ToolStripMenuItem_Click);
+            // 
+            // سفارشToolStripMenuItem
+            // 
+            this.سفارشToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.add_order_ToolStripMenuItem});
+            this.سفارشToolStripMenuItem.Name = "سفارشToolStripMenuItem";
+            this.سفارشToolStripMenuItem.Size = new System.Drawing.Size(57, 27);
+            this.سفارشToolStripMenuItem.Text = "سفارش";
+            // 
+            // add_order_ToolStripMenuItem
+            // 
+            this.add_order_ToolStripMenuItem.Name = "add_order_ToolStripMenuItem";
+            this.add_order_ToolStripMenuItem.Size = new System.Drawing.Size(180, 28);
+            this.add_order_ToolStripMenuItem.Text = "ثبت سفارش";
+            this.add_order_ToolStripMenuItem.Click += new System.EventHandler(this.add_order_ToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -88,6 +106,8 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem محصولاتToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem add_food_ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem سفارشToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem add_order_ToolStripMenuItem;
     }
 }
 
