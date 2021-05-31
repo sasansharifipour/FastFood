@@ -10,26 +10,33 @@ namespace Service
     {
         bool add(Customer customer);
 
+        bool update(Customer data);
+
         IEnumerable<Customer> select(Expression<Func<Customer, bool>> filter);
     }
 
     public class CustomerService : ICustomerService
     {
-        private ICustomerDAO _customer_dao; 
+        private ICustomerDAO _dao; 
 
-        public CustomerService(ICustomerDAO customer_dao)
+        public CustomerService(ICustomerDAO dao)
         {
-            _customer_dao = customer_dao;
+            _dao = dao;
         }
 
         public bool add(Customer customer)
         {
-            return _customer_dao.Add(customer);
+            return _dao.Add(customer);
         }
 
         public IEnumerable<Customer> select(Expression<Func<Customer, bool>> filter)
         {
-            return _customer_dao.Select(filter);
+            return _dao.Select(filter);
+        }
+
+        public bool update(Customer data)
+        {
+            return _dao.Update(data);
         }
     }
 }

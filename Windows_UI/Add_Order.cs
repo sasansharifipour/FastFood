@@ -81,10 +81,10 @@ namespace Windows_UI
             Button button = (Button)sender;
 
             string button_name = button.Name;
-            button_name.Replace(button_prefix_name, "");
+            string food_id_string = button_name.Replace(button_prefix_name, "");
 
             int food_id = 0;
-            int.TryParse(button_name, out food_id);
+            int.TryParse(food_id_string, out food_id);
 
         }
 

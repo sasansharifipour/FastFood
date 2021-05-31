@@ -77,8 +77,7 @@ namespace Windows_UI
             cmb_food_list.ValueMember = "ID";
             var data = _foodService.select(s => s.ID > 0).ToList();
 
-            data.Add(new Food() { ID = 0, Name = "افزودن محصول", Price = 0 });
-            data.Sort((a, b) => a.ID - b.ID);
+            data.Insert(0, new Food() { ID = 0, Name = "افزودن محصول", Price = 0 });
 
             cmb_food_list.DataSource = data;
         }
