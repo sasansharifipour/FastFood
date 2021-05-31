@@ -32,11 +32,6 @@ namespace Service
         {
             int free_number = 0;
 
-            DateTime now = DateTime.Now;
-            int year = now.Year;
-            int month = now.Month;
-            int day = now.Day;
-
             var last_order_today = _dao.Select(s => EntityFunctions.TruncateTime(s.Insert_time) ==
                 EntityFunctions.TruncateTime(DateTime.Now)).OrderByDescending(s => s.Number).FirstOrDefault();
 
