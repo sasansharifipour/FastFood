@@ -196,5 +196,14 @@ namespace Windows_UI
                 MessageBox.Show(null, "در ثبت اطلاعات خطایی رخ داده است", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void btn_new_order_Click(object sender, EventArgs e)
+        {
+            free_number = _orderService.get_free_number();
+            _order_items = new BindingList<OrderItem>();
+
+            show_order_list(_order_items);
+            update_order_show();
+        }
     }
 }

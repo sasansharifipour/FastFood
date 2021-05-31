@@ -210,6 +210,7 @@
             this.btn_new_order.TabIndex = 2;
             this.btn_new_order.Text = "سفارش جدید";
             this.btn_new_order.UseVisualStyleBackColor = true;
+            this.btn_new_order.Click += new System.EventHandler(this.btn_new_order_Click);
             // 
             // lbl_order_number
             // 
