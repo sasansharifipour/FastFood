@@ -20,13 +20,15 @@ namespace Windows_UI
         private IEnumerable<Customer> _customers;
         private string button_prefix_name = "food_button_";
         private BindingList<OrderItem> _order_items = new BindingList<OrderItem>();
+        private IConfigFile _configFile;
 
-        public Add_Order(ICustomerService customerService, IFoodService foodService)
+        public Add_Order(ICustomerService customerService, IFoodService foodService, IConfigFile configFile)
         {
             InitializeComponent();
 
             _customerService = customerService;
             _foodService = foodService;
+            _configFile = configFile;
         }
 
         private void load_info()
@@ -97,7 +99,6 @@ namespace Windows_UI
         private void show_order_list(BindingList<OrderItem> orderItems)
         {
             dt_gd_viw_orderlist.DataSource = orderItems;
-            dt_gd_viw_orderlist.Refresh();
 
             dt_gd_viw_orderlist.Columns["Name"].HeaderText = "غذا";
             dt_gd_viw_orderlist.Columns["Price"].HeaderText = "فی";
@@ -112,6 +113,18 @@ namespace Windows_UI
             dt_gd_viw_orderlist.Columns["Food"].Visible = false;
             dt_gd_viw_orderlist.Columns["FoodID"].Visible = false;
             dt_gd_viw_orderlist.Columns["ID"].Visible = false;
+
+            update_order_show();
+        }
+
+        private void update_order_show()
+        {
+            dt_gd_viw_orderlist.Refresh();
+
+            double sum_price = _order_items.Sum(s => s.All_Price);
+            string txt = string.Format("{0:#,##0}", sum_price);
+
+            lbl_sum_price.Text = String.Format("{0} {1}", txt, _configFile.get_currency_title());
         }
 
         private void Button_Click(object sender, EventArgs e)
@@ -144,7 +157,7 @@ namespace Windows_UI
 
             current.Count = new_count;
 
-            dt_gd_viw_orderlist.Refresh();
+            update_order_show();
         }
     }
 }
