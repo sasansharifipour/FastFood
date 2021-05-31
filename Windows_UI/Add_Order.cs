@@ -19,6 +19,7 @@ namespace Windows_UI
         private IEnumerable<Food> _foods;
         private IEnumerable<Customer> _customers;
         private string button_prefix_name = "food_button_";
+        private BindingList<OrderItem> _order_items = new BindingList<OrderItem>();
 
         public Add_Order(ICustomerService customerService, IFoodService foodService)
         {
@@ -76,6 +77,43 @@ namespace Windows_UI
             }
         }
 
+        private void add_item_to_order(int item_id)
+        {
+            var food = _foodService.select(s => s.ID == item_id).FirstOrDefault();
+
+            if (food == null || food.ID <= 0)
+                return;
+
+            var order_item = _order_items.Where(s => s.FoodID == food.ID).FirstOrDefault();
+
+            if (order_item == null || order_item.FoodID <= 0)
+                _order_items.Add(new OrderItem() { FoodID = food.ID, Name = food.Name, Price = food.Price, Count = 1 });
+            else
+                order_item.Count++;
+
+            show_order_list(_order_items);
+        }
+
+        private void show_order_list(BindingList<OrderItem> orderItems)
+        {
+            dt_gd_viw_orderlist.DataSource = orderItems;
+            dt_gd_viw_orderlist.Refresh();
+
+            dt_gd_viw_orderlist.Columns["Name"].HeaderText = "غذا";
+            dt_gd_viw_orderlist.Columns["Price"].HeaderText = "فی";
+            dt_gd_viw_orderlist.Columns["Count"].HeaderText = "تعداد";
+            dt_gd_viw_orderlist.Columns["All_Price"].HeaderText = "قیمت";
+            
+            dt_gd_viw_orderlist.Columns["Name"].ReadOnly = true;
+            dt_gd_viw_orderlist.Columns["Price"].ReadOnly = true;
+            dt_gd_viw_orderlist.Columns["Count"].ReadOnly = false;
+            dt_gd_viw_orderlist.Columns["All_Price"].ReadOnly = true;
+
+            dt_gd_viw_orderlist.Columns["Food"].Visible = false;
+            dt_gd_viw_orderlist.Columns["FoodID"].Visible = false;
+            dt_gd_viw_orderlist.Columns["ID"].Visible = false;
+        }
+
         private void Button_Click(object sender, EventArgs e)
         {
             Button button = (Button)sender;
@@ -86,6 +124,7 @@ namespace Windows_UI
             int food_id = 0;
             int.TryParse(food_id_string, out food_id);
 
+            add_item_to_order(food_id);
         }
 
         private void Order_Load(object sender, EventArgs e)
@@ -94,6 +133,18 @@ namespace Windows_UI
 
             show_foods(_foods);
             show_customers(_customers);
+            show_order_list(_order_items);
+        }
+
+        private void dt_gd_viw_orderlist_CellParsing(object sender, DataGridViewCellParsingEventArgs e)
+        {
+            OrderItem current = ((BindingList<OrderItem>)dt_gd_viw_orderlist.DataSource)[e.RowIndex];
+            int new_count = 0;
+            int.TryParse(e.Value.ToString(), out new_count);
+
+            current.Count = new_count;
+
+            dt_gd_viw_orderlist.Refresh();
         }
     }
 }
