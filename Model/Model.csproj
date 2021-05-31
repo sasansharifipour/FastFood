@@ -63,6 +63,10 @@
     <Compile Include="Migrations\202105301152327_change_order_deliver_date_nullable.designer.cs">
       <DependentUpon>202105301152327_change_order_deliver_date_nullable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105311835502_add_number_to_order.cs" />
+    <Compile Include="Migrations\202105311835502_add_number_to_order.designer.cs">
+      <DependentUpon>202105311835502_add_number_to_order.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -85,6 +89,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105301152327_change_order_deliver_date_nullable.resx">
       <DependentUpon>202105301152327_change_order_deliver_date_nullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105311835502_add_number_to_order.resx">
+      <DependentUpon>202105311835502_add_number_to_order.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

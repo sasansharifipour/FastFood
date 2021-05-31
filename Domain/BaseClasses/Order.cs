@@ -18,5 +18,7 @@ namespace Domain.BaseClasses
         public DateTime Insert_time { get; set; }
 
         public DateTime? Deliver_time { get; set; }
+
+        public int Number { get; set; } = 0;
     }
 }
