@@ -3,6 +3,7 @@ using Service;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using Unity;
 
 namespace Windows_UI
 {
@@ -10,13 +11,15 @@ namespace Windows_UI
     {
         private IOrderService _orderService;
         private IOrderItemService _orderItemService;
+        private Form _add_food;
 
-        public Form1(IOrderService orderService, IOrderItemService orderItemService)
+        public Form1(IOrderService orderService, IOrderItemService orderItemService, [Dependency("add_food")] Form add_food)
         {
             InitializeComponent();
 
             _orderService = orderService;
             _orderItemService = orderItemService;
+            _add_food = add_food;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -25,8 +28,7 @@ namespace Windows_UI
 
         private void add_food_ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Add_Food add_food_frm = new Add_Food();
-            add_food_frm.ShowDialog();
+            _add_food.ShowDialog();
         }
     }
 }

@@ -19,6 +19,8 @@ namespace Windows_UI
             container.RegisterSingleton<IDbContextFactory<DBContext>, DbContextFactory>();
             container.RegisterSingleton<IDbContextFactory<DbContext>, DbContextFactory>();
 
+            container.RegisterSingleton<IConfigFile, ConfigFile>();
+
             container.RegisterSingleton<IBaseDAO<Customer>, BaseDAO<Customer>>();
             container.RegisterSingleton<ICustomerDAO, CustomerDAO>();
             container.RegisterSingleton<ICustomerService, CustomerService>();
@@ -36,6 +38,7 @@ namespace Windows_UI
             container.RegisterSingleton<IOrderItemService, OrderItemService>();
 
             container.RegisterType<Form, Form1>("Form1");
+            container.RegisterType<Form, Add_Food>("add_food");
 
             return container;
         }

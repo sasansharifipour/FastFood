@@ -32,7 +32,8 @@
             this.txt_name = new System.Windows.Forms.TextBox();
             this.txt_price = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btn_save = new System.Windows.Forms.Button();
+            this.lbl_currency_title = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -55,6 +56,7 @@
             // 
             this.txt_price.Location = new System.Drawing.Point(125, 77);
             this.txt_price.Name = "txt_price";
+            this.txt_price.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txt_price.Size = new System.Drawing.Size(219, 31);
             this.txt_price.TabIndex = 3;
             this.txt_price.TextChanged += new System.EventHandler(this.txt_price_TextChanged);
@@ -68,21 +70,31 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "قیمت محصول : ";
             // 
-            // button1
+            // btn_save
             // 
-            this.button1.Location = new System.Drawing.Point(151, 142);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(108, 45);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "ثبت";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btn_save.Location = new System.Drawing.Point(151, 172);
+            this.btn_save.Name = "btn_save";
+            this.btn_save.Size = new System.Drawing.Size(108, 45);
+            this.btn_save.TabIndex = 4;
+            this.btn_save.Text = "ثبت";
+            this.btn_save.UseVisualStyleBackColor = true;
+            this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
+            // 
+            // lbl_currency_title
+            // 
+            this.lbl_currency_title.AutoSize = true;
+            this.lbl_currency_title.Location = new System.Drawing.Point(361, 80);
+            this.lbl_currency_title.Name = "lbl_currency_title";
+            this.lbl_currency_title.Size = new System.Drawing.Size(0, 24);
+            this.lbl_currency_title.TabIndex = 5;
             // 
             // Add_Food
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(397, 233);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(439, 281);
+            this.Controls.Add(this.lbl_currency_title);
+            this.Controls.Add(this.btn_save);
             this.Controls.Add(this.txt_price);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txt_name);
@@ -105,6 +117,7 @@
         private System.Windows.Forms.TextBox txt_name;
         private System.Windows.Forms.TextBox txt_price;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn_save;
+        private System.Windows.Forms.Label lbl_currency_title;
     }
 }
