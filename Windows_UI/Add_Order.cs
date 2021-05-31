@@ -49,7 +49,7 @@ namespace Windows_UI
 
         private void show_foods(IEnumerable<Food> foods)
         {
-            Size button_size = new Size(150, 100);
+            Size button_size = _configFile.get_button_size();
 
             int width = pnl_Foods.Width;
 
