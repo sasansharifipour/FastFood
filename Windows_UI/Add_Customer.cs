@@ -61,7 +61,7 @@ namespace Windows_UI
         {
             cmb_customer_list.DisplayMember = "FullName";
             cmb_customer_list.ValueMember = "ID";
-            var data = _customerService.select(s => s.ID > 0).ToList();
+            var data = _customerService.select(s => s.ID > 0 && s.Deleted == false).ToList();
 
             data.Insert(0, new Customer() { ID = 0, Name = "افزودن", Family = "مشتری" });
 
@@ -77,13 +77,14 @@ namespace Windows_UI
         {
             int selected_id = (int)cmb_customer_list.SelectedValue;
 
-            if (selected_id == 0)
+            var item = _customerService.find(selected_id);
+
+            if (item == null || item.ID <= 0)
             {
                 clean_form();
                 return;
             }
 
-            var item = _customerService.select(s => s.ID == selected_id).FirstOrDefault();
             set_data(item);
         }
 
@@ -102,6 +103,42 @@ namespace Windows_UI
             txt_family.Text = data.Family;
             txt_mobile.Text = data.Mobile;
             txt_address.Text = data.Address;
+        }
+
+        private void btn_delete_Click(object sender, EventArgs e)
+        {
+
+            var is_confirmed = MessageBox.Show(null, "آیا از حذف این آیتم اطمینان دارید؟", "هشدار",
+                MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button3);
+
+            if (is_confirmed == DialogResult.Yes)
+            {
+
+                int selected_id = (int)cmb_customer_list.SelectedValue;
+
+                Customer item = _customerService.find(selected_id);
+
+                bool deleted = false;
+
+                if (item == null || item.ID <= 0)
+                {
+                    MessageBox.Show(null, "در حذف اطلاعات خطایی رخ داده است", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                deleted = _customerService.delete(item);
+
+                if (deleted)
+                {
+                    MessageBox.Show(null, "اطلاعات با موفقیت حذف گردید", "موفق", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    load_info();
+                    clean_form();
+                }
+                else
+                {
+                    MessageBox.Show(null, "در حذف اطلاعات خطایی رخ داده است", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }

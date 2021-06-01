@@ -39,6 +39,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txt_address = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.btn_delete = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // cmb_customer_list
@@ -61,7 +62,7 @@
             // 
             // btn_save
             // 
-            this.btn_save.Location = new System.Drawing.Point(259, 367);
+            this.btn_save.Location = new System.Drawing.Point(160, 374);
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(108, 45);
             this.btn_save.TabIndex = 5;
@@ -135,11 +136,22 @@
             this.label5.TabIndex = 19;
             this.label5.Text = "آدرس :";
             // 
+            // btn_delete
+            // 
+            this.btn_delete.Location = new System.Drawing.Point(361, 374);
+            this.btn_delete.Name = "btn_delete";
+            this.btn_delete.Size = new System.Drawing.Size(108, 45);
+            this.btn_delete.TabIndex = 20;
+            this.btn_delete.Text = "حذف";
+            this.btn_delete.UseVisualStyleBackColor = true;
+            this.btn_delete.Click += new System.EventHandler(this.btn_delete_Click);
+            // 
             // Add_Customer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(546, 451);
+            this.Controls.Add(this.btn_delete);
             this.Controls.Add(this.txt_address);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txt_mobile);
@@ -177,5 +189,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txt_address;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btn_delete;
     }
 }
