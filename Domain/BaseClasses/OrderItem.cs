@@ -19,6 +19,8 @@ namespace Domain.BaseClasses
 
         public int Count { get; set; } = 0;
 
+        public bool Deleted { get; set; } = false;
+
         public virtual double All_Price { get { return Price * Count; } }
     }
 }

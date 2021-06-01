@@ -12,5 +12,7 @@ namespace Domain.BaseClasses
         public string Name { get; set; } = "";
 
         public double Price { get; set; } = 0;
+
+        public bool Deleted { get; set; } = false;
     }
 }

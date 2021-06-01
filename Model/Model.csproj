@@ -67,6 +67,10 @@
     <Compile Include="Migrations\202105311835502_add_number_to_order.designer.cs">
       <DependentUpon>202105311835502_add_number_to_order.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106011206463_add_is_deleted.cs" />
+    <Compile Include="Migrations\202106011206463_add_is_deleted.designer.cs">
+      <DependentUpon>202106011206463_add_is_deleted.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -92,6 +96,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105311835502_add_number_to_order.resx">
       <DependentUpon>202105311835502_add_number_to_order.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106011206463_add_is_deleted.resx">
+      <DependentUpon>202106011206463_add_is_deleted.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

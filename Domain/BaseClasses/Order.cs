@@ -20,5 +20,7 @@ namespace Domain.BaseClasses
         public DateTime? Deliver_time { get; set; }
 
         public int Number { get; set; } = 0;
+
+        public bool Deleted { get; set; } = false;
     }
 }
