@@ -69,7 +69,7 @@ namespace Windows_UI
         {
             cmb_food_list.DisplayMember = "Name";
             cmb_food_list.ValueMember = "ID";
-            var data = _foodService.select_active_nodes().ToList();
+            var data = _foodService.select_active_items().ToList();
 
             data.Insert(0, new Food() { ID = 0, Name = "افزودن محصول", Price = 0 });
 
