@@ -36,6 +36,7 @@
             this.lbl_currency_title = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.cmb_food_list = new System.Windows.Forms.ComboBox();
+            this.btn_delete = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -74,7 +75,7 @@
             // 
             // btn_save
             // 
-            this.btn_save.Location = new System.Drawing.Point(168, 220);
+            this.btn_save.Location = new System.Drawing.Point(63, 199);
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(108, 45);
             this.btn_save.TabIndex = 4;
@@ -108,11 +109,22 @@
             this.cmb_food_list.TabIndex = 7;
             this.cmb_food_list.SelectedIndexChanged += new System.EventHandler(this.cmb_food_list_SelectedIndexChanged);
             // 
+            // btn_delete
+            // 
+            this.btn_delete.Location = new System.Drawing.Point(294, 199);
+            this.btn_delete.Name = "btn_delete";
+            this.btn_delete.Size = new System.Drawing.Size(108, 45);
+            this.btn_delete.TabIndex = 8;
+            this.btn_delete.Text = "حذف";
+            this.btn_delete.UseVisualStyleBackColor = true;
+            this.btn_delete.Click += new System.EventHandler(this.btn_delete_Click);
+            // 
             // Add_Food
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(616, 386);
+            this.ClientSize = new System.Drawing.Size(471, 274);
+            this.Controls.Add(this.btn_delete);
             this.Controls.Add(this.cmb_food_list);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lbl_currency_title);
@@ -144,5 +156,6 @@
         private System.Windows.Forms.Label lbl_currency_title;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cmb_food_list;
+        private System.Windows.Forms.Button btn_delete;
     }
 }

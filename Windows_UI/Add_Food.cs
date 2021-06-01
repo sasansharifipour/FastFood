@@ -1,13 +1,7 @@
 ﻿using Domain.BaseClasses;
 using Service;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Windows_UI
@@ -75,7 +69,7 @@ namespace Windows_UI
         {
             cmb_food_list.DisplayMember = "Name";
             cmb_food_list.ValueMember = "ID";
-            var data = _foodService.select(s => s.ID > 0).ToList();
+            var data = _foodService.select(s => s.ID > 0 && s.Deleted == false).ToList();
 
             data.Insert(0, new Food() { ID = 0, Name = "افزودن محصول", Price = 0 });
 
@@ -90,15 +84,15 @@ namespace Windows_UI
         private void cmb_food_list_SelectedIndexChanged(object sender, EventArgs e)
         {
             int selected_id = (int)cmb_food_list.SelectedValue;
+            var food = _foodService.find(selected_id);
 
-            if (selected_id == 0)
+            if (food == null || food.ID <= 0)
             {
                 clean_form();
                 return;
             }
-
-            var item = _foodService.select(s => s.ID == selected_id).FirstOrDefault();
-            set_data(item);
+            
+            set_data(food);
         }
 
         private void clean_form()
@@ -112,6 +106,41 @@ namespace Windows_UI
         {
             txt_name.Text = data.Name;
             txt_price.Text = data.Price.ToString();
+        }
+
+        private void btn_delete_Click(object sender, EventArgs e)
+        {
+            var is_confirmed = MessageBox.Show(null, "آیا از حذف این آیتم اطمینان دارید؟", "هشدار", 
+                MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button3);
+
+            if (is_confirmed == DialogResult.Yes)
+            {
+
+                int selected_id = (int)cmb_food_list.SelectedValue;
+
+                Food food = _foodService.find(selected_id);
+
+                bool deleted = false;
+
+                if (food == null || food.ID <= 0)
+                {
+                    MessageBox.Show(null, "در حذف اطلاعات خطایی رخ داده است", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                deleted = _foodService.delete(food);
+
+                if (deleted)
+                {
+                    MessageBox.Show(null, "اطلاعات با موفقیت حذف گردید", "موفق", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    load_info();
+                    clean_form();
+                }
+                else
+                {
+                    MessageBox.Show(null, "در حذف اطلاعات خطایی رخ داده است", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }
