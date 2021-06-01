@@ -38,8 +38,8 @@ namespace Windows_UI
         private void load_info()
         {
             free_number = Math.Max(1, _orderService.get_free_number());
-            _foods = _foodService.select(s => s.ID > 0);
-            _customers = _customerService.select(s => s.ID > 0);
+            _foods = _foodService.select_active_items();
+            _customers = _customerService.select_active_items();
         }
 
         private void show_customers(IEnumerable<Customer> customers)
