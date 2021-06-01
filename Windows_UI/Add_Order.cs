@@ -116,6 +116,7 @@ namespace Windows_UI
             dt_gd_viw_orderlist.Columns["All_Price"].ReadOnly = true;
 
             dt_gd_viw_orderlist.Columns["Food"].Visible = false;
+            dt_gd_viw_orderlist.Columns["Deleted"].Visible = false;
             dt_gd_viw_orderlist.Columns["FoodID"].Visible = false;
             dt_gd_viw_orderlist.Columns["ID"].Visible = false;
 
