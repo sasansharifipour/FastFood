@@ -122,8 +122,18 @@ namespace Windows_UI
             update_order_show();
         }
 
+        private void remove_zero_count_order_items()
+        {
+            List<OrderItem> order_item_should_removes = _order_items.Where(x => (x.Count == 0)).ToList();
+
+            foreach (OrderItem item in order_item_should_removes)
+                _order_items.Remove(item);
+        }
+
         private void update_order_show()
         {
+            remove_zero_count_order_items();
+
             dt_gd_viw_orderlist.Refresh();
 
             double sum_price = _order_items.Sum(s => s.All_Price);
@@ -165,8 +175,6 @@ namespace Windows_UI
             int.TryParse(e.Value.ToString(), out new_count);
 
             current.Count = new_count;
-
-            update_order_show();
         }
 
         private void btn_save_order_Click(object sender, EventArgs e)
@@ -203,6 +211,11 @@ namespace Windows_UI
             _order_items = new BindingList<OrderItem>();
 
             show_order_list(_order_items);
+            update_order_show();
+        }
+
+        private void dt_gd_viw_orderlist_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
             update_order_show();
         }
     }
