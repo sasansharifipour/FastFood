@@ -17,6 +17,8 @@ namespace Service
 
         bool delete(Food data);
 
+        IEnumerable<Food> select_active_items();
+
         IEnumerable<Food> select(Expression<Func<Food, bool>> filter);
     }
 
@@ -43,6 +45,11 @@ namespace Service
         {
             data.Deleted = true;
             return _dao.Update(data);
+        }
+
+        public IEnumerable<Food> select_active_items()
+        {
+            return _dao.Select(s => s.Deleted == false && s.ID > 0);
         }
 
         public IEnumerable<Food> select(Expression<Func<Food, bool>> filter)

@@ -61,7 +61,7 @@ namespace Windows_UI
         {
             cmb_customer_list.DisplayMember = "FullName";
             cmb_customer_list.ValueMember = "ID";
-            var data = _customerService.select(s => s.ID > 0 && s.Deleted == false).ToList();
+            var data = _customerService.select_active_items().ToList();
 
             data.Insert(0, new Customer() { ID = 0, Name = "افزودن", Family = "مشتری" });
 

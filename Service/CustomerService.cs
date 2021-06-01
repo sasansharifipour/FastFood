@@ -17,6 +17,8 @@ namespace Service
 
         bool delete(Customer data);
 
+        IEnumerable<Customer> select_active_items();
+
         IEnumerable<Customer> select(Expression<Func<Customer, bool>> filter);
     }
 
@@ -48,6 +50,11 @@ namespace Service
                 item = new Customer();
 
             return item;
+        }
+
+        public IEnumerable<Customer> select_active_items()
+        {
+            return _dao.Select(s => s.Deleted == false && s.ID > 0);
         }
 
         public IEnumerable<Customer> select(Expression<Func<Customer, bool>> filter)
