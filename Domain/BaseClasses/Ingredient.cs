@@ -9,7 +9,11 @@ namespace Domain.BaseClasses
     {
         public int ID { get; set; }
 
-        public string Name { get; set; }
+        public string Name { get; set; } = "";
+
+        public bool Deleted { get; set; } = false;
+
+        public int UnitID { get; set; } = 0;
 
         public Unit Unit { get; set; }
     }
