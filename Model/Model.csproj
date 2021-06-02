@@ -71,6 +71,10 @@
     <Compile Include="Migrations\202106011206463_add_is_deleted.designer.cs">
       <DependentUpon>202106011206463_add_is_deleted.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106021018027_add_ingredients_and_units.cs" />
+    <Compile Include="Migrations\202106021018027_add_ingredients_and_units.designer.cs">
+      <DependentUpon>202106021018027_add_ingredients_and_units.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -99,6 +103,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106011206463_add_is_deleted.resx">
       <DependentUpon>202106011206463_add_is_deleted.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106021018027_add_ingredients_and_units.resx">
+      <DependentUpon>202106021018027_add_ingredients_and_units.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
