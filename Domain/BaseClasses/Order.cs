@@ -13,7 +13,7 @@ namespace Domain.BaseClasses
 
         public Customer Customer { get; set; }
 
-        public List<OrderItem> OrderItems { get; set; }
+        public List<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
 
         public DateTime Insert_time { get; set; }
 

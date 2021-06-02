@@ -51,7 +51,7 @@ namespace DAO
 
             using (var db = _db_factory.Create())
             {
-                result = db.Orders.Where(filter).Include("OrderItems").Include("Customer").ToList();
+                result = db.Orders.Where(filter).Include("Customer").Include("OrderItems").ToList();
             }
 
             if (result == null)

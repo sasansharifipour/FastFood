@@ -14,6 +14,8 @@ namespace Service
 
         int get_free_number();
 
+        bool delete(Order data);
+
         IEnumerable<Order> select(Expression<Func<Order, bool>> filter);
 
         IEnumerable<Order> Eager_Select(Expression<Func<Order, bool>> filter);
@@ -31,6 +33,12 @@ namespace Service
         public bool add(Order data)
         {
             return _dao.Add(data);
+        }
+
+        public bool delete(Order data)
+        {
+            data.Deleted = true;
+            return _dao.Update(data);
         }
 
         public IEnumerable<Order> Eager_Select(Expression<Func<Order, bool>> filter)
