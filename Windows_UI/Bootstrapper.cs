@@ -41,11 +41,16 @@ namespace Windows_UI
             container.RegisterSingleton<IUnitDAO, UnitDAO>();
             container.RegisterSingleton<IUnitService, UnitService>();
 
+            container.RegisterSingleton<IBaseDAO<Ingredient>, BaseDAO<Ingredient>>();
+            container.RegisterSingleton<IIngredientDAO, IngredientDAO>();
+            container.RegisterSingleton<IIngredientService, IngredientService>();
+
             container.RegisterSingleton<Form, Form1>("Form1");
             container.RegisterSingleton<Form, Add_Food>("add_food");
             container.RegisterSingleton<Form, Add_Unit>("add_unit");
             container.RegisterSingleton<Form, Add_Order>("add_order");
             container.RegisterSingleton<Form, Add_Customer>("add_customer");
+            container.RegisterSingleton<Form, Add_Ingredient>("add_ingredient");
             container.RegisterSingleton<Form, Delete_Order>("delete_order");
 
             return container;
