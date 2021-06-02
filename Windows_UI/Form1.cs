@@ -14,12 +14,14 @@ namespace Windows_UI
         private Form _add_food;
         private Form _add_order;
         private Form _add_customer;
+        private Form _delete_order;
 
         public Form1(IOrderService orderService
             , IOrderItemService orderItemService
             , [Dependency("add_food")] Form add_food
             , [Dependency("add_order")] Form add_order
-            , [Dependency("add_customer")] Form add_customer)
+            , [Dependency("add_customer")] Form add_customer
+            , [Dependency("delete_order")] Form delete_order)
         {
             InitializeComponent();
 
@@ -28,6 +30,7 @@ namespace Windows_UI
             _add_food = add_food;
             _add_order = add_order;
             _add_customer = add_customer;
+            _delete_order = delete_order;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -47,6 +50,11 @@ namespace Windows_UI
         private void add_customer_ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _add_customer.ShowDialog();
+        }
+
+        private void delete_order_ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _delete_order.ShowDialog();
         }
     }
 }

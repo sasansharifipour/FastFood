@@ -8,6 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Windows_UI
@@ -33,6 +34,8 @@ namespace Windows_UI
             _orderService = orderService;
             _foodService = foodService;
             _configFile = configFile;
+
+            Task.Factory.StartNew(load_info);
         }
 
         private void load_info()

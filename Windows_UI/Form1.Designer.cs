@@ -30,10 +30,11 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.محصولاتToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.add_customer_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.add_food_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.سفارشToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.add_order_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.add_customer_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.delete_order_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,17 +59,25 @@
             this.محصولاتToolStripMenuItem.Size = new System.Drawing.Size(64, 27);
             this.محصولاتToolStripMenuItem.Text = "تنظیمات";
             // 
+            // add_customer_ToolStripMenuItem
+            // 
+            this.add_customer_ToolStripMenuItem.Name = "add_customer_ToolStripMenuItem";
+            this.add_customer_ToolStripMenuItem.Size = new System.Drawing.Size(151, 28);
+            this.add_customer_ToolStripMenuItem.Text = "افزودن مشتری";
+            this.add_customer_ToolStripMenuItem.Click += new System.EventHandler(this.add_customer_ToolStripMenuItem_Click);
+            // 
             // add_food_ToolStripMenuItem
             // 
             this.add_food_ToolStripMenuItem.Name = "add_food_ToolStripMenuItem";
-            this.add_food_ToolStripMenuItem.Size = new System.Drawing.Size(180, 28);
+            this.add_food_ToolStripMenuItem.Size = new System.Drawing.Size(151, 28);
             this.add_food_ToolStripMenuItem.Text = "افزودن محصول";
             this.add_food_ToolStripMenuItem.Click += new System.EventHandler(this.add_food_ToolStripMenuItem_Click);
             // 
             // سفارشToolStripMenuItem
             // 
             this.سفارشToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.add_order_ToolStripMenuItem});
+            this.add_order_ToolStripMenuItem,
+            this.delete_order_ToolStripMenuItem});
             this.سفارشToolStripMenuItem.Name = "سفارشToolStripMenuItem";
             this.سفارشToolStripMenuItem.Size = new System.Drawing.Size(57, 27);
             this.سفارشToolStripMenuItem.Text = "سفارش";
@@ -76,16 +85,16 @@
             // add_order_ToolStripMenuItem
             // 
             this.add_order_ToolStripMenuItem.Name = "add_order_ToolStripMenuItem";
-            this.add_order_ToolStripMenuItem.Size = new System.Drawing.Size(138, 28);
+            this.add_order_ToolStripMenuItem.Size = new System.Drawing.Size(180, 28);
             this.add_order_ToolStripMenuItem.Text = "ثبت سفارش";
             this.add_order_ToolStripMenuItem.Click += new System.EventHandler(this.add_order_ToolStripMenuItem_Click);
             // 
-            // add_customer_ToolStripMenuItem
+            // delete_order_ToolStripMenuItem
             // 
-            this.add_customer_ToolStripMenuItem.Name = "add_customer_ToolStripMenuItem";
-            this.add_customer_ToolStripMenuItem.Size = new System.Drawing.Size(180, 28);
-            this.add_customer_ToolStripMenuItem.Text = "افزودن مشتری";
-            this.add_customer_ToolStripMenuItem.Click += new System.EventHandler(this.add_customer_ToolStripMenuItem_Click);
+            this.delete_order_ToolStripMenuItem.Name = "delete_order_ToolStripMenuItem";
+            this.delete_order_ToolStripMenuItem.Size = new System.Drawing.Size(180, 28);
+            this.delete_order_ToolStripMenuItem.Text = "ابطال سفارش";
+            this.delete_order_ToolStripMenuItem.Click += new System.EventHandler(this.delete_order_ToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -118,6 +127,7 @@
         private System.Windows.Forms.ToolStripMenuItem سفارشToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem add_order_ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem add_customer_ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem delete_order_ToolStripMenuItem;
     }
 }
 

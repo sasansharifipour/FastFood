@@ -1,8 +1,10 @@
 ﻿using DAO;
 using Domain.BaseClasses;
 using System;
+using System.Collections.Generic;
 using System.Data.Entity.Core.Objects;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace Service
 {
@@ -11,11 +13,15 @@ namespace Service
         bool add(Order data);
 
         int get_free_number();
+
+        IEnumerable<Order> select(Expression<Func<Order, bool>> filter);
+
+        IEnumerable<Order> Eager_Select(Expression<Func<Order, bool>> filter);
     }
 
     public class OrderService : IOrderService
     {
-        private IOrderDAO _dao; 
+        private IOrderDAO _dao;
 
         public OrderService(IOrderDAO dao)
         {
@@ -25,6 +31,11 @@ namespace Service
         public bool add(Order data)
         {
             return _dao.Add(data);
+        }
+
+        public IEnumerable<Order> Eager_Select(Expression<Func<Order, bool>> filter)
+        {
+            return _dao.Eager_Select(filter);
         }
 
         [Obsolete]
@@ -41,6 +52,11 @@ namespace Service
                 free_number = last_order_today.Number + 1;
 
             return free_number;
+        }
+
+        public IEnumerable<Order> select(Expression<Func<Order, bool>> filter)
+        {
+            return _dao.Select(filter);
         }
     }
 }

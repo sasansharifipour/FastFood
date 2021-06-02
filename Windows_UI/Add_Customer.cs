@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Windows_UI
@@ -20,6 +21,7 @@ namespace Windows_UI
             InitializeComponent();
 
             _customerService = customerService;
+            Task.Factory.StartNew(load_info);
         }
 
         private void btn_save_Click(object sender, EventArgs e)

@@ -41,6 +41,7 @@ namespace Windows_UI
             container.RegisterType<Form, Add_Food>("add_food");
             container.RegisterType<Form, Add_Order>("add_order");
             container.RegisterType<Form, Add_Customer>("add_customer");
+            container.RegisterType<Form, Delete_Order>("delete_order");
 
             return container;
         }

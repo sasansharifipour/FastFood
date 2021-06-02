@@ -4,12 +4,14 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Linq.Expressions;
+using System.Linq;
+using System.Data.Entity;
 
 namespace DAO
 {
     public interface IOrderDAO : IBaseDAO<Order>
     {
-
+        IEnumerable<Order> Eager_Select(Expression<Func<Order, bool>> filter);
     }
 
     public class OrderDAO : IOrderDAO
@@ -41,6 +43,21 @@ namespace DAO
         public bool Update(Order data)
         {
             return _crud_operator.Update(data);
+        }
+
+        public IEnumerable<Order> Eager_Select(Expression<Func<Order, bool>> filter)
+        {
+            IEnumerable<Order> result = new List<Order>();
+
+            using (var db = _db_factory.Create())
+            {
+                result = db.Orders.Where(filter).Include("OrderItems").Include("Customer").ToList();
+            }
+
+            if (result == null)
+                result = new List<Order>();
+
+            return result;
         }
     }
 }

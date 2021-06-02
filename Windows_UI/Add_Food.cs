@@ -2,6 +2,7 @@
 using Service;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Windows_UI
@@ -18,6 +19,8 @@ namespace Windows_UI
             _configFile = configFile;
             _foodService = foodService;
             lbl_currency_title.Text = _configFile.get_currency_title();
+
+            Task.Factory.StartNew(load_info);
         }
         
         private void txt_price_TextChanged(object sender, EventArgs e)
