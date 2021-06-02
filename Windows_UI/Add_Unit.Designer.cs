@@ -57,7 +57,7 @@
             this.btn_save.Location = new System.Drawing.Point(60, 148);
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(108, 45);
-            this.btn_save.TabIndex = 4;
+            this.btn_save.TabIndex = 2;
             this.btn_save.Text = "ثبت";
             this.btn_save.UseVisualStyleBackColor = true;
             this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
@@ -77,7 +77,7 @@
             this.cmb_data_list.Location = new System.Drawing.Point(142, 44);
             this.cmb_data_list.Name = "cmb_data_list";
             this.cmb_data_list.Size = new System.Drawing.Size(219, 32);
-            this.cmb_data_list.TabIndex = 7;
+            this.cmb_data_list.TabIndex = 0;
             this.cmb_data_list.SelectedIndexChanged += new System.EventHandler(this.cmb_Unit_list_SelectedIndexChanged);
             // 
             // btn_delete
@@ -85,7 +85,7 @@
             this.btn_delete.Location = new System.Drawing.Point(291, 148);
             this.btn_delete.Name = "btn_delete";
             this.btn_delete.Size = new System.Drawing.Size(108, 45);
-            this.btn_delete.TabIndex = 8;
+            this.btn_delete.TabIndex = 3;
             this.btn_delete.Text = "حذف";
             this.btn_delete.UseVisualStyleBackColor = true;
             this.btn_delete.Click += new System.EventHandler(this.btn_delete_Click);
