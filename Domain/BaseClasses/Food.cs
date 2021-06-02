@@ -14,5 +14,7 @@ namespace Domain.BaseClasses
         public double Price { get; set; } = 0;
 
         public bool Deleted { get; set; } = false;
+
+        public List<Consume> Consumes { get; set; }
     }
 }

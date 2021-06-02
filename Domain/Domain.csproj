@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseClasses\Consume.cs" />
     <Compile Include="BaseClasses\Customer.cs" />
     <Compile Include="BaseClasses\Food.cs" />
     <Compile Include="BaseClasses\Ingredient.cs" />
