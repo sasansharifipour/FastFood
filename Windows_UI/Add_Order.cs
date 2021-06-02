@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Unity;
 
 namespace Windows_UI
 {
@@ -23,10 +24,13 @@ namespace Windows_UI
         private BindingList<OrderItem> _order_items;
         private IConfigFile _configFile;
         private IOrderService _orderService;
+        private Form _delete_order;
+
         int free_number = 0;
 
         public Add_Order(ICustomerService customerService, IFoodService foodService, IConfigFile configFile
-            ,IOrderService orderService)
+            ,IOrderService orderService
+            , [Dependency("delete_order")] Form delete_order)
         {
             InitializeComponent();
 
@@ -34,6 +38,7 @@ namespace Windows_UI
             _orderService = orderService;
             _foodService = foodService;
             _configFile = configFile;
+            _delete_order = delete_order;
 
             Task.Factory.StartNew(load_info);
         }
@@ -221,6 +226,11 @@ namespace Windows_UI
         private void dt_gd_viw_orderlist_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             update_order_show();
+        }
+
+        private void btn_delete_Click(object sender, EventArgs e)
+        {
+            _delete_order.ShowDialog();
         }
     }
 }

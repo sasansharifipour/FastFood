@@ -14,8 +14,8 @@ namespace Windows_UI
         public static IUnityContainer Init()
         {
             var container = new UnityContainer();
-            container.RegisterType<DBContext, DBContext>();
-            container.RegisterType<DbContext, DBContext>();
+            container.RegisterSingleton<DBContext, DBContext>();
+            container.RegisterSingleton<DbContext, DBContext>();
             container.RegisterSingleton<IDbContextFactory<DBContext>, DbContextFactory>();
             container.RegisterSingleton<IDbContextFactory<DbContext>, DbContextFactory>();
 
@@ -37,11 +37,11 @@ namespace Windows_UI
             container.RegisterSingleton<IOrderItemDAO, OrderItemDAO>();
             container.RegisterSingleton<IOrderItemService, OrderItemService>();
 
-            container.RegisterType<Form, Form1>("Form1");
-            container.RegisterType<Form, Add_Food>("add_food");
-            container.RegisterType<Form, Add_Order>("add_order");
-            container.RegisterType<Form, Add_Customer>("add_customer");
-            container.RegisterType<Form, Delete_Order>("delete_order");
+            container.RegisterSingleton<Form, Form1>("Form1");
+            container.RegisterSingleton<Form, Add_Food>("add_food");
+            container.RegisterSingleton<Form, Add_Order>("add_order");
+            container.RegisterSingleton<Form, Add_Customer>("add_customer");
+            container.RegisterSingleton<Form, Delete_Order>("delete_order");
 
             return container;
         }

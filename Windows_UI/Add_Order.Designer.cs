@@ -45,6 +45,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pnl_Foods = new System.Windows.Forms.Panel();
+            this.btn_delete = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dt_gd_viw_orderlist)).BeginInit();
@@ -99,6 +100,7 @@
             // 
             // panel6
             // 
+            this.panel6.Controls.Add(this.btn_delete);
             this.panel6.Controls.Add(this.btn_new_order);
             this.panel6.Controls.Add(this.btn_print);
             this.panel6.Controls.Add(this.btn_save_order);
@@ -110,7 +112,7 @@
             // 
             // btn_new_order
             // 
-            this.btn_new_order.Location = new System.Drawing.Point(66, 86);
+            this.btn_new_order.Location = new System.Drawing.Point(261, 86);
             this.btn_new_order.Name = "btn_new_order";
             this.btn_new_order.Size = new System.Drawing.Size(111, 47);
             this.btn_new_order.TabIndex = 2;
@@ -120,7 +122,7 @@
             // 
             // btn_print
             // 
-            this.btn_print.Location = new System.Drawing.Point(199, 86);
+            this.btn_print.Location = new System.Drawing.Point(144, 86);
             this.btn_print.Name = "btn_print";
             this.btn_print.Size = new System.Drawing.Size(111, 47);
             this.btn_print.TabIndex = 1;
@@ -129,7 +131,7 @@
             // 
             // btn_save_order
             // 
-            this.btn_save_order.Location = new System.Drawing.Point(337, 86);
+            this.btn_save_order.Location = new System.Drawing.Point(378, 86);
             this.btn_save_order.Name = "btn_save_order";
             this.btn_save_order.Size = new System.Drawing.Size(111, 47);
             this.btn_save_order.TabIndex = 0;
@@ -222,6 +224,16 @@
             this.pnl_Foods.Size = new System.Drawing.Size(832, 749);
             this.pnl_Foods.TabIndex = 1;
             // 
+            // btn_delete
+            // 
+            this.btn_delete.Location = new System.Drawing.Point(27, 86);
+            this.btn_delete.Name = "btn_delete";
+            this.btn_delete.Size = new System.Drawing.Size(111, 47);
+            this.btn_delete.TabIndex = 3;
+            this.btn_delete.Text = "حذف سفارش";
+            this.btn_delete.UseVisualStyleBackColor = true;
+            this.btn_delete.Click += new System.EventHandler(this.btn_delete_Click);
+            // 
             // Add_Order
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 24F);
@@ -270,5 +282,6 @@
         private System.Windows.Forms.Button btn_save_order;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label lbl_order_number;
+        private System.Windows.Forms.Button btn_delete;
     }
 }

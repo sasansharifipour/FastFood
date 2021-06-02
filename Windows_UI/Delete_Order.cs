@@ -118,7 +118,9 @@ namespace Windows_UI
 
         private void Delete_Order_Load(object sender, EventArgs e)
         {
-            txt_order_number.Focus();
+            txt_order_number.Text = "";
+            clean_form();
+            txt_order_number.Select();
         }
 
         private void btn_delete_Click(object sender, EventArgs e)
