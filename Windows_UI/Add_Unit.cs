@@ -68,6 +68,7 @@ namespace Windows_UI
         private void Add_Unit_Load(object sender, EventArgs e)
         {
             load_info();
+            txt_name.Select();
         }
 
         private void cmb_Unit_list_SelectedIndexChanged(object sender, EventArgs e)
