@@ -23,10 +23,12 @@ namespace DAO
     public class BaseDAO<T> : IBaseDAO<T> where T : class
     {
         private IDbContextFactory<DbContext> _db_factory;
+        private DbContext _db;
 
-        public BaseDAO(IDbContextFactory<DbContext> db_factory)
+        public BaseDAO(IDbContextFactory<DbContext> db_factory, DbContext db)
         {
             _db_factory = db_factory;
+            _db = db;
         }
 
         public bool Add(T data)
@@ -35,17 +37,14 @@ namespace DAO
 
             try
             {
-                using (var db = _db_factory.Create())
-                {
-                    var context = db.Set<T>();
-                    context.Add(data);
-                    int cnt = db.SaveChanges();
+                var context = _db.Set<T>();
+                context.Add(data);
+                int cnt = _db.SaveChanges();
 
-                    if (cnt > 0)
-                        added = true;
-                }
+                if (cnt > 0)
+                    added = true;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
             }
 
@@ -58,15 +57,12 @@ namespace DAO
 
             try
             {
-                using (var db = _db_factory.Create())
-                {
-                    var context = db.Set<T>();
-                    context.Remove(data);
-                    int cnt = db.SaveChanges();
+                var context = _db.Set<T>();
+                context.Remove(data);
+                int cnt = _db.SaveChanges();
 
-                    if (cnt > 0)
-                        deleted = true;
-                }
+                if (cnt > 0)
+                    deleted = true;
             }
             catch (Exception e)
             {
@@ -81,11 +77,8 @@ namespace DAO
 
             try
             {
-                using (var db = _db_factory.Create())
-                {
-                    var context = db.Set<T>();
-                    result = context.Where<T>(filter).ToList();
-                }
+                var context = _db.Set<T>();
+                result = context.Where<T>(filter).ToList();
             }
             catch (Exception e)
             {
@@ -103,14 +96,11 @@ namespace DAO
 
             try
             {
-                using (var db = _db_factory.Create())
-                {
-                    db.Entry(data).State = EntityState.Modified;
-                    int cnt = db.SaveChanges();
+                _db.Entry(data);
+                int cnt = _db.SaveChanges();
 
-                    if (cnt > 0)
-                        added = true;
-                }
+                if (cnt > 0)
+                    added = true;
             }
             catch (Exception e)
             {

@@ -28,17 +28,20 @@ namespace Windows_UI
         private void btn_save_Click(object sender, EventArgs e)
         {
             int ID = (int)cmb_data_list.SelectedValue;
-            Unit Unit = new Unit() { Name = txt_name.Text.Trim() };
+            string Unit_Name = txt_name.Text.Trim();
+            Unit Unit;
 
             bool register = false;
 
             if (ID > 0)
             {
-                Unit.ID = ID;
+                Unit = _UnitService.find(ID);
+                Unit.Name = Unit_Name;
                 register = _UnitService.update(Unit);
             }
             else
             {
+                Unit = new Unit() { Name = Unit_Name };
                 register = _UnitService.add(Unit);
             }
 

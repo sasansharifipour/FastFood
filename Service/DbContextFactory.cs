@@ -9,9 +9,20 @@ namespace Service
 {
     public class DbContextFactory : IDbContextFactory<DBContext>
     {
+        private DBContext _instance;
+
+        public DbContextFactory()
+        {
+            if (_instance == null)
+                _instance = new DBContext();
+        }
+
         public DBContext Create()
         {
-            return new DBContext();
+            if (_instance == null)
+                _instance = new DBContext();
+
+            return _instance;
         }
     }
 }
