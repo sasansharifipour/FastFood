@@ -17,12 +17,10 @@ namespace DAO
 
     public class UnitDAO : IUnitDAO
     {
-        private IDbContextFactory<DBContext> _db_factory;
         private IBaseDAO<Unit> _crud_operator;
 
-        public UnitDAO(IDbContextFactory<DBContext> db_factory, IBaseDAO<Unit> crud_operator)
+        public UnitDAO(IBaseDAO<Unit> crud_operator)
         {
-            _db_factory = db_factory;
             _crud_operator = crud_operator;
         }
 

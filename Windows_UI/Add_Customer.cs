@@ -27,23 +27,26 @@ namespace Windows_UI
         private void btn_save_Click(object sender, EventArgs e)
         {
             int ID = (int)cmb_customer_list.SelectedValue;
-            Customer data = new Customer()
-            {
-                Name = txt_name.Text.Trim(),
-                Family = txt_family.Text.Trim(),
-                Mobile = txt_mobile.Text.Trim(),
-                Address = txt_address.Text.Trim()
-            };
+            string Name = txt_name.Text.Trim();
+            string Family = txt_family.Text.Trim();
+            string Mobile = txt_mobile.Text.Trim();
+            string Address = txt_address.Text.Trim();
+            Customer data;
 
             bool register = false;
 
             if (ID > 0)
             {
-                data.ID = ID;
+                data = _customerService.find(ID);
+                data.Name = Name;
+                data.Family = Family;
+                data.Mobile = Mobile;
+                data.Address = Address;
                 register = _customerService.update(data);
             }
             else
             {
+                data = new Customer() { Name = Name, Family  = Family, Mobile = Mobile, Address = Address };
                 register = _customerService.add(data);
             }
 

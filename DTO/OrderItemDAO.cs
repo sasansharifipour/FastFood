@@ -14,12 +14,10 @@ namespace DAO
 
     public class OrderItemDAO : IOrderItemDAO
     {
-        private IDbContextFactory<DBContext> _db_factory;
         private IBaseDAO<OrderItem> _crud_operator;
 
-        public OrderItemDAO(IDbContextFactory<DBContext> db_factory, IBaseDAO<OrderItem> crud_operator)
+        public OrderItemDAO(IBaseDAO<OrderItem> crud_operator)
         {
-            _db_factory = db_factory;
             _crud_operator = crud_operator;
         }
 

@@ -40,20 +40,24 @@ namespace Windows_UI
         private void btn_save_Click(object sender, EventArgs e)
         {
             int ID = (int)cmb_food_list.SelectedValue;
-            double value = 0;
-            double.TryParse(txt_price.Text, out value);
-            Food food = new Food() { Name = txt_name.Text.Trim() , Price = value};
+            double Price = 0;
+            double.TryParse(txt_price.Text, out Price);
+            string Name = txt_name.Text.Trim();
+            Food data;
 
             bool register = false;
 
             if (ID > 0)
             {
-                food.ID = ID;
-                register = _foodService.update(food);
+                data = _foodService.find(ID);
+                data.Name = Name;
+                data.Price = Price;
+                register = _foodService.update(data);
             }
             else
             {
-                register = _foodService.add(food);
+                data = new Food() { Name = Name, Price = Price};
+                register = _foodService.add(data);
             }
 
             if (register)

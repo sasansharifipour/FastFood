@@ -31,6 +31,7 @@ namespace Windows_UI
         {
             int ID = (int)cmb_data_list.SelectedValue;
             int unit_id = (int)cmb_unit_list.SelectedValue;
+            string Name = txt_name.Text.Trim();
 
             if (unit_id <= 0)
             {
@@ -38,18 +39,21 @@ namespace Windows_UI
                 return;
             }
 
-            Ingredient Ingredient = new Ingredient() { Name = txt_name.Text.Trim(), UnitID = unit_id };
+            Ingredient data;
 
             bool register = false;
 
             if (ID > 0)
             {
-                Ingredient.ID = ID;
-                register = _IngredientService.update(Ingredient);
+                data = _IngredientService.find(ID);
+                data.Name = Name;
+                data.UnitID = unit_id;
+                register = _IngredientService.update(data);
             }
             else
             {
-                register = _IngredientService.add(Ingredient);
+                data = new Ingredient() { Name = Name, UnitID = unit_id };
+                register = _IngredientService.add(data);
             }
 
             if (register)

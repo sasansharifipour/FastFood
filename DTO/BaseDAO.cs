@@ -22,12 +22,10 @@ namespace DAO
 
     public class BaseDAO<T> : IBaseDAO<T> where T : class
     {
-        private IDbContextFactory<DbContext> _db_factory;
         private DbContext _db;
 
-        public BaseDAO(IDbContextFactory<DbContext> db_factory, DbContext db)
+        public BaseDAO(DbContext db)
         {
-            _db_factory = db_factory;
             _db = db;
         }
 

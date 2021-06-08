@@ -16,12 +16,12 @@ namespace DAO
 
     public class OrderDAO : IOrderDAO
     {
-        private IDbContextFactory<DBContext> _db_factory;
+        private DbContext _db;
         private IBaseDAO<Order> _crud_operator;
 
-        public OrderDAO(IDbContextFactory<DBContext> db_factory, IBaseDAO<Order> crud_operator)
+        public OrderDAO(DbContext db, IBaseDAO<Order> crud_operator)
         {
-            _db_factory = db_factory;
+            _db = db;
             _crud_operator = crud_operator;
         }
 
@@ -49,10 +49,8 @@ namespace DAO
         {
             IEnumerable<Order> result = new List<Order>();
 
-            using (var db = _db_factory.Create())
-            {
-                result = db.Orders.Where(filter).Include("Customer").Include("OrderItems").ToList();
-            }
+            var context = _db.Set<Order>();
+            result = context.Where(filter).Include("Customer").Include("OrderItems").ToList();
 
             if (result == null)
                 result = new List<Order>();

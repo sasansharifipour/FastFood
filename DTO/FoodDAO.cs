@@ -17,12 +17,10 @@ namespace DAO
 
     public class FoodDAO : IFoodDAO
     {
-        private IDbContextFactory<DBContext> _db_factory;
         private IBaseDAO<Food> _crud_operator;
 
-        public FoodDAO(IDbContextFactory<DBContext> db_factory, IBaseDAO<Food> crud_operator)
+        public FoodDAO(IBaseDAO<Food> crud_operator)
         {
-            _db_factory = db_factory;
             _crud_operator = crud_operator;
         }
 
