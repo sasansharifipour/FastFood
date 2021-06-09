@@ -71,6 +71,9 @@ namespace Windows_UI
         {
             try
             {
+                if (cmb_data_list.SelectedValue == null)
+                    return new Ingredient();
+
                 int ingredient_id = (int)cmb_data_list.SelectedValue;
 
                 return _ingredientService.find(ingredient_id);
@@ -90,6 +93,9 @@ namespace Windows_UI
         {
             try
             {
+                if (cmb_food_list.SelectedValue == null)
+                    return new Food();
+
                 int food_id = (int)cmb_food_list.SelectedValue;
                 return _foodService.Eager_Select(s => s.ID == food_id).FirstOrDefault();
             }
