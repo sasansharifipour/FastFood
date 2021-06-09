@@ -55,6 +55,7 @@ namespace Windows_UI
             container.RegisterSingleton<Form, Add_Ingredient>("add_ingredient");
             container.RegisterSingleton<Form, Add_Food_Ingredient>("add_food_ingredient");
             container.RegisterSingleton<Form, Delete_Order>("delete_order");
+            container.RegisterSingleton<Form, Report_Ingredient>("report_ingredient");
 
             return container;
         }

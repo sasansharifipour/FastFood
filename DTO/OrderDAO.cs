@@ -50,7 +50,8 @@ namespace DAO
             IEnumerable<Order> result = new List<Order>();
 
             var context = _db.Set<Order>();
-            result = context.Where(filter).Include("Customer").Include("OrderItems").ToList();
+            result = context.Where(filter).Include(x => x.Customer).Include(x => x.OrderItems)
+                .Include(x => x.OrderItems.Select(s => s.Food.Consumes.Select(p => p.Ingredient.Unit))).ToList();
 
             if (result == null)
                 result = new List<Order>();

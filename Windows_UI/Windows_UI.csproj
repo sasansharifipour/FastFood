@@ -113,6 +113,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Report_Ingredient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report_Ingredient.Designer.cs">
+      <DependentUpon>Report_Ingredient.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Add_Customer.resx">
       <DependentUpon>Add_Customer.cs</DependentUpon>
     </EmbeddedResource>
@@ -146,6 +152,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Report_Ingredient.resx">
+      <DependentUpon>Report_Ingredient.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
