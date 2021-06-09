@@ -1,4 +1,5 @@
-﻿using Domain.ViewModels;
+﻿using Domain.BaseClasses;
+using Domain.ViewModels;
 using Service;
 using System;
 using System.Collections.Generic;
@@ -49,33 +50,113 @@ namespace Windows_UI
 
         private void cmb_data_list_SelectedIndexChanged(object sender, EventArgs e)
         {
+            change_food_ingredient();
+        }
+
+        private void update_ingredient_info(Ingredient selected_ingredient)
+        {
             try
             {
-                int ingredient_id = (int)cmb_data_list.SelectedValue;
-
-                var selected_ingredient = _ingredientService.find(ingredient_id);
                 var unit = _unitService.find(selected_ingredient.UnitID);
 
                 lbl_unit_name.Text = unit.Name;
             }
-            catch (Exception ex) { }
+            catch(Exception ex)
+            {
+
+            }
+        }
+
+        private Ingredient get_selected_ingredient()
+        {
+            try
+            {
+                int ingredient_id = (int)cmb_data_list.SelectedValue;
+
+                return _ingredientService.find(ingredient_id);
+            }
+            catch(Exception ex)
+            {
+                return new Ingredient();
+            }
         }
 
         private void cmb_food_list_SelectedIndexChanged(object sender, EventArgs e)
         {
+            change_food_ingredient();
+        }
+
+        private Food get_selected_food()
+        {
             try
             {
                 int food_id = (int)cmb_food_list.SelectedValue;
-
-                var data =_foodService.Eager_Select(s => s.ID == food_id).FirstOrDefault();
-                var consumeViewModels = data.ConsumeViewModels();
-
-                dt_gd_viw_consume.DataSource = consumeViewModels;
-                dt_gd_viw_consume.Columns["IngredientName"].HeaderText = "مواد اولیه";
-                dt_gd_viw_consume.Columns["Volume"].HeaderText = "مقدار";
-                dt_gd_viw_consume.Columns["UnitName"].HeaderText = "واحد";
+                return _foodService.Eager_Select(s => s.ID == food_id).FirstOrDefault();
             }
-            catch(Exception ex) { 
+            catch(Exception ex)
+            {
+                return new Food();
+            }
+        }
+
+        private void update_consume_data_grid_view(Food data)
+        {
+            var consumeViewModels = data.ConsumeViewModels();
+
+            dt_gd_viw_consume.DataSource = consumeViewModels;
+            dt_gd_viw_consume.Columns["IngredientName"].HeaderText = "مواد اولیه";
+            dt_gd_viw_consume.Columns["Volume"].HeaderText = "مقدار";
+            dt_gd_viw_consume.Columns["UnitName"].HeaderText = "واحد";
+        }
+
+        private void change_food_ingredient()
+        {
+            try
+            {
+                var selected_ingredient = get_selected_ingredient();
+                var selected_food = get_selected_food();
+                var selected_consume = get_selected_consume(selected_food, selected_ingredient);
+
+                update_consume_data_grid_view(selected_food);
+                update_ingredient_info(selected_ingredient);
+                update_consume_info(selected_consume);
+            }
+            catch(Exception ex)
+            {
+
+            }
+        }
+
+        private void update_consume_info(Consume consume)
+        {
+            try
+            {
+                if (consume == null || consume.ID<= 0)
+                {
+                    txt_amount.Text = "";
+                    txt_amount.Select();
+                }
+                else
+                {
+                    txt_amount.Text = consume.Volume.ToString();
+                    txt_amount.Select();
+                }
+            }
+            catch(Exception ex)
+            {
+
+            }
+        }
+
+        private Consume get_selected_consume(Food food, Ingredient ingredient)
+        {
+            try
+            {
+                return food.Consumes.Where(s => s.IngredientID == ingredient.ID).FirstOrDefault();
+            }
+            catch(Exception ex)
+            {
+                return new Consume();
             }
         }
     }
