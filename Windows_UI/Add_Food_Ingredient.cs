@@ -49,17 +49,20 @@ namespace Windows_UI
 
             if (selected_food == null || selected_food.ID <= 0 )
             {
+                MessageBox.Show(null, "در ثبت اطلاعات خطایی رخ داده است", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }    
 
             if (selected_ingredient == null || selected_ingredient.ID <= 0)
             {
+                MessageBox.Show(null, "در ثبت اطلاعات خطایی رخ داده است", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             double amount = 0;
-            double.TryParse(txt_amount.Text.Trim(), out amount);
-
+            double.TryParse(txt_amount.Text.Replace('.','/').Trim(), out amount);
+            
+            bool register = false;
 
             if (selected_consume == null || selected_consume.ID <= 0)
             {
@@ -70,14 +73,23 @@ namespace Windows_UI
                     Volume = amount
                 };
 
-                _consumeService.add(selected_consume);
+                register = _consumeService.add(selected_consume);
             }
             else
             {
                 selected_consume.Volume = amount;
-                _consumeService.update(selected_consume);
+                register = _consumeService.update(selected_consume);
             }
-            
+
+            if (register)
+            {
+                MessageBox.Show(null, "اطلاعات با موفقیت ثبت گردید", "موفق", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                change_food_ingredient();
+            }
+            else
+            {
+                MessageBox.Show(null, "در ثبت اطلاعات خطایی رخ داده است", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void Add_Food_Ingredient_Load(object sender, EventArgs e)
