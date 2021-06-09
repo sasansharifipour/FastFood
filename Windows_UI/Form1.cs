@@ -17,6 +17,7 @@ namespace Windows_UI
         private Form _delete_order;
         private Form _add_unit;
         private Form _add_ingredient;
+        private Form _add_food_ingredient;
 
         public Form1(IOrderService orderService
             , IOrderItemService orderItemService
@@ -25,7 +26,8 @@ namespace Windows_UI
             , [Dependency("add_customer")] Form add_customer
             , [Dependency("delete_order")] Form delete_order
             , [Dependency("add_unit")] Form add_unit
-            , [Dependency("add_ingredient")] Form add_ingredient)
+            , [Dependency("add_ingredient")] Form add_ingredient
+            , [Dependency("add_food_ingredient")] Form add_food_ingredient)
         {
             InitializeComponent();
 
@@ -37,6 +39,7 @@ namespace Windows_UI
             _delete_order = delete_order;
             _add_unit = add_unit;
             _add_ingredient = add_ingredient;
+            _add_food_ingredient = add_food_ingredient;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -71,6 +74,11 @@ namespace Windows_UI
         private void add_ingredient_ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _add_ingredient.ShowDialog();
+        }
+
+        private void add_ingredient_to_food_ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _add_food_ingredient.ShowDialog();
         }
     }
 }

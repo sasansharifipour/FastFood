@@ -20,6 +20,8 @@ namespace Service
         IEnumerable<Food> select_active_items();
 
         IEnumerable<Food> select(Expression<Func<Food, bool>> filter);
+
+        IEnumerable<Food> Eager_Select(Expression<Func<Food, bool>> filter);
     }
 
     public class FoodService : IFoodService
@@ -65,6 +67,11 @@ namespace Service
                 item = new Food();
 
             return item;
+        }
+
+        public IEnumerable<Food> Eager_Select(Expression<Func<Food, bool>> filter)
+        {
+            return _dao.Eager_Select(filter);
         }
     }
 }
