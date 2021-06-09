@@ -10,6 +10,10 @@ namespace Domain.BaseClasses
     {
         public int ID { get; set; }
 
+        public int FoodID { get; set; } = 0;
+
+        public Food Food { get; set; }
+
         public int IngredientID { get; set; } = 0;
 
         public Ingredient Ingredient { get; set; }

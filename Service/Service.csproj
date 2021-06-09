@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConsumeService.cs" />
     <Compile Include="IngredientService.cs" />
     <Compile Include="UnitService.cs" />
     <Compile Include="OrderItemService.cs" />

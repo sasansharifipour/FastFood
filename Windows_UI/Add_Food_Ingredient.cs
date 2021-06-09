@@ -17,13 +17,16 @@ namespace Windows_UI
         private IFoodService _foodService;
         private IUnitService _unitService;
         private IIngredientService _ingredientService;
+        private IConsumeService _consumeService;
 
-        public Add_Food_Ingredient(IFoodService foodService, IIngredientService ingredientService, IUnitService unitService)
+        public Add_Food_Ingredient(IFoodService foodService, IIngredientService ingredientService, IUnitService unitService
+            , IConsumeService consumeService)
         {
             InitializeComponent();
 
             _foodService = foodService;
             _unitService = unitService;
+            _consumeService = consumeService;
             _ingredientService = ingredientService;
         }
 
@@ -40,7 +43,41 @@ namespace Windows_UI
 
         private void btn_save_Click(object sender, EventArgs e)
         {
+            var selected_ingredient = get_selected_ingredient();
+            var selected_food = get_selected_food();
+            var selected_consume = get_selected_consume(selected_food, selected_ingredient);
 
+            if (selected_food == null || selected_food.ID <= 0 )
+            {
+                return;
+            }    
+
+            if (selected_ingredient == null || selected_ingredient.ID <= 0)
+            {
+                return;
+            }
+
+            double amount = 0;
+            double.TryParse(txt_amount.Text.Trim(), out amount);
+
+
+            if (selected_consume == null || selected_consume.ID <= 0)
+            {
+                selected_consume = new Consume()
+                {
+                    FoodID = selected_food.ID,
+                    IngredientID = selected_ingredient.ID,
+                    Volume = amount
+                };
+
+                _consumeService.add(selected_consume);
+            }
+            else
+            {
+                selected_consume.Volume = amount;
+                _consumeService.update(selected_consume);
+            }
+            
         }
 
         private void Add_Food_Ingredient_Load(object sender, EventArgs e)
