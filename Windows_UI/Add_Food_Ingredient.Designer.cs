@@ -36,8 +36,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.lbl_unit_name = new System.Windows.Forms.Label();
             this.btn_save = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.dt_gd_viw_consume = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dt_gd_viw_consume)).BeginInit();
             this.SuspendLayout();
             // 
             // cmb_food_list
@@ -110,23 +110,23 @@
             this.btn_save.UseVisualStyleBackColor = true;
             this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
             // 
-            // dataGridView1
+            // dt_gd_viw_consume
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(27, 113);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(741, 306);
-            this.dataGridView1.TabIndex = 16;
+            this.dt_gd_viw_consume.AllowUserToAddRows = false;
+            this.dt_gd_viw_consume.AllowUserToDeleteRows = false;
+            this.dt_gd_viw_consume.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dt_gd_viw_consume.Location = new System.Drawing.Point(27, 113);
+            this.dt_gd_viw_consume.Name = "dt_gd_viw_consume";
+            this.dt_gd_viw_consume.ReadOnly = true;
+            this.dt_gd_viw_consume.Size = new System.Drawing.Size(741, 306);
+            this.dt_gd_viw_consume.TabIndex = 16;
             // 
             // Add_Food_Ingredient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(794, 431);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dt_gd_viw_consume);
             this.Controls.Add(this.btn_save);
             this.Controls.Add(this.lbl_unit_name);
             this.Controls.Add(this.txt_amount);
@@ -143,7 +143,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "افزودن مواد اولیه به محصولات";
             this.Load += new System.EventHandler(this.Add_Food_Ingredient_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dt_gd_viw_consume)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -159,6 +159,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lbl_unit_name;
         private System.Windows.Forms.Button btn_save;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dt_gd_viw_consume;
     }
 }

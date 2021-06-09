@@ -70,7 +70,10 @@ namespace Windows_UI
                 var data =_foodService.Eager_Select(s => s.ID == food_id).FirstOrDefault();
                 var consumeViewModels = data.ConsumeViewModels();
 
-                dataGridView1.DataSource = consumeViewModels;
+                dt_gd_viw_consume.DataSource = consumeViewModels;
+                dt_gd_viw_consume.Columns["IngredientName"].HeaderText = "مواد اولیه";
+                dt_gd_viw_consume.Columns["Volume"].HeaderText = "مقدار";
+                dt_gd_viw_consume.Columns["UnitName"].HeaderText = "واحد";
             }
             catch(Exception ex) { 
             }

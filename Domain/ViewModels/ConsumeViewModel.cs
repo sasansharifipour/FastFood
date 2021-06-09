@@ -7,9 +7,9 @@ namespace Domain.ViewModels
 {
     public class ConsumeViewModel
     {
-        public double Volume { get; set; } = 0;
-
         public string IngredientName { get; set; } = "";
+
+        public double Volume { get; set; } = 0;
 
         public string UnitName { get; set; } = "";
     }
