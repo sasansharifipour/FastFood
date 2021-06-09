@@ -19,6 +19,7 @@ namespace Windows_UI
         private Form _add_ingredient;
         private Form _add_food_ingredient;
         private Form _report_ingredient;
+        private Form _report_orders;
 
         public Form1(IOrderService orderService
             , IOrderItemService orderItemService
@@ -29,7 +30,8 @@ namespace Windows_UI
             , [Dependency("add_unit")] Form add_unit
             , [Dependency("add_ingredient")] Form add_ingredient
             , [Dependency("add_food_ingredient")] Form add_food_ingredient
-            , [Dependency("report_ingredient")] Form report_ingredient)
+            , [Dependency("report_ingredient")] Form report_ingredient
+            , [Dependency("report_orders")] Form report_orders)
         {
             InitializeComponent();
 
@@ -43,6 +45,7 @@ namespace Windows_UI
             _add_ingredient = add_ingredient;
             _add_food_ingredient = add_food_ingredient;
             _report_ingredient = report_ingredient;
+            _report_orders = report_orders;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -87,6 +90,11 @@ namespace Windows_UI
         private void report_ingredient_ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _report_ingredient.ShowDialog();
+        }
+
+        private void report_orders_ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _report_orders.ShowDialog();
         }
     }
 }
