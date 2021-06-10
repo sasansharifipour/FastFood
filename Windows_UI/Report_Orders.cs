@@ -80,6 +80,8 @@ namespace Windows_UI
             dt_gd_viw_reportlist.Columns["Count"].HeaderText = "مقدار";
             dt_gd_viw_reportlist.Columns["Price"].HeaderText = "قیمت";
 
+            dt_gd_viw_reportlist.Columns["Price"].DefaultCellStyle.Format = "N0";
+
             dt_gd_viw_reportlist.Columns["Price"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dt_gd_viw_reportlist.Columns["Count"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dt_gd_viw_reportlist.Columns["FoodName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;

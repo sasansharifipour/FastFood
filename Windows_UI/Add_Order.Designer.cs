@@ -33,6 +33,7 @@
             this.dt_gd_viw_orderlist = new System.Windows.Forms.DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.btn_delete = new System.Windows.Forms.Button();
             this.btn_new_order = new System.Windows.Forms.Button();
             this.btn_print = new System.Windows.Forms.Button();
             this.btn_save_order = new System.Windows.Forms.Button();
@@ -45,7 +46,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pnl_Foods = new System.Windows.Forms.Panel();
-            this.btn_delete = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dt_gd_viw_orderlist)).BeginInit();
@@ -64,7 +64,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(501, 749);
+            this.panel1.Size = new System.Drawing.Size(604, 749);
             this.panel1.TabIndex = 0;
             // 
             // panel4
@@ -73,7 +73,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(0, 178);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(501, 281);
+            this.panel4.Size = new System.Drawing.Size(604, 281);
             this.panel4.TabIndex = 6;
             // 
             // dt_gd_viw_orderlist
@@ -83,7 +83,7 @@
             this.dt_gd_viw_orderlist.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dt_gd_viw_orderlist.Location = new System.Drawing.Point(0, 0);
             this.dt_gd_viw_orderlist.Name = "dt_gd_viw_orderlist";
-            this.dt_gd_viw_orderlist.Size = new System.Drawing.Size(501, 281);
+            this.dt_gd_viw_orderlist.Size = new System.Drawing.Size(604, 281);
             this.dt_gd_viw_orderlist.TabIndex = 3;
             this.dt_gd_viw_orderlist.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dt_gd_viw_orderlist_CellEndEdit);
             this.dt_gd_viw_orderlist.CellParsing += new System.Windows.Forms.DataGridViewCellParsingEventHandler(this.dt_gd_viw_orderlist_CellParsing);
@@ -95,7 +95,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel3.Location = new System.Drawing.Point(0, 459);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(501, 290);
+            this.panel3.Size = new System.Drawing.Size(604, 290);
             this.panel3.TabIndex = 5;
             // 
             // panel6
@@ -107,8 +107,18 @@
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel6.Location = new System.Drawing.Point(0, 88);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(501, 202);
+            this.panel6.Size = new System.Drawing.Size(604, 202);
             this.panel6.TabIndex = 5;
+            // 
+            // btn_delete
+            // 
+            this.btn_delete.Location = new System.Drawing.Point(27, 86);
+            this.btn_delete.Name = "btn_delete";
+            this.btn_delete.Size = new System.Drawing.Size(111, 47);
+            this.btn_delete.TabIndex = 3;
+            this.btn_delete.Text = "حذف سفارش";
+            this.btn_delete.UseVisualStyleBackColor = true;
+            this.btn_delete.Click += new System.EventHandler(this.btn_delete_Click);
             // 
             // btn_new_order
             // 
@@ -146,7 +156,7 @@
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.Location = new System.Drawing.Point(0, 0);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(501, 88);
+            this.panel5.Size = new System.Drawing.Size(604, 88);
             this.panel5.TabIndex = 4;
             // 
             // label3
@@ -177,14 +187,14 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(501, 178);
+            this.panel2.Size = new System.Drawing.Size(604, 178);
             this.panel2.TabIndex = 4;
             // 
             // lbl_order_number
             // 
             this.lbl_order_number.AutoSize = true;
             this.lbl_order_number.Font = new System.Drawing.Font("B Nazanin", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lbl_order_number.Location = new System.Drawing.Point(239, 103);
+            this.lbl_order_number.Location = new System.Drawing.Point(334, 106);
             this.lbl_order_number.Name = "lbl_order_number";
             this.lbl_order_number.Size = new System.Drawing.Size(0, 51);
             this.lbl_order_number.TabIndex = 3;
@@ -192,7 +202,7 @@
             // cmb_customers
             // 
             this.cmb_customers.FormattingEnabled = true;
-            this.cmb_customers.Location = new System.Drawing.Point(66, 53);
+            this.cmb_customers.Location = new System.Drawing.Point(161, 56);
             this.cmb_customers.Name = "cmb_customers";
             this.cmb_customers.Size = new System.Drawing.Size(328, 32);
             this.cmb_customers.TabIndex = 2;
@@ -200,7 +210,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(216, 8);
+            this.label1.Location = new System.Drawing.Point(311, 11);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(98, 24);
             this.label1.TabIndex = 0;
@@ -209,7 +219,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(400, 56);
+            this.label2.Location = new System.Drawing.Point(495, 59);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(52, 24);
             this.label2.TabIndex = 1;
@@ -219,20 +229,10 @@
             // 
             this.pnl_Foods.AutoScroll = true;
             this.pnl_Foods.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_Foods.Location = new System.Drawing.Point(501, 0);
+            this.pnl_Foods.Location = new System.Drawing.Point(604, 0);
             this.pnl_Foods.Name = "pnl_Foods";
-            this.pnl_Foods.Size = new System.Drawing.Size(832, 749);
+            this.pnl_Foods.Size = new System.Drawing.Size(729, 749);
             this.pnl_Foods.TabIndex = 1;
-            // 
-            // btn_delete
-            // 
-            this.btn_delete.Location = new System.Drawing.Point(27, 86);
-            this.btn_delete.Name = "btn_delete";
-            this.btn_delete.Size = new System.Drawing.Size(111, 47);
-            this.btn_delete.TabIndex = 3;
-            this.btn_delete.Text = "حذف سفارش";
-            this.btn_delete.UseVisualStyleBackColor = true;
-            this.btn_delete.Click += new System.EventHandler(this.btn_delete_Click);
             // 
             // Add_Order
             // 

@@ -89,10 +89,14 @@ namespace Windows_UI
             dt_gd_viw_orderlist.Columns["FoodID"].Visible = false;
             dt_gd_viw_orderlist.Columns["ID"].Visible = false;
 
-            dt_gd_viw_orderlist.Columns["All_Price"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+
+            dt_gd_viw_orderlist.Columns["All_Price"].DefaultCellStyle.Format = "N0";
+            dt_gd_viw_orderlist.Columns["Price"].DefaultCellStyle.Format = "N0";
+
+            dt_gd_viw_orderlist.Columns["All_Price"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dt_gd_viw_orderlist.Columns["Price"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dt_gd_viw_orderlist.Columns["Count"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dt_gd_viw_orderlist.Columns["Name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dt_gd_viw_orderlist.Columns["Name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
 
             dt_gd_viw_orderlist.Refresh();
         }
