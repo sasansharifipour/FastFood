@@ -162,6 +162,10 @@ namespace Windows_UI
             dt_gd_viw_consume.Columns["IngredientName"].HeaderText = "مواد اولیه";
             dt_gd_viw_consume.Columns["Volume"].HeaderText = "مقدار";
             dt_gd_viw_consume.Columns["UnitName"].HeaderText = "واحد";
+
+            dt_gd_viw_consume.Columns["IngredientName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dt_gd_viw_consume.Columns["UnitName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dt_gd_viw_consume.Columns["Volume"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
         }
 
         private void change_food_ingredient()

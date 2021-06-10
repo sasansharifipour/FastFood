@@ -80,6 +80,10 @@ namespace Windows_UI
             dt_gd_viw_reportlist.Columns["Count"].HeaderText = "مقدار";
             dt_gd_viw_reportlist.Columns["Price"].HeaderText = "قیمت";
 
+            dt_gd_viw_reportlist.Columns["Price"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dt_gd_viw_reportlist.Columns["Count"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dt_gd_viw_reportlist.Columns["FoodName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+
             string txt = string.Format("{0:#,##0}", sum_price);
             lbl_sum_price.Text = String.Format("{0} {1}", txt, _configFile.get_currency_title());
         }

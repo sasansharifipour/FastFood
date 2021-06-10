@@ -73,6 +73,10 @@ namespace Windows_UI
             dt_gd_viw_reportlist.Columns["IngredientName"].HeaderText = "محصول";
             dt_gd_viw_reportlist.Columns["Volume"].HeaderText = "مقدار";
             dt_gd_viw_reportlist.Columns["UnitName"].HeaderText = "واحد";
+
+            dt_gd_viw_reportlist.Columns["UnitName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dt_gd_viw_reportlist.Columns["Volume"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dt_gd_viw_reportlist.Columns["IngredientName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
         }
     }
 }

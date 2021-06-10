@@ -45,7 +45,7 @@ namespace Windows_UI
 
         private void load_info()
         {
-            free_number = Math.Max(1, _orderService.get_free_number());
+            get_free_number();
             _foods = _foodService.select_active_items();
             _customers = _customerService.select_active_items();
         }
@@ -128,6 +128,11 @@ namespace Windows_UI
             dt_gd_viw_orderlist.Columns["FoodID"].Visible = false;
             dt_gd_viw_orderlist.Columns["ID"].Visible = false;
 
+            dt_gd_viw_orderlist.Columns["All_Price"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dt_gd_viw_orderlist.Columns["Price"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dt_gd_viw_orderlist.Columns["Count"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dt_gd_viw_orderlist.Columns["Name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
             update_order_show();
         }
 
@@ -186,10 +191,19 @@ namespace Windows_UI
             current.Count = new_count;
         }
 
+        private void get_free_number()
+        {
+            free_number = Math.Max(1, _orderService.get_free_number());
+
+            lbl_order_number.Text = free_number.ToString();
+        }
+
         private void btn_save_order_Click(object sender, EventArgs e)
         {
             int customer_id = 0;
             int.TryParse(cmb_customers.SelectedValue.ToString(), out customer_id);
+
+            get_free_number();
 
             if (customer_id <= 0)
                 return;
@@ -197,7 +211,7 @@ namespace Windows_UI
             Order order = new Order()
             {
                 CustomerID = customer_id,
-                OrderItems = _order_items.ToList(),
+                OrderItems = get_order_items(_order_items),
                 Number = free_number,
                 Insert_time = DateTime.Now
             };
@@ -212,6 +226,26 @@ namespace Windows_UI
             {
                 MessageBox.Show(null, "در ثبت اطلاعات خطایی رخ داده است", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private List<OrderItem> get_order_items(BindingList<OrderItem> order_items)
+        {
+            List<OrderItem> orderItems = new List<OrderItem>();
+
+            foreach (var item in order_items)
+            {
+                orderItems.Add(new OrderItem()
+                {
+                    Count = item.Count,
+                    Deleted = item.Deleted,
+                    Food = item.Food,
+                    FoodID = item.FoodID,
+                    Name = item.Name,
+                    Price = item.Price
+                });
+            }
+
+            return orderItems;
         }
 
         private void btn_new_order_Click(object sender, EventArgs e)
