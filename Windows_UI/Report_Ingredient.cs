@@ -74,7 +74,7 @@ namespace Windows_UI
             dt_gd_viw_reportlist.Columns["Volume"].HeaderText = "مقدار";
             dt_gd_viw_reportlist.Columns["UnitName"].HeaderText = "واحد";
 
-            dt_gd_viw_reportlist.Columns["Volume"].DefaultCellStyle.Format = "N0";
+            dt_gd_viw_reportlist.Columns["Volume"].DefaultCellStyle.Format = "N2";
 
             dt_gd_viw_reportlist.Columns["UnitName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dt_gd_viw_reportlist.Columns["Volume"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
