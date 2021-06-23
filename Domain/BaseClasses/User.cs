@@ -16,5 +16,7 @@ namespace Domain.BaseClasses
         public string Password { get; set; } = "";
 
         public bool Deleted { get; set; } = false;
+
+        public virtual string FullName { get { return String.Format("{0} {1}", Name, Family); } }
     }
 }
