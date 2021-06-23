@@ -12,7 +12,7 @@ namespace Windows_UI
         private IOrderService _orderService;
         private IOrderItemService _orderItemService;
         private Form _add_food;
-        private Form _add_order;
+        private Custom_Form _add_order;
         private Form _add_customer;
         private Form _delete_order;
         private Form _add_unit;
@@ -24,7 +24,7 @@ namespace Windows_UI
         public Form1(IOrderService orderService
             , IOrderItemService orderItemService
             , [Dependency("add_food")] Form add_food
-            , [Dependency("add_order")] Form add_order
+            , [Dependency("add_order")] Custom_Form add_order
             , [Dependency("add_customer")] Form add_customer
             , [Dependency("delete_order")] Form delete_order
             , [Dependency("add_unit")] Form add_unit

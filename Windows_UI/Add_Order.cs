@@ -1,5 +1,4 @@
 ﻿using Domain.BaseClasses;
-using Domain.BaseClasses;
 using Service;
 using System;
 using System.Collections;
@@ -15,7 +14,7 @@ using Unity;
 
 namespace Windows_UI
 {
-    public partial class Add_Order : Form
+    public partial class Add_Order : Custom_Form
     {
         private ICustomerService _customerService;
         private IFoodService _foodService;
