@@ -16,12 +16,17 @@ namespace Windows_UI
             var container = new UnityContainer();
             container.RegisterSingleton<DBContext, DBContext>();
             container.RegisterSingleton<DbContext, DBContext>();
+            container.RegisterSingleton<IHashing, Hashing>();
 
             container.RegisterSingleton<IConfigFile, ConfigFile>();
 
             container.RegisterSingleton<IBaseDAO<Customer>, BaseDAO<Customer>>();
             container.RegisterSingleton<ICustomerDAO, CustomerDAO>();
             container.RegisterSingleton<ICustomerService, CustomerService>();
+
+            container.RegisterSingleton<IBaseDAO<User>, BaseDAO<User>>();
+            container.RegisterSingleton<IUserDAO, UserDAO>();
+            container.RegisterSingleton<IUserService, UserService>();
 
             container.RegisterSingleton<IBaseDAO<Consume>, BaseDAO<Consume>>();
             container.RegisterSingleton<IConsumeDAO, ConsumeDAO>();
@@ -52,6 +57,7 @@ namespace Windows_UI
             container.RegisterSingleton<Form, Add_Unit>("add_unit");
             container.RegisterSingleton<Custom_Form, Add_Order>("add_order");
             container.RegisterSingleton<Form, Add_Customer>("add_customer");
+            container.RegisterSingleton<Form, Add_User>("add_user");
             container.RegisterSingleton<Form, Add_Ingredient>("add_ingredient");
             container.RegisterSingleton<Form, Add_Food_Ingredient>("add_food_ingredient");
             container.RegisterSingleton<Form, Delete_Order>("delete_order");

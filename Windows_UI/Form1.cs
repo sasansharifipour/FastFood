@@ -14,6 +14,7 @@ namespace Windows_UI
         private Form _add_food;
         private Custom_Form _add_order;
         private Form _add_customer;
+        private Form _add_user;
         private Form _delete_order;
         private Form _add_unit;
         private Form _add_ingredient;
@@ -26,6 +27,7 @@ namespace Windows_UI
             , [Dependency("add_food")] Form add_food
             , [Dependency("add_order")] Custom_Form add_order
             , [Dependency("add_customer")] Form add_customer
+            , [Dependency("add_user")] Form add_user
             , [Dependency("delete_order")] Form delete_order
             , [Dependency("add_unit")] Form add_unit
             , [Dependency("add_ingredient")] Form add_ingredient
@@ -42,6 +44,7 @@ namespace Windows_UI
             _add_customer = add_customer;
             _delete_order = delete_order;
             _add_unit = add_unit;
+            _add_user = add_user;
             _add_ingredient = add_ingredient;
             _add_food_ingredient = add_food_ingredient;
             _report_ingredient = report_ingredient;
@@ -95,6 +98,11 @@ namespace Windows_UI
         private void report_orders_ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _report_orders.ShowDialog();
+        }
+
+        private void add_user_ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _add_user.ShowDialog();
         }
     }
 }

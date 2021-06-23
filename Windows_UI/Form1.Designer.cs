@@ -39,8 +39,9 @@
             this.add_order_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.delete_order_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.گزارشToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.report_ingredient_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.report_orders_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.report_ingredient_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.add_user_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,7 +65,8 @@
             this.add_food_ToolStripMenuItem,
             this.add_unit_ToolStripMenuItem,
             this.add_ingredient_ToolStripMenuItem,
-            this.add_ingredient_to_food_ToolStripMenuItem});
+            this.add_ingredient_to_food_ToolStripMenuItem,
+            this.add_user_ToolStripMenuItem});
             this.محصولاتToolStripMenuItem.Name = "محصولاتToolStripMenuItem";
             this.محصولاتToolStripMenuItem.Size = new System.Drawing.Size(64, 27);
             this.محصولاتToolStripMenuItem.Text = "تنظیمات";
@@ -136,19 +138,26 @@
             this.گزارشToolStripMenuItem.Size = new System.Drawing.Size(54, 27);
             this.گزارشToolStripMenuItem.Text = "گزارش";
             // 
-            // report_ingredient_ToolStripMenuItem
-            // 
-            this.report_ingredient_ToolStripMenuItem.Name = "report_ingredient_ToolStripMenuItem";
-            this.report_ingredient_ToolStripMenuItem.Size = new System.Drawing.Size(180, 28);
-            this.report_ingredient_ToolStripMenuItem.Text = "گزارش مواد مصرفی";
-            this.report_ingredient_ToolStripMenuItem.Click += new System.EventHandler(this.report_ingredient_ToolStripMenuItem_Click);
-            // 
             // report_orders_ToolStripMenuItem
             // 
             this.report_orders_ToolStripMenuItem.Name = "report_orders_ToolStripMenuItem";
-            this.report_orders_ToolStripMenuItem.Size = new System.Drawing.Size(180, 28);
+            this.report_orders_ToolStripMenuItem.Size = new System.Drawing.Size(172, 28);
             this.report_orders_ToolStripMenuItem.Text = "گزارش فروش";
             this.report_orders_ToolStripMenuItem.Click += new System.EventHandler(this.report_orders_ToolStripMenuItem_Click);
+            // 
+            // report_ingredient_ToolStripMenuItem
+            // 
+            this.report_ingredient_ToolStripMenuItem.Name = "report_ingredient_ToolStripMenuItem";
+            this.report_ingredient_ToolStripMenuItem.Size = new System.Drawing.Size(172, 28);
+            this.report_ingredient_ToolStripMenuItem.Text = "گزارش مواد مصرفی";
+            this.report_ingredient_ToolStripMenuItem.Click += new System.EventHandler(this.report_ingredient_ToolStripMenuItem_Click);
+            // 
+            // add_user_ToolStripMenuItem
+            // 
+            this.add_user_ToolStripMenuItem.Name = "add_user_ToolStripMenuItem";
+            this.add_user_ToolStripMenuItem.Size = new System.Drawing.Size(210, 28);
+            this.add_user_ToolStripMenuItem.Text = "افزودن کاربر";
+            this.add_user_ToolStripMenuItem.Click += new System.EventHandler(this.add_user_ToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -188,6 +197,7 @@
         private System.Windows.Forms.ToolStripMenuItem گزارشToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem report_ingredient_ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem report_orders_ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem add_user_ToolStripMenuItem;
     }
 }
 
