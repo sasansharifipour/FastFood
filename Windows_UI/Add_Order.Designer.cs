@@ -250,6 +250,7 @@
             this.Text = "سفارش";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Order_Load);
+            this.Resize += new System.EventHandler(this.Add_Order_Resize);
             this.panel1.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dt_gd_viw_orderlist)).EndInit();

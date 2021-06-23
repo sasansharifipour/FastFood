@@ -60,6 +60,8 @@ namespace Windows_UI
 
         private void show_foods(IEnumerable<Food> foods)
         {
+            pnl_Foods.Controls.Clear();
+
             Size button_size = _configFile.get_button_size();
 
             int width = pnl_Foods.Width;
@@ -269,6 +271,11 @@ namespace Windows_UI
         private void btn_delete_Click(object sender, EventArgs e)
         {
             _delete_order.ShowDialog();
+        }
+
+        private void Add_Order_Resize(object sender, EventArgs e)
+        {
+            show_foods(_foods);
         }
     }
 }
