@@ -53,6 +53,7 @@
     <Compile Include="ConsumeService.cs" />
     <Compile Include="IngredientService.cs" />
     <Compile Include="LoginInfo.cs" />
+    <Compile Include="UserService.cs" />
     <Compile Include="UnitService.cs" />
     <Compile Include="OrderItemService.cs" />
     <Compile Include="OrderService.cs" />

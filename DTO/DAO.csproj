@@ -53,6 +53,7 @@
     <Compile Include="BaseDAO.cs" />
     <Compile Include="CustomerDAO.cs" />
     <Compile Include="ConsumeDAO.cs" />
+    <Compile Include="UserDAO.cs" />
     <Compile Include="IngredientDAO.cs" />
     <Compile Include="UnitDAO.cs" />
     <Compile Include="OrderItemDAO.cs" />

@@ -14,5 +14,7 @@ namespace Domain.BaseClasses
         public string Family { get; set; } = "";
 
         public string Password { get; set; } = "";
+
+        public bool Deleted { get; set; } = false;
     }
 }
