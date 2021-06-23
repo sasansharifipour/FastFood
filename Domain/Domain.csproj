@@ -47,6 +47,7 @@
     <Compile Include="BaseClasses\Order.cs" />
     <Compile Include="BaseClasses\OrderItem.cs" />
     <Compile Include="BaseClasses\Unit.cs" />
+    <Compile Include="BaseClasses\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\ConsumeViewModel.cs" />
     <Compile Include="ViewModels\FoodViewModel.cs" />

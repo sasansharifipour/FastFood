@@ -87,6 +87,10 @@
     <Compile Include="Migrations\202106091123131_add_food_to_consume.designer.cs">
       <DependentUpon>202106091123131_add_food_to_consume.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106231558319_add_user.cs" />
+    <Compile Include="Migrations\202106231558319_add_user.designer.cs">
+      <DependentUpon>202106231558319_add_user.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -127,6 +131,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106091123131_add_food_to_consume.resx">
       <DependentUpon>202106091123131_add_food_to_consume.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106231558319_add_user.resx">
+      <DependentUpon>202106231558319_add_user.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

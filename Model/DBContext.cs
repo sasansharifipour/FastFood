@@ -22,5 +22,7 @@ namespace Model
         public DbSet<Ingredient> Ingredients { get; set; }
 
         public DbSet<Unit> Units { get; set; }
+
+        public DbSet<User> Users { get; set; }
     }
 }
