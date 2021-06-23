@@ -144,7 +144,7 @@ namespace Windows_UI
 
         private void remove_zero_count_order_items()
         {
-            List<OrderItem> order_item_should_removes = _order_items.Where(x => (x.Count == 0)).ToList();
+            List<OrderItem> order_item_should_removes = _order_items.Where(x => (x.Count <= 0)).ToList();
 
             foreach (OrderItem item in order_item_should_removes)
                 _order_items.Remove(item);
@@ -156,7 +156,7 @@ namespace Windows_UI
 
             dt_gd_viw_orderlist.Refresh();
 
-            double sum_price = _order_items.Sum(s => s.All_Price);
+            double sum_price = _order_items.Sum(s => Math.Abs(s.All_Price));
             string txt = string.Format("{0:#,##0}", sum_price);
 
             lbl_order_number.Text = free_number.ToString();
