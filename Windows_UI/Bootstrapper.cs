@@ -58,6 +58,7 @@ namespace Windows_UI
             container.RegisterSingleton<Custom_Form, Add_Order>("add_order");
             container.RegisterSingleton<Form, Add_Customer>("add_customer");
             container.RegisterSingleton<Form, Add_User>("add_user");
+            container.RegisterSingleton<Form, Loggin_Form>("login_form");
             container.RegisterSingleton<Form, Add_Ingredient>("add_ingredient");
             container.RegisterSingleton<Form, Add_Food_Ingredient>("add_food_ingredient");
             container.RegisterSingleton<Form, Delete_Order>("delete_order");

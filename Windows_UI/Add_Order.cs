@@ -29,11 +29,9 @@ namespace Windows_UI
         int free_number = 0;
 
         public Add_Order(ICustomerService customerService, IFoodService foodService, IConfigFile configFile
-            ,IOrderService orderService
-            , [Dependency("delete_order")] Form delete_order)
+            , IOrderService orderService , [Dependency("delete_order")] Form delete_order, [Dependency("login_form")] Form login_form) : base(login_form)
         {
             InitializeComponent();
-
             _customerService = customerService;
             _orderService = orderService;
             _foodService = foodService;
