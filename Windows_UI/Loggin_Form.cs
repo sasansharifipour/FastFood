@@ -22,6 +22,11 @@ namespace Windows_UI
 
             _userService = userService;
             _hashing = hashing;
+
+            _thePanel.Location = new Point(
+                this.ClientSize.Width / 2 - _thePanel.Size.Width / 2,
+                this.ClientSize.Height / 2 - _thePanel.Size.Height / 2);
+            _thePanel.Anchor = AnchorStyles.None;
         }
 
         private void btn_login_Click(object sender, EventArgs e)
@@ -40,13 +45,23 @@ namespace Windows_UI
             else
             {
                 LoginInfo.User = user;
+                this.DialogResult = DialogResult.OK;
                 this.Close();
             }
         }
 
         private void btn_exit_Click(object sender, EventArgs e)
         {
+            this.DialogResult = DialogResult.Cancel;
             Application.Exit();
+        }
+
+        private void Loggin_Form_ResizeEnd(object sender, EventArgs e)
+        {
+            _thePanel.Location = new Point(
+                this.ClientSize.Width / 2 - _thePanel.Size.Width / 2,
+                this.ClientSize.Height / 2 - _thePanel.Size.Height / 2);
+            _thePanel.Anchor = AnchorStyles.None;
         }
     }
 }

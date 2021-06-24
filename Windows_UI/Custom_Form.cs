@@ -19,16 +19,19 @@ namespace Windows_UI
 
         protected override void OnLoad(EventArgs e)
         {
-            if (!LoginInfo.IsLoggedIn())
+            try
             {
-                var result = _login_Form.ShowDialog();
+                while (!LoginInfo.IsLoggedIn())
+                {
+                    var result = _login_Form.ShowDialog();
 
-                if (result == DialogResult.Cancel)
-                    Application.Exit();
+                    if (result == DialogResult.Cancel)
+                        Application.Exit();
+                }
+
+                base.OnLoad(e);
             }
-
-            base.OnLoad(e);
-
+            catch(Exception ex) { }
         }
 
     }
