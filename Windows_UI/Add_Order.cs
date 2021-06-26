@@ -14,7 +14,7 @@ using Unity;
 
 namespace Windows_UI
 {
-    public partial class Add_Order : Custom_Form
+    public partial class Add_Order : Form
     {
         private ICustomerService _customerService;
         private IFoodService _foodService;
@@ -24,12 +24,16 @@ namespace Windows_UI
         private BindingList<OrderItem> _order_items;
         private IConfigFile _configFile;
         private IOrderService _orderService;
+        private IPrintService _printService;
         private Form _delete_order;
+        private Order _saved_order;
 
         int free_number = 0;
 
         public Add_Order(ICustomerService customerService, IFoodService foodService, IConfigFile configFile
-            , IOrderService orderService , [Dependency("delete_order")] Form delete_order, [Dependency("login_form")] Form login_form) : base(login_form)
+            , IOrderService orderService , [Dependency("delete_order")] Form delete_order
+            , [Dependency("login_form")] Form login_form
+            , IPrintService printService) 
         {
             InitializeComponent();
             _customerService = customerService;
@@ -37,6 +41,7 @@ namespace Windows_UI
             _foodService = foodService;
             _configFile = configFile;
             _delete_order = delete_order;
+            _printService = printService;
 
             Task.Factory.StartNew(load_info);
         }
@@ -203,6 +208,8 @@ namespace Windows_UI
 
         private void btn_save_order_Click(object sender, EventArgs e)
         {
+            _saved_order = null;
+            btn_print.Enabled = false;
             int customer_id = 0;
             int.TryParse(cmb_customers.SelectedValue.ToString(), out customer_id);
 
@@ -223,6 +230,8 @@ namespace Windows_UI
 
             if (register)
             {
+                _saved_order = order;
+                btn_print.Enabled = true;
                 MessageBox.Show(null, "اطلاعات با موفقیت ثبت گردید", "موفق", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
@@ -253,6 +262,8 @@ namespace Windows_UI
 
         private void btn_new_order_Click(object sender, EventArgs e)
         {
+            _saved_order = null;
+            btn_print.Enabled = false;
             free_number = _orderService.get_free_number();
             _order_items = new BindingList<OrderItem>();
 
@@ -273,6 +284,11 @@ namespace Windows_UI
         private void Add_Order_Resize(object sender, EventArgs e)
         {
             show_foods(_foods);
+        }
+
+        private void btn_print_Click(object sender, EventArgs e)
+        {
+            _printService.Print(_saved_order);
         }
     }
 }

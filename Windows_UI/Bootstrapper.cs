@@ -17,6 +17,7 @@ namespace Windows_UI
             container.RegisterSingleton<DBContext, DBContext>();
             container.RegisterSingleton<DbContext, DBContext>();
             container.RegisterSingleton<IHashing, Hashing>();
+            container.RegisterSingleton<IPrintService, PrintService>();
 
             container.RegisterSingleton<IConfigFile, ConfigFile>();
 
@@ -55,7 +56,7 @@ namespace Windows_UI
             container.RegisterSingleton<Form, Form1>("Form1");
             container.RegisterSingleton<Form, Add_Food>("add_food");
             container.RegisterSingleton<Form, Add_Unit>("add_unit");
-            container.RegisterSingleton<Custom_Form, Add_Order>("add_order");
+            container.RegisterSingleton<Form, Add_Order>("add_order");
             container.RegisterSingleton<Form, Add_Customer>("add_customer");
             container.RegisterSingleton<Form, Add_User>("add_user");
             container.RegisterSingleton<Form, Loggin_Form>("login_form");

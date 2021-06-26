@@ -132,12 +132,14 @@
             // 
             // btn_print
             // 
+            this.btn_print.Enabled = false;
             this.btn_print.Location = new System.Drawing.Point(144, 86);
             this.btn_print.Name = "btn_print";
             this.btn_print.Size = new System.Drawing.Size(111, 47);
             this.btn_print.TabIndex = 1;
             this.btn_print.Text = "چاپ";
             this.btn_print.UseVisualStyleBackColor = true;
+            this.btn_print.Click += new System.EventHandler(this.btn_print_Click);
             // 
             // btn_save_order
             // 

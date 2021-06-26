@@ -35,28 +35,28 @@
             this.btn_search = new System.Windows.Forms.Button();
             this.btn_delete = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btn_print = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.dt_gd_viw_orderlist = new System.Windows.Forms.DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.btn_print = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.lbl_sum_price = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.label10 = new System.Windows.Forms.Label();
+            this.lbl_order_status = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.lbl_customer_code = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.lbl_time = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.lbl_date = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.lbl_order_number = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.lbl_customer_name = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.lbl_date = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.lbl_time = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.lbl_customer_code = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.lbl_order_status = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -135,6 +135,17 @@
             this.panel1.Size = new System.Drawing.Size(429, 725);
             this.panel1.TabIndex = 13;
             // 
+            // btn_print
+            // 
+            this.btn_print.Enabled = false;
+            this.btn_print.Location = new System.Drawing.Point(158, 162);
+            this.btn_print.Name = "btn_print";
+            this.btn_print.Size = new System.Drawing.Size(111, 47);
+            this.btn_print.TabIndex = 1;
+            this.btn_print.Text = "چاپ";
+            this.btn_print.UseVisualStyleBackColor = true;
+            this.btn_print.Click += new System.EventHandler(this.btn_print_Click);
+            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
@@ -174,15 +185,6 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(655, 83);
             this.panel3.TabIndex = 5;
-            // 
-            // btn_print
-            // 
-            this.btn_print.Location = new System.Drawing.Point(158, 162);
-            this.btn_print.Name = "btn_print";
-            this.btn_print.Size = new System.Drawing.Size(111, 47);
-            this.btn_print.TabIndex = 1;
-            this.btn_print.Text = "چاپ";
-            this.btn_print.UseVisualStyleBackColor = true;
             // 
             // panel5
             // 
@@ -234,6 +236,92 @@
             this.panel7.Size = new System.Drawing.Size(655, 207);
             this.panel7.TabIndex = 4;
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(238, 162);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(94, 24);
+            this.label10.TabIndex = 13;
+            this.label10.Text = "وضعیت سفارش :";
+            // 
+            // lbl_order_status
+            // 
+            this.lbl_order_status.AutoSize = true;
+            this.lbl_order_status.Location = new System.Drawing.Point(63, 162);
+            this.lbl_order_status.Name = "lbl_order_status";
+            this.lbl_order_status.Size = new System.Drawing.Size(0, 24);
+            this.lbl_order_status.TabIndex = 12;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(525, 113);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(46, 24);
+            this.label9.TabIndex = 11;
+            this.label9.Text = "تاریخ  :";
+            // 
+            // lbl_customer_code
+            // 
+            this.lbl_customer_code.AutoSize = true;
+            this.lbl_customer_code.Location = new System.Drawing.Point(336, 61);
+            this.lbl_customer_code.Name = "lbl_customer_code";
+            this.lbl_customer_code.Size = new System.Drawing.Size(0, 24);
+            this.lbl_customer_code.TabIndex = 10;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(238, 113);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(47, 24);
+            this.label8.TabIndex = 9;
+            this.label8.Text = "ساعت :";
+            // 
+            // lbl_time
+            // 
+            this.lbl_time.AutoSize = true;
+            this.lbl_time.Location = new System.Drawing.Point(63, 113);
+            this.lbl_time.Name = "lbl_time";
+            this.lbl_time.Size = new System.Drawing.Size(0, 24);
+            this.lbl_time.TabIndex = 8;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(238, 61);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(69, 24);
+            this.label7.TabIndex = 7;
+            this.label7.Text = "نام مشتری :";
+            // 
+            // lbl_date
+            // 
+            this.lbl_date.AutoSize = true;
+            this.lbl_date.Location = new System.Drawing.Point(336, 116);
+            this.lbl_date.Name = "lbl_date";
+            this.lbl_date.Size = new System.Drawing.Size(0, 24);
+            this.lbl_date.TabIndex = 6;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(525, 162);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(86, 24);
+            this.label6.TabIndex = 5;
+            this.label6.Text = "شماره سفارش :";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(525, 61);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(70, 24);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "کد مشتری :";
+            // 
             // lbl_order_number
             // 
             this.lbl_order_number.AutoSize = true;
@@ -259,92 +347,6 @@
             this.lbl_customer_name.Name = "lbl_customer_name";
             this.lbl_customer_name.Size = new System.Drawing.Size(0, 24);
             this.lbl_customer_name.TabIndex = 1;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(525, 61);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(70, 24);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "کد مشتری :";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(525, 162);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(86, 24);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "شماره سفارش :";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(238, 61);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(69, 24);
-            this.label7.TabIndex = 7;
-            this.label7.Text = "نام مشتری :";
-            // 
-            // lbl_date
-            // 
-            this.lbl_date.AutoSize = true;
-            this.lbl_date.Location = new System.Drawing.Point(336, 116);
-            this.lbl_date.Name = "lbl_date";
-            this.lbl_date.Size = new System.Drawing.Size(0, 24);
-            this.lbl_date.TabIndex = 6;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(238, 113);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(47, 24);
-            this.label8.TabIndex = 9;
-            this.label8.Text = "ساعت :";
-            // 
-            // lbl_time
-            // 
-            this.lbl_time.AutoSize = true;
-            this.lbl_time.Location = new System.Drawing.Point(63, 113);
-            this.lbl_time.Name = "lbl_time";
-            this.lbl_time.Size = new System.Drawing.Size(0, 24);
-            this.lbl_time.TabIndex = 8;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(525, 113);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(46, 24);
-            this.label9.TabIndex = 11;
-            this.label9.Text = "تاریخ  :";
-            // 
-            // lbl_customer_code
-            // 
-            this.lbl_customer_code.AutoSize = true;
-            this.lbl_customer_code.Location = new System.Drawing.Point(336, 61);
-            this.lbl_customer_code.Name = "lbl_customer_code";
-            this.lbl_customer_code.Size = new System.Drawing.Size(0, 24);
-            this.lbl_customer_code.TabIndex = 10;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(238, 162);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(94, 24);
-            this.label10.TabIndex = 13;
-            this.label10.Text = "وضعیت سفارش :";
-            // 
-            // lbl_order_status
-            // 
-            this.lbl_order_status.AutoSize = true;
-            this.lbl_order_status.Location = new System.Drawing.Point(63, 162);
-            this.lbl_order_status.Name = "lbl_order_status";
-            this.lbl_order_status.Size = new System.Drawing.Size(0, 24);
-            this.lbl_order_status.TabIndex = 12;
             // 
             // Delete_Order
             // 

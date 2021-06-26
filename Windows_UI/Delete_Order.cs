@@ -15,14 +15,16 @@ namespace Windows_UI
     {
         private IOrderService _orderService;
         private IConfigFile _configFile;
+        private IPrintService _printService;
         private Order _order;
 
-        public Delete_Order(IOrderService orderService,IConfigFile configFile)
+        public Delete_Order(IOrderService orderService,IConfigFile configFile, IPrintService printService)
         {
             InitializeComponent();
 
             _orderService = orderService;
             _configFile = configFile;
+            _printService = printService;
 
             Application.CurrentCulture = new CultureInfo("fa-IR");
             dat_tim_picker_order_date.Format = DateTimePickerFormat.Custom;
@@ -32,6 +34,7 @@ namespace Windows_UI
         [Obsolete]
         private void btn_search_Click(object sender, EventArgs e)
         {
+            btn_print.Enabled = false;
             int order_number = 0;
 
             int.TryParse(txt_order_number.Text.Trim(), out order_number);
@@ -66,6 +69,7 @@ namespace Windows_UI
 
         private void show_order(Order order)
         {
+            btn_print.Enabled = true;
             update_order_show(order);
             show_order_list(order.OrderItems);
         }
@@ -159,6 +163,11 @@ namespace Windows_UI
                     MessageBox.Show(null, "در حذف اطلاعات خطایی رخ داده است", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void btn_print_Click(object sender, EventArgs e)
+        {
+            _printService.Print(_order);
         }
     }
 }
