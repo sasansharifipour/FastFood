@@ -11,17 +11,17 @@
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(Model.DBContext context)
         {
-            context.Users.AddOrUpdate(new User() { Name = "User", Family = "Admin", Password = Hashing.Hash("12345678"), Deleted = false, ID = 1 });
-            context.SaveChanges();
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method
-            //  to avoid creating duplicate seed data.
+            try
+            {
+                context.Users.Add(new User() { Name = "User", Family = "Admin", Password = Hashing.Hash("12345678"), Deleted = false, ID = 1 });
+                context.SaveChanges();
+            }
+            catch(Exception e) { }
         }
     }
 }

@@ -18,7 +18,7 @@ namespace Windows_UI
     {
         private ICustomerService _customerService;
         private IFoodService _foodService;
-        private IEnumerable<Food> _foods;
+        private IEnumerable<Food> _foods = new List<Food>();
         private IEnumerable<Customer> _customers;
         private string button_prefix_name = "food_button_";
         private BindingList<OrderItem> _order_items;
@@ -33,15 +33,16 @@ namespace Windows_UI
         public Add_Order(ICustomerService customerService, IFoodService foodService, IConfigFile configFile
             , IOrderService orderService , [Dependency("delete_order")] Form delete_order
             , [Dependency("login_form")] Form login_form
-            , IPrintService printService) 
+            , IPrintService printService)
         {
-            InitializeComponent();
             _customerService = customerService;
             _orderService = orderService;
             _foodService = foodService;
             _configFile = configFile;
             _delete_order = delete_order;
             _printService = printService;
+
+            InitializeComponent();
 
             Task.Factory.StartNew(load_info);
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace Windows_UI
         static void Main()
         {
             IUnityContainer container = Bootstrapper.Init();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.CurrentCulture = new CultureInfo("fa-IR");
