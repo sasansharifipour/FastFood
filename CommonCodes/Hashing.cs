@@ -3,16 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Service
+namespace CommonCodes
 {
-    public interface IHashing
+    public static class Hashing
     {
-        string Hash(string inputString);
-    }
-
-    public class Hashing : IHashing
-    {
-        public string Hash(string inputString)
+        public static string Hash(string inputString)
         {
             byte[] data = System.Text.Encoding.ASCII.GetBytes(inputString);
             data = new System.Security.Cryptography.SHA256Managed().ComputeHash(data);

@@ -16,7 +16,6 @@ namespace Windows_UI
             var container = new UnityContainer();
             container.RegisterSingleton<DBContext, DBContext>();
             container.RegisterSingleton<DbContext, DBContext>();
-            container.RegisterSingleton<IHashing, Hashing>();
             container.RegisterSingleton<IPrintService, PrintService>();
 
             container.RegisterSingleton<IConfigFile, ConfigFile>();

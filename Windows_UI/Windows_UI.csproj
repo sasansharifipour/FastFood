@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>2058_U1RVRElPIFNNIDE5MjctMDc.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net40\EntityFramework.dll</HintPath>
@@ -201,6 +204,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CommonCodes\CommonCodes.csproj">
+      <Project>{139A2B0B-9DAB-46BB-A38C-1BDF6AA247BE}</Project>
+      <Name>CommonCodes</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Domain\Domain.csproj">
       <Project>{B7575DBD-3507-49DE-99DC-519BB2FD67AA}</Project>
       <Name>Domain</Name>
@@ -217,6 +224,9 @@
       <Project>{08630D28-E796-40EF-AC45-A87DEC19EFC6}</Project>
       <Name>Service</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="2058_U1RVRElPIFNNIDE5MjctMDc.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

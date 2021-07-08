@@ -1,4 +1,5 @@
-﻿using Domain.BaseClasses;
+﻿using CommonCodes;
+using Domain.BaseClasses;
 using Service;
 using System;
 using System.Collections.Generic;
@@ -15,14 +16,12 @@ namespace Windows_UI
     public partial class Add_User : Form
     {
         private IUserService _userService;
-        private IHashing _hashing;
 
-        public Add_User(IUserService userService, IHashing hashing)
+        public Add_User(IUserService userService)
         {
             InitializeComponent();
 
             _userService = userService;
-            _hashing = hashing;
             Task.Factory.StartNew(load_info);
         }
 
@@ -31,7 +30,7 @@ namespace Windows_UI
             int ID = (int)cmb_data_list.SelectedValue;
             string Name = txt_name.Text.Trim();
             string Family = txt_family.Text.Trim();
-            string Password = _hashing.Hash(txt_password.Text.Trim());
+            string Password = Hashing.Hash(txt_password.Text.Trim());
             User data;
 
             bool register = false;

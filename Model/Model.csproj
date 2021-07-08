@@ -103,6 +103,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CommonCodes\CommonCodes.csproj">
+      <Project>{139A2B0B-9DAB-46BB-A38C-1BDF6AA247BE}</Project>
+      <Name>CommonCodes</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Domain\Domain.csproj">
       <Project>{B7575DBD-3507-49DE-99DC-519BB2FD67AA}</Project>
       <Name>Domain</Name>

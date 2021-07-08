@@ -1,4 +1,5 @@
-﻿using Service;
+﻿using CommonCodes;
+using Service;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,14 +15,12 @@ namespace Windows_UI
     public partial class Loggin_Form : Form
     {
         private IUserService _userService;
-        private IHashing _hashing;
 
-        public Loggin_Form(IUserService userService, IHashing hashing)
+        public Loggin_Form(IUserService userService)
         {
             InitializeComponent();
 
             _userService = userService;
-            _hashing = hashing;
 
             _thePanel.Location = new Point(
                 this.ClientSize.Width / 2 - _thePanel.Size.Width / 2,
@@ -34,7 +33,7 @@ namespace Windows_UI
             int ID = 0;
 
             int.TryParse(txt_code.Text.Trim(), out ID);
-            string Password = _hashing.Hash(txt_password.Text.Trim());
+            string Password = Hashing.Hash(txt_password.Text.Trim());
 
             var user = _userService.find(ID);
 
