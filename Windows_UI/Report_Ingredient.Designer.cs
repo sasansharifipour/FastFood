@@ -57,6 +57,8 @@
             // 
             // dat_tim_picker_to_date
             // 
+            this.dat_tim_picker_to_date.CustomFormat = "dddd dd MMMM ماه yyyy";
+            this.dat_tim_picker_to_date.Format = Atf.UI.DateTimeSelectorFormat.Custom;
             this.dat_tim_picker_to_date.Location = new System.Drawing.Point(236, 35);
             this.dat_tim_picker_to_date.Name = "dat_tim_picker_to_date";
             this.dat_tim_picker_to_date.Size = new System.Drawing.Size(219, 32);
@@ -65,6 +67,8 @@
             // 
             // dat_tim_picker_from_date
             // 
+            this.dat_tim_picker_from_date.CustomFormat = "dddd dd MMMM ماه yyyy";
+            this.dat_tim_picker_from_date.Format = Atf.UI.DateTimeSelectorFormat.Custom;
             this.dat_tim_picker_from_date.Location = new System.Drawing.Point(578, 35);
             this.dat_tim_picker_from_date.Name = "dat_tim_picker_from_date";
             this.dat_tim_picker_from_date.Size = new System.Drawing.Size(219, 32);

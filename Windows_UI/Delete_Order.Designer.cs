@@ -34,6 +34,7 @@
             this.btn_search = new System.Windows.Forms.Button();
             this.btn_delete = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.dat_tim_picker_order_date = new Atf.UI.DateTimeSelector();
             this.btn_print = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -56,7 +57,6 @@
             this.lbl_order_number = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.lbl_customer_name = new System.Windows.Forms.Label();
-            this.dat_tim_picker_order_date = new Atf.UI.DateTimeSelector();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -127,6 +127,16 @@
             this.panel1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.panel1.Size = new System.Drawing.Size(429, 725);
             this.panel1.TabIndex = 13;
+            // 
+            // dat_tim_picker_order_date
+            // 
+            this.dat_tim_picker_order_date.CustomFormat = "dddd dd MMMM ماه yyyy";
+            this.dat_tim_picker_order_date.Format = Atf.UI.DateTimeSelectorFormat.Custom;
+            this.dat_tim_picker_order_date.Location = new System.Drawing.Point(68, 75);
+            this.dat_tim_picker_order_date.Name = "dat_tim_picker_order_date";
+            this.dat_tim_picker_order_date.Size = new System.Drawing.Size(219, 32);
+            this.dat_tim_picker_order_date.TabIndex = 18;
+            this.dat_tim_picker_order_date.UsePersianFormat = true;
             // 
             // btn_print
             // 
@@ -340,14 +350,6 @@
             this.lbl_customer_name.Name = "lbl_customer_name";
             this.lbl_customer_name.Size = new System.Drawing.Size(0, 24);
             this.lbl_customer_name.TabIndex = 1;
-            // 
-            // dat_tim_picker_order_date
-            // 
-            this.dat_tim_picker_order_date.Location = new System.Drawing.Point(68, 75);
-            this.dat_tim_picker_order_date.Name = "dat_tim_picker_order_date";
-            this.dat_tim_picker_order_date.Size = new System.Drawing.Size(219, 32);
-            this.dat_tim_picker_order_date.TabIndex = 18;
-            this.dat_tim_picker_order_date.UsePersianFormat = true;
             // 
             // Delete_Order
             // 

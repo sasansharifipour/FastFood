@@ -13,7 +13,7 @@ namespace CommonCodes
             DateTimeSelector datetimeselector = new DateTimeSelector();
             datetimeselector.UsePersianFormat = true;
             datetimeselector.Value = date;
-            return datetimeselector.GetText("yyyy/MM/dd");
+            return datetimeselector.GetText("dddd dd MMMM ماه yyyy");
         }
     }
 }

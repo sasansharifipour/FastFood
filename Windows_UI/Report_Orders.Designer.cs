@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.dat_tim_picker_to_date = new Atf.UI.DateTimeSelector();
+            this.dat_tim_picker_from_date = new Atf.UI.DateTimeSelector();
             this.btn_search = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -37,8 +39,6 @@
             this.lbl_sum_price = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.dt_gd_viw_reportlist = new System.Windows.Forms.DataGridView();
-            this.dat_tim_picker_from_date = new Atf.UI.DateTimeSelector();
-            this.dat_tim_picker_to_date = new Atf.UI.DateTimeSelector();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -57,6 +57,27 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(924, 100);
             this.panel1.TabIndex = 0;
+            // 
+            // dat_tim_picker_to_date
+            // 
+            this.dat_tim_picker_to_date.CustomFormat = "dddd dd MMMM ماه yyyy";
+            this.dat_tim_picker_to_date.Format = Atf.UI.DateTimeSelectorFormat.Custom;
+            this.dat_tim_picker_to_date.Location = new System.Drawing.Point(245, 35);
+            this.dat_tim_picker_to_date.Name = "dat_tim_picker_to_date";
+            this.dat_tim_picker_to_date.Size = new System.Drawing.Size(219, 32);
+            this.dat_tim_picker_to_date.TabIndex = 18;
+            this.dat_tim_picker_to_date.UsePersianFormat = true;
+            // 
+            // dat_tim_picker_from_date
+            // 
+            this.dat_tim_picker_from_date.CustomFormat = "dddd dd MMMM ماه yyyy";
+            this.dat_tim_picker_from_date.Format = Atf.UI.DateTimeSelectorFormat.Custom;
+            this.dat_tim_picker_from_date.Location = new System.Drawing.Point(578, 35);
+            this.dat_tim_picker_from_date.Name = "dat_tim_picker_from_date";
+            this.dat_tim_picker_from_date.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.dat_tim_picker_from_date.Size = new System.Drawing.Size(219, 32);
+            this.dat_tim_picker_from_date.TabIndex = 17;
+            this.dat_tim_picker_from_date.UsePersianFormat = true;
             // 
             // btn_search
             // 
@@ -135,22 +156,6 @@
             this.dt_gd_viw_reportlist.ReadOnly = true;
             this.dt_gd_viw_reportlist.Size = new System.Drawing.Size(924, 208);
             this.dt_gd_viw_reportlist.TabIndex = 0;
-            // 
-            // dat_tim_picker_from_date
-            // 
-            this.dat_tim_picker_from_date.Location = new System.Drawing.Point(578, 35);
-            this.dat_tim_picker_from_date.Name = "dat_tim_picker_from_date";
-            this.dat_tim_picker_from_date.Size = new System.Drawing.Size(219, 32);
-            this.dat_tim_picker_from_date.TabIndex = 17;
-            this.dat_tim_picker_from_date.UsePersianFormat = true;
-            // 
-            // dat_tim_picker_to_date
-            // 
-            this.dat_tim_picker_to_date.Location = new System.Drawing.Point(245, 35);
-            this.dat_tim_picker_to_date.Name = "dat_tim_picker_to_date";
-            this.dat_tim_picker_to_date.Size = new System.Drawing.Size(219, 32);
-            this.dat_tim_picker_to_date.TabIndex = 18;
-            this.dat_tim_picker_to_date.UsePersianFormat = true;
             // 
             // Report_Orders
             // 

@@ -27,6 +27,12 @@ namespace Windows_UI
 
             dat_tim_picker_from_date.Value = DateTime.Now;
             dat_tim_picker_to_date.Value = DateTime.Now;
+
+            dat_tim_picker_from_date.Format = Atf.UI.DateTimeSelectorFormat.Custom;
+            dat_tim_picker_from_date.CustomFormat = "dddd dd MMMM ماه yyyy";
+
+            dat_tim_picker_to_date.Format = Atf.UI.DateTimeSelectorFormat.Custom;
+            dat_tim_picker_to_date.CustomFormat = "dddd dd MMMM ماه yyyy";
         }
 
         private void btn_search_Click(object sender, EventArgs e)
