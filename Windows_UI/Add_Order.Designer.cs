@@ -64,7 +64,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(604, 749);
+            this.panel1.Size = new System.Drawing.Size(522, 749);
             this.panel1.TabIndex = 0;
             // 
             // panel4
@@ -73,7 +73,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(0, 178);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(604, 281);
+            this.panel4.Size = new System.Drawing.Size(522, 281);
             this.panel4.TabIndex = 6;
             // 
             // dt_gd_viw_orderlist
@@ -83,7 +83,7 @@
             this.dt_gd_viw_orderlist.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dt_gd_viw_orderlist.Location = new System.Drawing.Point(0, 0);
             this.dt_gd_viw_orderlist.Name = "dt_gd_viw_orderlist";
-            this.dt_gd_viw_orderlist.Size = new System.Drawing.Size(604, 281);
+            this.dt_gd_viw_orderlist.Size = new System.Drawing.Size(522, 281);
             this.dt_gd_viw_orderlist.TabIndex = 3;
             this.dt_gd_viw_orderlist.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dt_gd_viw_orderlist_CellEndEdit);
             this.dt_gd_viw_orderlist.CellParsing += new System.Windows.Forms.DataGridViewCellParsingEventHandler(this.dt_gd_viw_orderlist_CellParsing);
@@ -95,7 +95,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel3.Location = new System.Drawing.Point(0, 459);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(604, 290);
+            this.panel3.Size = new System.Drawing.Size(522, 290);
             this.panel3.TabIndex = 5;
             // 
             // panel6
@@ -107,7 +107,7 @@
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel6.Location = new System.Drawing.Point(0, 88);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(604, 202);
+            this.panel6.Size = new System.Drawing.Size(522, 202);
             this.panel6.TabIndex = 5;
             // 
             // btn_delete
@@ -158,7 +158,7 @@
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.Location = new System.Drawing.Point(0, 0);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(604, 88);
+            this.panel5.Size = new System.Drawing.Size(522, 88);
             this.panel5.TabIndex = 4;
             // 
             // label3
@@ -189,14 +189,14 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(604, 178);
+            this.panel2.Size = new System.Drawing.Size(522, 178);
             this.panel2.TabIndex = 4;
             // 
             // lbl_order_number
             // 
             this.lbl_order_number.AutoSize = true;
             this.lbl_order_number.Font = new System.Drawing.Font("B Nazanin", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lbl_order_number.Location = new System.Drawing.Point(334, 106);
+            this.lbl_order_number.Location = new System.Drawing.Point(251, 106);
             this.lbl_order_number.Name = "lbl_order_number";
             this.lbl_order_number.Size = new System.Drawing.Size(0, 51);
             this.lbl_order_number.TabIndex = 3;
@@ -204,7 +204,7 @@
             // cmb_customers
             // 
             this.cmb_customers.FormattingEnabled = true;
-            this.cmb_customers.Location = new System.Drawing.Point(161, 56);
+            this.cmb_customers.Location = new System.Drawing.Point(78, 56);
             this.cmb_customers.Name = "cmb_customers";
             this.cmb_customers.Size = new System.Drawing.Size(328, 32);
             this.cmb_customers.TabIndex = 2;
@@ -212,7 +212,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(311, 11);
+            this.label1.Location = new System.Drawing.Point(228, 11);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(98, 24);
             this.label1.TabIndex = 0;
@@ -221,7 +221,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(495, 59);
+            this.label2.Location = new System.Drawing.Point(412, 59);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(52, 24);
             this.label2.TabIndex = 1;
@@ -231,9 +231,9 @@
             // 
             this.pnl_Foods.AutoScroll = true;
             this.pnl_Foods.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_Foods.Location = new System.Drawing.Point(604, 0);
+            this.pnl_Foods.Location = new System.Drawing.Point(522, 0);
             this.pnl_Foods.Name = "pnl_Foods";
-            this.pnl_Foods.Size = new System.Drawing.Size(729, 749);
+            this.pnl_Foods.Size = new System.Drawing.Size(811, 749);
             this.pnl_Foods.TabIndex = 1;
             // 
             // Add_Order

@@ -11,6 +11,7 @@ namespace CommonCodes
         public static string ToPersianLongDateString(this DateTime date)
         {
             DateTimeSelector datetimeselector = new DateTimeSelector();
+            datetimeselector.UsePersianFormat = true;
             datetimeselector.Value = date;
             return datetimeselector.GetText("yyyy/MM/dd");
         }
