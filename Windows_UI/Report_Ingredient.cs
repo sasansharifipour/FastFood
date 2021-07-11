@@ -22,12 +22,14 @@ namespace Windows_UI
             InitializeComponent();
 
             _orderService = orderService;
+            dat_tim_picker_from_date.Value = DateTime.Now;
+            dat_tim_picker_to_date.Value = DateTime.Now;
         }
 
         private void btn_search_Click(object sender, EventArgs e)
         {
-            DateTime from_date = dat_tim_picker_from_date.Value.Date;
-            DateTime to_date = dat_tim_picker_to_date.Value.Date;
+            DateTime from_date = dat_tim_picker_from_date.Value.Value.Date;
+            DateTime to_date = dat_tim_picker_to_date.Value.Value.Date;
 
             var data = _orderService.Eager_Select(s => EntityFunctions.TruncateTime(s.Insert_time) >=
                 EntityFunctions.TruncateTime(from_date) && EntityFunctions.TruncateTime(s.Insert_time) <=
