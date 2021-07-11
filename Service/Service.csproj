@@ -84,6 +84,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CommonCodes\CommonCodes.csproj">
+      <Project>{139a2b0b-9dab-46bb-a38c-1bdf6aa247be}</Project>
+      <Name>CommonCodes</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Domain\Domain.csproj">
       <Project>{B7575DBD-3507-49DE-99DC-519BB2FD67AA}</Project>
       <Name>Domain</Name>

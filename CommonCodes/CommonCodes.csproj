@@ -51,8 +51,12 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DateTimeSelector">
+      <HintPath>C:\Users\admin\Downloads\DateTimeSelector-v1.1.2-bin\DateTimeSelector.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -60,6 +64,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExtensionMethodClass.cs" />
     <Compile Include="Hashing.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

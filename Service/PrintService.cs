@@ -1,4 +1,5 @@
-﻿using Domain.BaseClasses;
+﻿using CommonCodes;
+using Domain.BaseClasses;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -73,8 +74,8 @@ namespace Service
             graphics.DrawRectangle(Pens.Black, 95, x - 5, 75, Offset - x - 5);
             graphics.DrawRectangle(Pens.Black, 100, x - 2, 75, Offset - x - 5);
 
-            data = string.Format("{0} : {1} - {2} : {3}", "تاریخ", _order.Insert_time.ToLongDateString(),
-                "ساعت", _order.Insert_time.ToShortTimeString());
+            data = string.Format("{0} : {1} - {2} : {3}", "تاریخ", _order.Insert_time.
+                ToPersianLongDateString(), "ساعت", _order.Insert_time.ToShortTimeString());
 
             Offset = print_right(graphics, b_nazanin_10, data, max_paper_width, Offset) + 5;
 
@@ -140,8 +141,8 @@ namespace Service
             graphics.DrawRectangle(Pens.Black, 95, x - 5, 75, Offset - x - 5);
             graphics.DrawRectangle(Pens.Black, 100, x - 2, 75, Offset - x - 5);
 
-            data = string.Format("{0} : {1} - {2} : {3}", "تاریخ", _order.Insert_time.ToLongDateString(),
-                "ساعت", _order.Insert_time.ToShortTimeString());
+            data = string.Format("{0} : {1} - {2} : {3}", "تاریخ", _order.Insert_time.
+                ToPersianLongDateString(), "ساعت", _order.Insert_time.ToShortTimeString());
 
             Offset = print_right(graphics, b_nazanin_10, data, max_paper_width, Offset) + 5;
 

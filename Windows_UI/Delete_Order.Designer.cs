@@ -31,7 +31,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txt_order_number = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.dat_tim_picker_order_date = new System.Windows.Forms.DateTimePicker();
             this.btn_search = new System.Windows.Forms.Button();
             this.btn_delete = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -57,6 +56,7 @@
             this.lbl_order_number = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.lbl_customer_name = new System.Windows.Forms.Label();
+            this.dat_tim_picker_order_date = new Atf.UI.DateTimeSelector();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -92,13 +92,6 @@
             this.label1.TabIndex = 8;
             this.label1.Text = "شماره سفارش : ";
             // 
-            // dat_tim_picker_order_date
-            // 
-            this.dat_tim_picker_order_date.Location = new System.Drawing.Point(68, 73);
-            this.dat_tim_picker_order_date.Name = "dat_tim_picker_order_date";
-            this.dat_tim_picker_order_date.Size = new System.Drawing.Size(219, 31);
-            this.dat_tim_picker_order_date.TabIndex = 0;
-            // 
             // btn_search
             // 
             this.btn_search.Location = new System.Drawing.Point(275, 164);
@@ -121,13 +114,13 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.dat_tim_picker_order_date);
             this.panel1.Controls.Add(this.btn_print);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.btn_delete);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.btn_search);
             this.panel1.Controls.Add(this.txt_order_number);
-            this.panel1.Controls.Add(this.dat_tim_picker_order_date);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
@@ -348,6 +341,14 @@
             this.lbl_customer_name.Size = new System.Drawing.Size(0, 24);
             this.lbl_customer_name.TabIndex = 1;
             // 
+            // dat_tim_picker_order_date
+            // 
+            this.dat_tim_picker_order_date.Location = new System.Drawing.Point(68, 75);
+            this.dat_tim_picker_order_date.Name = "dat_tim_picker_order_date";
+            this.dat_tim_picker_order_date.Size = new System.Drawing.Size(219, 32);
+            this.dat_tim_picker_order_date.TabIndex = 18;
+            this.dat_tim_picker_order_date.UsePersianFormat = true;
+            // 
             // Delete_Order
             // 
             this.AcceptButton = this.btn_search;
@@ -382,7 +383,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txt_order_number;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DateTimePicker dat_tim_picker_order_date;
         private System.Windows.Forms.Button btn_search;
         private System.Windows.Forms.Button btn_delete;
         private System.Windows.Forms.Panel panel1;
@@ -408,5 +408,6 @@
         private System.Windows.Forms.Label lbl_customer_code;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label lbl_order_status;
+        private Atf.UI.DateTimeSelector dat_tim_picker_order_date;
     }
 }

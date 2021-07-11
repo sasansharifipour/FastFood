@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using System.ComponentModel;
 using Domain.BaseClasses;
 using System.Collections.Generic;
+using CommonCodes;
 
 namespace Windows_UI
 {
@@ -26,9 +27,7 @@ namespace Windows_UI
             _configFile = configFile;
             _printService = printService;
 
-            Application.CurrentCulture = new CultureInfo("fa-IR");
-            dat_tim_picker_order_date.Format = DateTimePickerFormat.Custom;
-            dat_tim_picker_order_date.CustomFormat = Application.CurrentCulture.DateTimeFormat.LongDatePattern;
+            dat_tim_picker_order_date.Value = DateTime.Now;
         }
 
         [Obsolete]
@@ -39,7 +38,7 @@ namespace Windows_UI
 
             int.TryParse(txt_order_number.Text.Trim(), out order_number);
 
-            DateTime selected_date = dat_tim_picker_order_date.Value.Date;
+            DateTime selected_date = dat_tim_picker_order_date.Value.Value.Date;
 
             _order = _orderService.Eager_Select(s => s.Number == order_number && EntityFunctions.TruncateTime(s.Insert_time) ==
                 EntityFunctions.TruncateTime(selected_date)).FirstOrDefault();
@@ -120,7 +119,7 @@ namespace Windows_UI
                 lbl_customer_name.Text = order.Customer.FullName;
 
             lbl_customer_code.Text = order.CustomerID.ToString();
-            lbl_date.Text = order.Insert_time.ToLongDateString();
+            lbl_date.Text = order.Insert_time.ToPersianLongDateString();
             lbl_time.Text = order.Insert_time.ToLongTimeString();
 
             double sum_price = order.OrderItems.Sum(s => s.All_Price);

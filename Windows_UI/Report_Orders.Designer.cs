@@ -31,14 +31,14 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btn_search = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.dat_tim_picker_to_date = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
-            this.dat_tim_picker_from_date = new System.Windows.Forms.DateTimePicker();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.dt_gd_viw_reportlist = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.lbl_sum_price = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.dt_gd_viw_reportlist = new System.Windows.Forms.DataGridView();
+            this.dat_tim_picker_from_date = new Atf.UI.DateTimeSelector();
+            this.dat_tim_picker_to_date = new Atf.UI.DateTimeSelector();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -47,11 +47,11 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.dat_tim_picker_to_date);
+            this.panel1.Controls.Add(this.dat_tim_picker_from_date);
             this.panel1.Controls.Add(this.btn_search);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.dat_tim_picker_to_date);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.dat_tim_picker_from_date);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
@@ -77,13 +77,6 @@
             this.label1.TabIndex = 14;
             this.label1.Text = "تا تاریخ : ";
             // 
-            // dat_tim_picker_to_date
-            // 
-            this.dat_tim_picker_to_date.Location = new System.Drawing.Point(234, 30);
-            this.dat_tim_picker_to_date.Name = "dat_tim_picker_to_date";
-            this.dat_tim_picker_to_date.Size = new System.Drawing.Size(219, 31);
-            this.dat_tim_picker_to_date.TabIndex = 13;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -92,13 +85,6 @@
             this.label3.Size = new System.Drawing.Size(57, 24);
             this.label3.TabIndex = 12;
             this.label3.Text = "از تاریخ : ";
-            // 
-            // dat_tim_picker_from_date
-            // 
-            this.dat_tim_picker_from_date.Location = new System.Drawing.Point(567, 30);
-            this.dat_tim_picker_from_date.Name = "dat_tim_picker_from_date";
-            this.dat_tim_picker_from_date.Size = new System.Drawing.Size(219, 31);
-            this.dat_tim_picker_from_date.TabIndex = 11;
             // 
             // panel2
             // 
@@ -109,6 +95,25 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(924, 100);
             this.panel2.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(803, 40);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(64, 24);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "جمع کل : ";
+            // 
+            // lbl_sum_price
+            // 
+            this.lbl_sum_price.AutoSize = true;
+            this.lbl_sum_price.Location = new System.Drawing.Point(500, 40);
+            this.lbl_sum_price.Name = "lbl_sum_price";
+            this.lbl_sum_price.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lbl_sum_price.Size = new System.Drawing.Size(0, 24);
+            this.lbl_sum_price.TabIndex = 5;
+            this.lbl_sum_price.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel3
             // 
@@ -131,24 +136,21 @@
             this.dt_gd_viw_reportlist.Size = new System.Drawing.Size(924, 208);
             this.dt_gd_viw_reportlist.TabIndex = 0;
             // 
-            // label2
+            // dat_tim_picker_from_date
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(803, 40);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(64, 24);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "جمع کل : ";
+            this.dat_tim_picker_from_date.Location = new System.Drawing.Point(578, 35);
+            this.dat_tim_picker_from_date.Name = "dat_tim_picker_from_date";
+            this.dat_tim_picker_from_date.Size = new System.Drawing.Size(219, 32);
+            this.dat_tim_picker_from_date.TabIndex = 17;
+            this.dat_tim_picker_from_date.UsePersianFormat = true;
             // 
-            // lbl_sum_price
+            // dat_tim_picker_to_date
             // 
-            this.lbl_sum_price.AutoSize = true;
-            this.lbl_sum_price.Location = new System.Drawing.Point(500, 40);
-            this.lbl_sum_price.Name = "lbl_sum_price";
-            this.lbl_sum_price.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lbl_sum_price.Size = new System.Drawing.Size(0, 24);
-            this.lbl_sum_price.TabIndex = 5;
-            this.lbl_sum_price.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.dat_tim_picker_to_date.Location = new System.Drawing.Point(245, 35);
+            this.dat_tim_picker_to_date.Name = "dat_tim_picker_to_date";
+            this.dat_tim_picker_to_date.Size = new System.Drawing.Size(219, 32);
+            this.dat_tim_picker_to_date.TabIndex = 18;
+            this.dat_tim_picker_to_date.UsePersianFormat = true;
             // 
             // Report_Orders
             // 
@@ -180,14 +182,14 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DateTimePicker dat_tim_picker_from_date;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.DataGridView dt_gd_viw_reportlist;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DateTimePicker dat_tim_picker_to_date;
         private System.Windows.Forms.Button btn_search;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lbl_sum_price;
+        private Atf.UI.DateTimeSelector dat_tim_picker_from_date;
+        private Atf.UI.DateTimeSelector dat_tim_picker_to_date;
     }
 }

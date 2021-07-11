@@ -18,8 +18,12 @@
         {
             try
             {
-                context.Users.Add(new User() { Name = "User", Family = "Admin", Password = Hashing.Hash("12345678"), Deleted = false, ID = 1 });
-                context.SaveChanges();
+                var user = context.Users.FirstOrDefault(s => s.Name == "User" && s.Family == "Admin");
+                if (user == null)
+                {
+                    context.Users.Add(new User() { Name = "User", Family = "Admin", Password = Hashing.Hash("12345678"), Deleted = false });
+                    context.SaveChanges();
+                }
             }
             catch(Exception e) { }
         }
