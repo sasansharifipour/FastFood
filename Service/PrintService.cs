@@ -183,8 +183,11 @@ namespace Service
             string Grosstotal = "جمع کل : " + _order.OrderItems.Sum(s => s.All_Price).ToString("N0") + "ریال";
             Offset = print_right(graphics, b_nazanin_14, Grosstotal, max_paper_width, Offset) + 5;
 
-            string Message = "دلا خو کن به تنهایی کز تنها بلا خیزد";
+            string Message = "آدرس : حد فاصل چهارراه جهاد و چهارراه دانشگاه ساندویچی چی چی";
             Offset = print_right(graphics, b_nazanin_10, Message, max_paper_width, Offset) + 5;
+
+            string Mobile = "09139497717";
+            Offset = print_right(graphics, b_nazanin_14, Mobile, max_paper_width, Offset) + 5;
         }
 
         private enum table_position
