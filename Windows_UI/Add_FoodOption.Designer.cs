@@ -68,7 +68,7 @@
             this.txt_price.Name = "txt_price";
             this.txt_price.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txt_price.Size = new System.Drawing.Size(219, 31);
-            this.txt_price.TabIndex = 3;
+            this.txt_price.TabIndex = 5;
             this.txt_price.TextChanged += new System.EventHandler(this.txt_price_TextChanged);
             // 
             // label2
@@ -85,7 +85,7 @@
             this.btn_save.Location = new System.Drawing.Point(86, 320);
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(108, 45);
-            this.btn_save.TabIndex = 4;
+            this.btn_save.TabIndex = 7;
             this.btn_save.Text = "ثبت";
             this.btn_save.UseVisualStyleBackColor = true;
             this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
@@ -113,7 +113,7 @@
             this.cmb_foodoption_list.Location = new System.Drawing.Point(167, 23);
             this.cmb_foodoption_list.Name = "cmb_foodoption_list";
             this.cmb_foodoption_list.Size = new System.Drawing.Size(219, 32);
-            this.cmb_foodoption_list.TabIndex = 7;
+            this.cmb_foodoption_list.TabIndex = 9;
             this.cmb_foodoption_list.SelectedIndexChanged += new System.EventHandler(this.cmb_food_list_SelectedIndexChanged);
             // 
             // btn_delete
@@ -131,7 +131,7 @@
             this.txt_IfExist.Location = new System.Drawing.Point(167, 102);
             this.txt_IfExist.Name = "txt_IfExist";
             this.txt_IfExist.Size = new System.Drawing.Size(219, 31);
-            this.txt_IfExist.TabIndex = 10;
+            this.txt_IfExist.TabIndex = 2;
             // 
             // label4
             // 
@@ -147,7 +147,7 @@
             this.txt_IfNotExist.Location = new System.Drawing.Point(167, 140);
             this.txt_IfNotExist.Name = "txt_IfNotExist";
             this.txt_IfNotExist.Size = new System.Drawing.Size(219, 31);
-            this.txt_IfNotExist.TabIndex = 12;
+            this.txt_IfNotExist.TabIndex = 3;
             // 
             // label5
             // 
@@ -164,7 +164,7 @@
             this.chb_default_exist.Location = new System.Drawing.Point(167, 187);
             this.chb_default_exist.Name = "chb_default_exist";
             this.chb_default_exist.Size = new System.Drawing.Size(136, 28);
-            this.chb_default_exist.TabIndex = 13;
+            this.chb_default_exist.TabIndex = 4;
             this.chb_default_exist.Text = "پیش فرض اضافه شود";
             this.chb_default_exist.UseVisualStyleBackColor = true;
             // 
@@ -174,7 +174,7 @@
             this.txt_percent_price.Name = "txt_percent_price";
             this.txt_percent_price.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txt_percent_price.Size = new System.Drawing.Size(219, 31);
-            this.txt_percent_price.TabIndex = 15;
+            this.txt_percent_price.TabIndex = 6;
             // 
             // label6
             // 
