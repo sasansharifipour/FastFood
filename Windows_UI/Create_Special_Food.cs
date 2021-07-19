@@ -24,6 +24,21 @@ namespace Windows_UI
 
         public event select_food select_food_Event;
 
+        public bool IsEventHandlerRegistered(Delegate prospectiveHandler)
+        {
+            if (this.select_food_Event != null)
+            {
+                foreach (Delegate existingHandler in this.select_food_Event.GetInvocationList())
+                {
+                    if (existingHandler == prospectiveHandler)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
         public Create_Special_Food(IFoodService foodService, IFoodOptionService foodOptionService)
         {
             _foodService = foodService;

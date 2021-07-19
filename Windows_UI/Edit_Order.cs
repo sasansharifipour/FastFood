@@ -23,6 +23,7 @@ namespace Windows_UI
         private IEnumerable<Food> _foods = new List<Food>();
         private IEnumerable<Customer> _customers;
         private string button_prefix_name = "food_button_";
+        private string special_button_prefix_name = "special_food_button_";
         private BindingList<OrderItem> _order_items;
         private List<OrderItem> _first_order_items = new List<OrderItem>();
         private IConfigFile _configFile;
@@ -31,10 +32,12 @@ namespace Windows_UI
         private Form _delete_order;
         private Order _saved_order;
         private Order _first_order;
+        private Create_Special_Food _Special_Food;
 
         public Edit_Order(ICustomerService customerService, IFoodService foodService, IConfigFile configFile
             , IOrderService orderService, [Dependency("delete_order")] Form delete_order
             , [Dependency("login_form")] Form login_form
+            , Create_Special_Food special_Food
             , IPrintService printService)
         {
             _customerService = customerService;
@@ -43,6 +46,7 @@ namespace Windows_UI
             _configFile = configFile;
             _delete_order = delete_order;
             _printService = printService;
+            _Special_Food = special_Food;
 
             InitializeComponent();
 
@@ -63,14 +67,41 @@ namespace Windows_UI
             cmb_customers.ValueMember = "ID";
         }
 
+        private void Button_special_Click(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+
+            string button_name = button.Name;
+            string food_id_string = button_name.Replace(special_button_prefix_name, "");
+
+            int food_id = 0;
+            int.TryParse(food_id_string, out food_id);
+
+            _Special_Food.set_food_id(food_id);
+            _Special_Food.ShowDialog();
+        }
+
+        private void _Special_Food_select_food_Event(OrderItem orderItem)
+        {
+            var order_item = _order_items.Where(s => s.FoodID == orderItem.FoodID && s.Name == orderItem.Name
+            && s.Price == orderItem.Price).FirstOrDefault();
+
+            if (order_item == null || order_item.FoodID <= 0)
+                _order_items.Add(orderItem);
+            else
+                order_item.Count++;
+
+            show_order_list(_order_items);
+        }
+
         private void show_foods(IEnumerable<Food> foods)
         {
             pnl_Foods.Controls.Clear();
 
             Size button_size = _configFile.get_button_size();
+            Size special_button_size = _configFile.get_special_button_size();
 
             int width = pnl_Foods.Width;
-
             int height = pnl_Foods.Height;
 
             int x = 10;
@@ -79,12 +110,19 @@ namespace Windows_UI
             foreach (var item in foods)
             {
                 Button button = new Button();
+                Button button_special = new Button();
 
                 button.Text = item.Name;
                 button.Name = String.Format("{0}{1}", button_prefix_name, item.ID.ToString());
+                button_special.Text = "..";
+                button_special.Name = String.Format("{0}{1}", special_button_prefix_name, item.ID.ToString());
 
                 button.Click += Button_Click;
                 button.Size = button_size;
+                button_special.Click += Button_special_Click;
+                button_special.Size = special_button_size;
+                button_special.BackgroundImage = global::Windows_UI.Properties.Resources.download;
+                button_special.BackgroundImageLayout = ImageLayout.Stretch;
 
                 if (x + button_size.Width >= width)
                 {
@@ -93,7 +131,10 @@ namespace Windows_UI
                 }
 
                 button.Location = new Point(x, y);
+                button_special.Location = new Point(x + button_size.Width - special_button_size.Width
+                    , y + button_size.Height - special_button_size.Height);
 
+                pnl_Foods.Controls.Add(button_special);
                 pnl_Foods.Controls.Add(button);
 
                 x += button_size.Width + 10;
@@ -107,7 +148,8 @@ namespace Windows_UI
             if (food == null || food.ID <= 0)
                 return;
 
-            var order_item = _order_items.Where(s => s.FoodID == food.ID).FirstOrDefault();
+            var order_item = _order_items.Where(s => s.FoodID == food.ID && s.Name == food.Name
+            && s.Price == food.Price).FirstOrDefault();
 
             if (order_item == null || order_item.FoodID <= 0)
                 _order_items.Add(new OrderItem() { FoodID = food.ID, Name = food.Name, Price = food.Price, Count = 1 });
@@ -182,6 +224,13 @@ namespace Windows_UI
 
         private void Order_Load(object sender, EventArgs e)
         {
+            try
+            {
+                _Special_Food.select_food_Event -= _Special_Food_select_food_Event;
+            }
+            catch { }
+
+            _Special_Food.select_food_Event += _Special_Food_select_food_Event;
             _order_items = new BindingList<OrderItem>();
 
             load_info();

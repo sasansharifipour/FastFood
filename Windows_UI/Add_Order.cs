@@ -49,8 +49,6 @@ namespace Windows_UI
             _edit_order = edit_order;
             _Special_Food = special_Food;
 
-            _Special_Food.select_food_Event += _Special_Food_select_food_Event;
-
             InitializeComponent();
 
             Task.Factory.StartNew(load_info);
@@ -229,6 +227,13 @@ namespace Windows_UI
 
         private void Order_Load(object sender, EventArgs e)
         {
+            try
+            {
+                _Special_Food.select_food_Event -= _Special_Food_select_food_Event;
+            }
+            catch { }
+
+            _Special_Food.select_food_Event += _Special_Food_select_food_Event;
             _order_items = new BindingList<OrderItem>();
 
             load_info();
