@@ -65,7 +65,7 @@ namespace Service
 
             int Offset = 5;
 
-            e.PageSettings.PaperSize.Width = 4;
+            //e.PageSettings.PaperSize.Width = 4;
 
             string data = _order.Number.ToString();
             int x = Offset;
@@ -83,22 +83,34 @@ namespace Service
 
             graphics.DrawLine(Pens.Black, new Point(0, Offset), new Point(275, Offset));
 
-            print_cell(graphics, b_nazanin_10, "", Offset, (int)table_position.row);
-            print_cell(graphics, b_nazanin_10, "عنوان", Offset, (int)table_position.title);
-            print_cell(graphics, b_nazanin_10, "تعداد", Offset, (int)table_position.fee);
-            print_cell(graphics, b_nazanin_10, "", Offset, (int)table_position.cnt);
+            print_cell(graphics, b_nazanin_10, "", Offset, (int)table_position.row, (int)table_size.row);
+            print_cell(graphics, b_nazanin_10, "عنوان", Offset, (int)table_position.title, (int)table_size.title);
+            print_cell(graphics, b_nazanin_10, "تعداد", Offset, (int)table_position.fee, (int)table_size.fee);
+            print_cell(graphics, b_nazanin_10, "", Offset, (int)table_position.cnt, (int)table_size.cnt);
 
             Offset += 20;
+            int max_offset = 20;
+            int temp_value = 0;
 
             for (int i = 0; i < _order.OrderItems.Count; i++)
             {
+                max_offset = 20;
+
                 graphics.DrawLine(Pens.Black, new Point(0, Offset), new Point(275, Offset));
-                print_cell(graphics, b_nazanin_10, (i + 1).ToString(), Offset, (int)table_position.row);
-                print_cell(graphics, b_nazanin_10, _order.OrderItems[i].Name, Offset, (int)table_position.title);
-                print_cell_left(graphics, b_nazanin_10, _order.OrderItems[i].Count.ToString(), Offset, (int)table_position.cnt + 1);
+                temp_value = print_cell(graphics, b_nazanin_10, (i + 1).ToString(), Offset
+                    , (int)table_position.row, (int)table_size.row);
+                max_offset = Math.Max(max_offset, temp_value);
+
+                temp_value = print_cell(graphics, b_nazanin_10, _order.OrderItems[i].Name, Offset
+                    , (int)table_position.title, (int)table_size.title);
+                max_offset = Math.Max(max_offset, temp_value);
+
+                print_cell_left(graphics, b_nazanin_10, _order.OrderItems[i].Count.ToString()
+                    , Offset, (int)table_position.cnt + 1);
+
                 print_cell_left(graphics, b_nazanin_10, "", Offset, 1);
 
-                Offset += 20;
+                Offset += max_offset;
             }
 
             int end_offset = Offset;
@@ -130,7 +142,7 @@ namespace Service
             int Offset = 0;
             int greeting_Y = 0;
 
-            e.PageSettings.PaperSize.Width = 4;
+            //e.PageSettings.PaperSize.Width = 4;
 
             Offset = print_center(graphics, b_nazanin_14, greeting, max_paper_width, greeting_Y) + 5;
 
@@ -150,24 +162,38 @@ namespace Service
 
             graphics.DrawLine(Pens.Black, new Point(0, Offset), new Point(275, Offset));
 
-            print_cell(graphics, b_nazanin_10, "", Offset, (int)table_position.row);
-            print_cell(graphics, b_nazanin_10, "عنوان", Offset, (int)table_position.title);
-            print_cell(graphics, b_nazanin_10, "فی (ریال)", Offset, (int)table_position.fee);
-            print_cell(graphics, b_nazanin_10, "تعداد", Offset, (int)table_position.cnt);
-            print_cell(graphics, b_nazanin_10, "قیمت (ریال)", Offset, (int)table_position.price);
+            print_cell(graphics, b_nazanin_10, "", Offset, (int)table_position.row, (int)table_size.row);
+            print_cell(graphics, b_nazanin_10, "عنوان", Offset, (int)table_position.title, (int)table_size.title);
+            print_cell(graphics, b_nazanin_10, "فی (ریال)", Offset, (int)table_position.fee, (int)table_size.fee);
+            print_cell(graphics, b_nazanin_10, "تعداد", Offset, (int)table_position.cnt, (int)table_size.cnt);
+            print_cell(graphics, b_nazanin_10, "قیمت (ریال)", Offset, (int)table_position.price, (int)table_size.price);
 
             Offset += 20;
+            int max_offset = 20;
+            int temp_value = 0;
 
             for (int i = 0; i < _order.OrderItems.Count; i++)
             {
+                max_offset = 20;
+
                 graphics.DrawLine(Pens.Black, new Point(0, Offset), new Point(275, Offset));
-                print_cell(graphics, b_nazanin_10, (i + 1).ToString(), Offset, (int)table_position.row);
-                print_cell(graphics, b_nazanin_10, _order.OrderItems[i].Name, Offset, (int)table_position.title);
-                print_cell_left(graphics, b_nazanin_10, _order.OrderItems[i].Price.ToString("N0"), Offset, (int)table_position.cnt + 1);
-                print_cell_left(graphics, b_nazanin_10, _order.OrderItems[i].Count.ToString(), Offset, (int)table_position.price + 1);
+                temp_value = print_cell(graphics, b_nazanin_10, (i + 1).ToString(), Offset
+                    , (int)table_position.row, (int)table_size.row);
+                max_offset = Math.Max(max_offset, temp_value);
+
+                temp_value = print_cell(graphics, b_nazanin_10, _order.OrderItems[i].Name, Offset, (int)table_position.title
+                    , (int)table_size.title);
+                max_offset = Math.Max(max_offset, temp_value);
+
+                print_cell_left(graphics, b_nazanin_10, _order.OrderItems[i].Price.ToString("N0")
+                    , Offset, (int)table_position.cnt + 1);
+
+                print_cell_left(graphics, b_nazanin_10, _order.OrderItems[i].Count.ToString()
+                    , Offset, (int)table_position.price + 1);
+
                 print_cell_left(graphics, b_nazanin_10, (_order.OrderItems[i].All_Price).ToString("N0"), Offset, 1);
 
-                Offset += 20;
+                Offset += max_offset;
             }
 
             int end_offset = Offset;
@@ -199,6 +225,15 @@ namespace Service
             price = 65
         }
 
+        private enum table_size
+        {
+            row = 15,
+            title = 115,
+            fee = 50,
+            cnt = 30,
+            price = 65
+        }
+
         private int print_center(Graphics graphics, Font font, string data, int max_paper_width, int height_offset)
         {
             SolidBrush black = new SolidBrush(Color.Black);
@@ -223,11 +258,17 @@ namespace Service
             return (int)(height_offset + greeting_size.Height);
         }
 
-        private void print_cell(Graphics graphics, Font font, string data, int height_offset, int x_position)
+        private int print_cell(Graphics graphics, Font font, string data, int height_offset, int x_position, int cell_width)
         {
             SolidBrush black = new SolidBrush(Color.Black);
+            
+            SizeF text_size = get_string_size(graphics, font, data);
+            int number_of_lines = (int)Math.Ceiling(text_size.Width / cell_width);
 
-            graphics.DrawString(data, font, black, x_position, height_offset, new StringFormat(StringFormatFlags.DirectionRightToLeft));
+            graphics.DrawString(data, font, black, new Rectangle(x_position - cell_width, height_offset, cell_width
+                , number_of_lines * (int)text_size.Height), new StringFormat(StringFormatFlags.DirectionRightToLeft));
+            
+            return number_of_lines * (int)text_size.Height;
         }
 
         private void print_cell_left(Graphics graphics, Font font, string data, int height_offset, int x_position)
