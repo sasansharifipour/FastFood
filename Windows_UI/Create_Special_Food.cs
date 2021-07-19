@@ -20,6 +20,10 @@ namespace Windows_UI
         private List<FoodOption> _foodOptions = new List<FoodOption>();
         private string food_option_prefix = "check_box_food_option_";
 
+        public delegate void select_food(OrderItem orderItem);
+
+        public event select_food select_food_Event;
+
         public Create_Special_Food(IFoodService foodService, IFoodOptionService foodOptionService)
         {
             _foodService = foodService;
@@ -43,6 +47,7 @@ namespace Windows_UI
             _foodOptions = _foodOptionService.select_active_items().ToList();
 
             show_food_options(_foodOptions, panel2);
+            update_info();
         }
 
         private void show_original_food_info(Food food)
@@ -163,6 +168,24 @@ namespace Windows_UI
             }
 
             return price * (percentage / 100);
+        }
+
+        private void btn_select_Click(object sender, EventArgs e)
+        {
+            var eventSubscribers = select_food_Event;
+            if (eventSubscribers != null)
+            {
+                eventSubscribers(new OrderItem()
+                {
+                    Count = 1,
+                    FoodID = _food.ID,
+                    Food = _food,
+                    Name = get_new_name(),
+                    Price = get_new_price()
+                });
+            }
+
+            this.Close();
         }
     }
 }

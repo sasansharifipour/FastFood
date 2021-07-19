@@ -39,6 +39,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.lbl_new_name = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.btn_select = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
@@ -99,20 +100,21 @@
             this.panel2.Location = new System.Drawing.Point(0, 93);
             this.panel2.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(486, 412);
+            this.panel2.Size = new System.Drawing.Size(486, 442);
             this.panel2.TabIndex = 1;
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.btn_select);
             this.panel3.Controls.Add(this.lbl_new_price);
             this.panel3.Controls.Add(this.label4);
             this.panel3.Controls.Add(this.lbl_new_name);
             this.panel3.Controls.Add(this.label6);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(0, 409);
+            this.panel3.Location = new System.Drawing.Point(0, 400);
             this.panel3.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(486, 96);
+            this.panel3.Size = new System.Drawing.Size(486, 135);
             this.panel3.TabIndex = 2;
             // 
             // lbl_new_price
@@ -151,11 +153,21 @@
             this.label6.TabIndex = 8;
             this.label6.Text = "نام جدید محصول : ";
             // 
+            // btn_select
+            // 
+            this.btn_select.Location = new System.Drawing.Point(176, 81);
+            this.btn_select.Name = "btn_select";
+            this.btn_select.Size = new System.Drawing.Size(107, 42);
+            this.btn_select.TabIndex = 12;
+            this.btn_select.Text = "انتخاب";
+            this.btn_select.UseVisualStyleBackColor = true;
+            this.btn_select.Click += new System.EventHandler(this.btn_select_Click);
+            // 
             // Create_Special_Food
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(486, 505);
+            this.ClientSize = new System.Drawing.Size(486, 535);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -190,5 +202,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lbl_new_name;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button btn_select;
     }
 }

@@ -49,6 +49,8 @@ namespace Windows_UI
             _edit_order = edit_order;
             _Special_Food = special_Food;
 
+            _Special_Food.select_food_Event += _Special_Food_select_food_Event;
+
             InitializeComponent();
 
             Task.Factory.StartNew(load_info);
@@ -129,6 +131,19 @@ namespace Windows_UI
             _Special_Food.ShowDialog();
         }
 
+        private void _Special_Food_select_food_Event(OrderItem orderItem)
+        {
+            var order_item = _order_items.Where(s => s.FoodID == orderItem.FoodID && s.Name == orderItem.Name
+            && s.Price == orderItem.Price).FirstOrDefault();
+
+            if (order_item == null || order_item.FoodID <= 0)
+                _order_items.Add(orderItem);
+            else
+                order_item.Count++;
+
+            show_order_list(_order_items);
+        }
+
         private void add_item_to_order(int item_id)
         {
             var food = _foodService.select(s => s.ID == item_id).FirstOrDefault();
@@ -136,7 +151,8 @@ namespace Windows_UI
             if (food == null || food.ID <= 0)
                 return;
 
-            var order_item = _order_items.Where(s => s.FoodID == food.ID).FirstOrDefault();
+            var order_item = _order_items.Where(s => s.FoodID == food.ID && s.Name == food.Name
+            && s.Price == food.Price).FirstOrDefault();
 
             if (order_item == null || order_item.FoodID <= 0)
                 _order_items.Add(new OrderItem() { FoodID = food.ID, Name = food.Name, Price = food.Price, Count = 1 });
