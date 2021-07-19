@@ -21,6 +21,7 @@ namespace Windows_UI
         private IEnumerable<Food> _foods = new List<Food>();
         private IEnumerable<Customer> _customers;
         private string button_prefix_name = "food_button_";
+        private string special_button_prefix_name = "special_food_button_";
         private BindingList<OrderItem> _order_items;
         private IConfigFile _configFile;
         private IOrderService _orderService;
@@ -69,9 +70,9 @@ namespace Windows_UI
             pnl_Foods.Controls.Clear();
 
             Size button_size = _configFile.get_button_size();
+            Size special_button_size = _configFile.get_special_button_size();
 
             int width = pnl_Foods.Width;
-
             int height = pnl_Foods.Height;
 
             int x = 10;
@@ -80,12 +81,18 @@ namespace Windows_UI
             foreach (var item in foods)
             {
                 Button button = new Button();
+                Button button_special = new Button();
 
                 button.Text = item.Name;
                 button.Name = String.Format("{0}{1}", button_prefix_name, item.ID.ToString());
+                button_special.Text = "..";
+                button_special.Name = String.Format("{0}{1}", special_button_prefix_name, item.ID.ToString());
 
                 button.Click += Button_Click;
                 button.Size = button_size;
+                button_special.Size = special_button_size;
+                button_special.BackgroundImage = global::Windows_UI.Properties.Resources.download;
+                button_special.BackgroundImageLayout = ImageLayout.Stretch;
 
                 if (x + button_size.Width >= width)
                 {
@@ -94,7 +101,10 @@ namespace Windows_UI
                 }
 
                 button.Location = new Point(x, y);
+                button_special.Location = new Point(x + button_size.Width - special_button_size.Width
+                    , y + button_size.Height - special_button_size.Height);
 
+                pnl_Foods.Controls.Add(button_special);
                 pnl_Foods.Controls.Add(button);
 
                 x += button_size.Width + 10;

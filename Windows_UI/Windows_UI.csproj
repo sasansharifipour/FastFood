@@ -244,6 +244,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Report_Ingredient.resx">
       <DependentUpon>Report_Ingredient.cs</DependentUpon>
@@ -288,6 +289,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="2058_U1RVRElPIFNNIDE5MjctMDc.ico" />
+    <None Include="Resources\download.jpg" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
