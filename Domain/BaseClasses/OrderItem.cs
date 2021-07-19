@@ -13,6 +13,8 @@ namespace Domain.BaseClasses
 
         public Food Food { get; set; }
 
+        public List<FoodOption> FoodOptions { get; set; }
+
         public string Name { get; set; } = "";
 
         public double Price { get; set; } = 0;

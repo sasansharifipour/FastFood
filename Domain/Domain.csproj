@@ -63,6 +63,7 @@
     <Compile Include="BaseClasses\Consume.cs" />
     <Compile Include="BaseClasses\Customer.cs" />
     <Compile Include="BaseClasses\Food.cs" />
+    <Compile Include="BaseClasses\FoodOption.cs" />
     <Compile Include="BaseClasses\Ingredient.cs" />
     <Compile Include="BaseClasses\Order.cs" />
     <Compile Include="BaseClasses\OrderItem.cs" />
