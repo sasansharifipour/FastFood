@@ -32,7 +32,7 @@ namespace DAO
         public bool Add(T data)
         {
             bool added = false;
-
+            
             try
             {
                 var context = _db.Set<T>();

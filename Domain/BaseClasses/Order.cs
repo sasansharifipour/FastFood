@@ -1,11 +1,12 @@
-﻿using System;
+﻿using CommonCodes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace Domain.BaseClasses
 {
-    public class Order
+    public class Order : ICloneable
     {
         public int ID { get; set; } = 0;
 
@@ -22,5 +23,22 @@ namespace Domain.BaseClasses
         public int Number { get; set; } = 0;
 
         public bool Deleted { get; set; } = false;
+
+        public object Clone()
+        {
+            Order order = new Order()
+            {
+                ID = ID,
+                Customer = Customer,
+                CustomerID = CustomerID,
+                Deleted = Deleted,
+                Deliver_time = Deliver_time,
+                Insert_time = Insert_time,
+                Number = Number,
+                OrderItems = (List<OrderItem>)OrderItems.Clone<OrderItem>()
+            };
+
+            return order;
+        }
     }
 }

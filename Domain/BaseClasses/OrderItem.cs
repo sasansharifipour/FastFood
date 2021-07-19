@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Domain.BaseClasses
 {
-    public class OrderItem
+    public class OrderItem : ICloneable
     {
         public int ID { get; set; } = 0;
 
@@ -22,5 +22,21 @@ namespace Domain.BaseClasses
         public bool Deleted { get; set; } = false;
 
         public virtual double All_Price { get { return Price * Count; } }
+
+        public object Clone()
+        {
+            OrderItem orderItem = new OrderItem()
+            {
+                Count = Count,
+                Deleted = Deleted,
+                Food = Food,
+                FoodID = FoodID,
+                ID = ID,
+                Name = Name,
+                Price = Price
+            };
+
+            return orderItem;
+        }
     }
 }

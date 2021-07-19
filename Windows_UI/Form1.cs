@@ -16,6 +16,7 @@ namespace Windows_UI
         private Form _add_customer;
         private Form _add_user;
         private Form _delete_order;
+        private Form _edit_order;
         private Form _add_unit;
         private Form _add_ingredient;
         private Form _add_food_ingredient;
@@ -26,6 +27,7 @@ namespace Windows_UI
             , IOrderItemService orderItemService
             , [Dependency("add_food")] Form add_food
             , [Dependency("add_order")] Form add_order
+            , [Dependency("edit_order")] Form edit_order
             , [Dependency("add_customer")] Form add_customer
             , [Dependency("add_user")] Form add_user
             , [Dependency("delete_order")] Form delete_order
@@ -39,6 +41,7 @@ namespace Windows_UI
 
             _orderService = orderService;
             _orderItemService = orderItemService;
+            _edit_order = edit_order;
             _add_food = add_food;
             _add_order = add_order;
             _add_customer = add_customer;
@@ -103,6 +106,11 @@ namespace Windows_UI
         private void add_user_ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _add_user.ShowDialog();
+        }
+
+        private void edit_order_ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _edit_order.ShowDialog();
         }
     }
 }

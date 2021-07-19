@@ -1,10 +1,12 @@
-﻿using Domain.BaseClasses;
+﻿using CommonCodes;
+using Domain.BaseClasses;
 using Service;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity.Core.Objects;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -14,7 +16,7 @@ using Unity;
 
 namespace Windows_UI
 {
-    public partial class Add_Order : Form
+    public partial class Edit_Order : Form
     {
         private ICustomerService _customerService;
         private IFoodService _foodService;
@@ -22,18 +24,16 @@ namespace Windows_UI
         private IEnumerable<Customer> _customers;
         private string button_prefix_name = "food_button_";
         private BindingList<OrderItem> _order_items;
+        private List<OrderItem> _first_order_items = new List<OrderItem>();
         private IConfigFile _configFile;
         private IOrderService _orderService;
         private IPrintService _printService;
         private Form _delete_order;
-        private Form _edit_order;
         private Order _saved_order;
+        private Order _first_order;
 
-        int free_number = 0;
-
-        public Add_Order(ICustomerService customerService, IFoodService foodService, IConfigFile configFile
-            , IOrderService orderService , [Dependency("delete_order")] Form delete_order
-            , [Dependency("edit_order")] Form edit_order
+        public Edit_Order(ICustomerService customerService, IFoodService foodService, IConfigFile configFile
+            , IOrderService orderService, [Dependency("delete_order")] Form delete_order
             , [Dependency("login_form")] Form login_form
             , IPrintService printService)
         {
@@ -43,16 +43,15 @@ namespace Windows_UI
             _configFile = configFile;
             _delete_order = delete_order;
             _printService = printService;
-            _edit_order = edit_order;
 
             InitializeComponent();
 
+            dat_tim_picker_order_date.Value = DateTime.Now;
             Task.Factory.StartNew(load_info);
         }
 
         private void load_info()
         {
-            get_free_number();
             _foods = _foodService.select_active_items();
             _customers = _customerService.select_active_items();
         }
@@ -126,7 +125,7 @@ namespace Windows_UI
             dt_gd_viw_orderlist.Columns["Price"].HeaderText = "فی";
             dt_gd_viw_orderlist.Columns["Count"].HeaderText = "تعداد";
             dt_gd_viw_orderlist.Columns["All_Price"].HeaderText = "قیمت";
-            
+
             dt_gd_viw_orderlist.Columns["Name"].ReadOnly = true;
             dt_gd_viw_orderlist.Columns["Price"].ReadOnly = true;
             dt_gd_viw_orderlist.Columns["Count"].ReadOnly = false;
@@ -165,8 +164,6 @@ namespace Windows_UI
             double sum_price = _order_items.Sum(s => Math.Abs(s.All_Price));
             string txt = string.Format("{0:#,##0}", sum_price);
 
-            lbl_order_number.Text = free_number.ToString();
-
             lbl_sum_price.Text = String.Format("{0} {1}", txt, _configFile.get_currency_title());
         }
 
@@ -203,39 +200,28 @@ namespace Windows_UI
             current.Count = new_count;
         }
 
-        private void get_free_number()
-        {
-            free_number = Math.Max(1, _orderService.get_free_number());
-
-            lbl_order_number.Text = free_number.ToString();
-        }
-
         private void btn_save_order_Click(object sender, EventArgs e)
         {
-            _saved_order = null;
+            if (_saved_order == null)
+                return;
+
             btn_print.Enabled = false;
             int customer_id = 0;
             int.TryParse(cmb_customers.SelectedValue.ToString(), out customer_id);
 
-            get_free_number();
-
             if (customer_id <= 0)
                 return;
 
-            Order order = new Order()
-            {
-                CustomerID = customer_id,
-                OrderItems = get_order_items(_order_items),
-                Number = free_number,
-                Insert_time = DateTime.Now
-            };
+            _saved_order.CustomerID = customer_id;
+            _saved_order.OrderItems = get_order_items(_order_items);
 
-            bool register = _orderService.add(order);
+            bool register = _orderService.update(_saved_order);
 
             if (register)
             {
-                _saved_order = order;
                 btn_print.Enabled = true;
+                _first_order = (Order)_saved_order.Clone();
+                _first_order_items = _saved_order.OrderItems;
                 MessageBox.Show(null, "اطلاعات با موفقیت ثبت گردید", "موفق", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
@@ -264,17 +250,6 @@ namespace Windows_UI
             return orderItems;
         }
 
-        private void btn_new_order_Click(object sender, EventArgs e)
-        {
-            _saved_order = null;
-            btn_print.Enabled = false;
-            free_number = _orderService.get_free_number();
-            _order_items = new BindingList<OrderItem>();
-
-            show_order_list(_order_items);
-            update_order_show();
-        }
-
         private void dt_gd_viw_orderlist_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             update_order_show();
@@ -295,9 +270,51 @@ namespace Windows_UI
             _printService.Print(_saved_order);
         }
 
-        private void btn_edit_Click(object sender, EventArgs e)
+        private void btn_search_Click(object sender, EventArgs e)
         {
-            _edit_order.ShowDialog();
+            btn_print.Enabled = false;
+            int order_number = 0;
+
+            int.TryParse(txt_order_number.Text.Trim(), out order_number);
+
+            DateTime selected_date = dat_tim_picker_order_date.Value.Value.Date;
+
+            _saved_order = _orderService.Eager_Select(s => s.Number == order_number && EntityFunctions.TruncateTime(s.Insert_time) ==
+                EntityFunctions.TruncateTime(selected_date)).FirstOrDefault();
+
+            if (_saved_order == null)
+            {
+                _saved_order = new Order();
+                clean_form();
+                return;
+            }
+            _first_order = _saved_order;
+            _first_order_items = (List<OrderItem>)_first_order.OrderItems.Clone<OrderItem>();
+            show_order(_saved_order);
+        }
+
+        private void clean_form()
+        {
+            lbl_sum_price.Text = "";
+            dt_gd_viw_orderlist.DataSource = null;
+            dt_gd_viw_orderlist.Refresh();
+        }
+
+        private void show_order(Order order)
+        {
+            _order_items = new BindingList<OrderItem>(order.OrderItems);
+            _saved_order = order;
+            cmb_customers.SelectedValue = order.CustomerID;
+
+            btn_print.Enabled = true;
+            show_order_list(_order_items);
+        }
+
+        private void Edit_Order_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _saved_order = _first_order;
+            _saved_order.OrderItems = _first_order_items;
+            _order_items = new BindingList<OrderItem>(_first_order_items);
         }
     }
 }

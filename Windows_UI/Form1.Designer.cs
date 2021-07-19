@@ -35,13 +35,14 @@
             this.add_unit_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.add_ingredient_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.add_ingredient_to_food_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.add_user_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.سفارشToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.add_order_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.delete_order_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.گزارشToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.report_orders_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.report_ingredient_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.add_user_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.edit_order_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -106,10 +107,18 @@
             this.add_ingredient_to_food_ToolStripMenuItem.Text = "افزودن مواد اولیه به محصول";
             this.add_ingredient_to_food_ToolStripMenuItem.Click += new System.EventHandler(this.add_ingredient_to_food_ToolStripMenuItem_Click);
             // 
+            // add_user_ToolStripMenuItem
+            // 
+            this.add_user_ToolStripMenuItem.Name = "add_user_ToolStripMenuItem";
+            this.add_user_ToolStripMenuItem.Size = new System.Drawing.Size(210, 28);
+            this.add_user_ToolStripMenuItem.Text = "افزودن کاربر";
+            this.add_user_ToolStripMenuItem.Click += new System.EventHandler(this.add_user_ToolStripMenuItem_Click);
+            // 
             // سفارشToolStripMenuItem
             // 
             this.سفارشToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.add_order_ToolStripMenuItem,
+            this.edit_order_ToolStripMenuItem,
             this.delete_order_ToolStripMenuItem});
             this.سفارشToolStripMenuItem.Name = "سفارشToolStripMenuItem";
             this.سفارشToolStripMenuItem.Size = new System.Drawing.Size(57, 27);
@@ -118,14 +127,14 @@
             // add_order_ToolStripMenuItem
             // 
             this.add_order_ToolStripMenuItem.Name = "add_order_ToolStripMenuItem";
-            this.add_order_ToolStripMenuItem.Size = new System.Drawing.Size(143, 28);
+            this.add_order_ToolStripMenuItem.Size = new System.Drawing.Size(180, 28);
             this.add_order_ToolStripMenuItem.Text = "ثبت سفارش";
             this.add_order_ToolStripMenuItem.Click += new System.EventHandler(this.add_order_ToolStripMenuItem_Click);
             // 
             // delete_order_ToolStripMenuItem
             // 
             this.delete_order_ToolStripMenuItem.Name = "delete_order_ToolStripMenuItem";
-            this.delete_order_ToolStripMenuItem.Size = new System.Drawing.Size(143, 28);
+            this.delete_order_ToolStripMenuItem.Size = new System.Drawing.Size(180, 28);
             this.delete_order_ToolStripMenuItem.Text = "ابطال سفارش";
             this.delete_order_ToolStripMenuItem.Click += new System.EventHandler(this.delete_order_ToolStripMenuItem_Click);
             // 
@@ -152,12 +161,12 @@
             this.report_ingredient_ToolStripMenuItem.Text = "گزارش مواد مصرفی";
             this.report_ingredient_ToolStripMenuItem.Click += new System.EventHandler(this.report_ingredient_ToolStripMenuItem_Click);
             // 
-            // add_user_ToolStripMenuItem
+            // edit_order_ToolStripMenuItem
             // 
-            this.add_user_ToolStripMenuItem.Name = "add_user_ToolStripMenuItem";
-            this.add_user_ToolStripMenuItem.Size = new System.Drawing.Size(210, 28);
-            this.add_user_ToolStripMenuItem.Text = "افزودن کاربر";
-            this.add_user_ToolStripMenuItem.Click += new System.EventHandler(this.add_user_ToolStripMenuItem_Click);
+            this.edit_order_ToolStripMenuItem.Name = "edit_order_ToolStripMenuItem";
+            this.edit_order_ToolStripMenuItem.Size = new System.Drawing.Size(180, 28);
+            this.edit_order_ToolStripMenuItem.Text = "ویرایش سفارش";
+            this.edit_order_ToolStripMenuItem.Click += new System.EventHandler(this.edit_order_ToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -198,6 +207,7 @@
         private System.Windows.Forms.ToolStripMenuItem report_ingredient_ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem report_orders_ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem add_user_ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem edit_order_ToolStripMenuItem;
     }
 }
 

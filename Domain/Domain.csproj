@@ -72,5 +72,11 @@
     <Compile Include="ViewModels\ConsumeViewModel.cs" />
     <Compile Include="ViewModels\FoodViewModel.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CommonCodes\CommonCodes.csproj">
+      <Project>{139A2B0B-9DAB-46BB-A38C-1BDF6AA247BE}</Project>
+      <Name>CommonCodes</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
