@@ -119,6 +119,10 @@
     <Compile Include="Migrations\202107191101466_addfood_option.designer.cs">
       <DependentUpon>202107191101466_addfood_option.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202107191116068_deletefood_option.cs" />
+    <Compile Include="Migrations\202107191116068_deletefood_option.designer.cs">
+      <DependentUpon>202107191116068_deletefood_option.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -172,6 +176,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202107191101466_addfood_option.resx">
       <DependentUpon>202107191101466_addfood_option.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107191116068_deletefood_option.resx">
+      <DependentUpon>202107191116068_deletefood_option.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
