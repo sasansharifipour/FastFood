@@ -23,6 +23,8 @@ namespace Model
             base.OnModelCreating(modelBuilder);
         }
 
+        public DbSet<FoodOption> FoodOptions { get; set; }
+
         public DbSet<Customer> Customers { get; set; }
 
         public DbSet<Food> Foods { get; set; }

@@ -115,6 +115,10 @@
     <Compile Include="Migrations\202106231602298_add_user1.designer.cs">
       <DependentUpon>202106231602298_add_user1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202107191101466_addfood_option.cs" />
+    <Compile Include="Migrations\202107191101466_addfood_option.designer.cs">
+      <DependentUpon>202107191101466_addfood_option.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -165,6 +169,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106231602298_add_user1.resx">
       <DependentUpon>202106231602298_add_user1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107191101466_addfood_option.resx">
+      <DependentUpon>202107191101466_addfood_option.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
