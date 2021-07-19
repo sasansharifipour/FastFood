@@ -227,6 +227,10 @@ namespace Windows_UI
             try
             {
                 _Special_Food.select_food_Event -= _Special_Food_select_food_Event;
+                _Special_Food.select_food_Event -= _Special_Food_select_food_Event;
+                _Special_Food.select_food_Event -= _Special_Food_select_food_Event;
+                _Special_Food.select_food_Event -= _Special_Food_select_food_Event;
+                _Special_Food.select_food_Event -= _Special_Food_select_food_Event;
             }
             catch { }
 
