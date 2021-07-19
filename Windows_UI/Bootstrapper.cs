@@ -70,6 +70,7 @@ namespace Windows_UI
             container.RegisterSingleton<Form, Edit_Order>("edit_order");
             container.RegisterSingleton<Form, Report_Ingredient>("report_ingredient");
             container.RegisterSingleton<Form, Report_Orders>("report_orders");
+            container.RegisterSingleton<Create_Special_Food, Create_Special_Food>();
 
             return container;
         }

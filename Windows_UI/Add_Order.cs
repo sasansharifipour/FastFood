@@ -28,6 +28,7 @@ namespace Windows_UI
         private IPrintService _printService;
         private Form _delete_order;
         private Form _edit_order;
+        private Create_Special_Food _Special_Food;
         private Order _saved_order;
 
         int free_number = 0;
@@ -36,6 +37,7 @@ namespace Windows_UI
             , IOrderService orderService , [Dependency("delete_order")] Form delete_order
             , [Dependency("edit_order")] Form edit_order
             , [Dependency("login_form")] Form login_form
+            , Create_Special_Food special_Food
             , IPrintService printService)
         {
             _customerService = customerService;
@@ -45,6 +47,7 @@ namespace Windows_UI
             _delete_order = delete_order;
             _printService = printService;
             _edit_order = edit_order;
+            _Special_Food = special_Food;
 
             InitializeComponent();
 
@@ -90,6 +93,7 @@ namespace Windows_UI
 
                 button.Click += Button_Click;
                 button.Size = button_size;
+                button_special.Click += Button_special_Click;
                 button_special.Size = special_button_size;
                 button_special.BackgroundImage = global::Windows_UI.Properties.Resources.download;
                 button_special.BackgroundImageLayout = ImageLayout.Stretch;
@@ -109,6 +113,20 @@ namespace Windows_UI
 
                 x += button_size.Width + 10;
             }
+        }
+
+        private void Button_special_Click(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+
+            string button_name = button.Name;
+            string food_id_string = button_name.Replace(special_button_prefix_name, "");
+
+            int food_id = 0;
+            int.TryParse(food_id_string, out food_id);
+
+            _Special_Food.set_food_id(food_id);
+            _Special_Food.ShowDialog();
         }
 
         private void add_item_to_order(int item_id)
