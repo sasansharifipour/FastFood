@@ -20,6 +20,7 @@ namespace Windows_UI
     {
         private ICustomerService _customerService;
         private IFoodService _foodService;
+        private IFoodOptionService _foodOptionService;
         private IEnumerable<Food> _foods = new List<Food>();
         private IEnumerable<Customer> _customers;
         private string button_prefix_name = "food_button_";
@@ -33,10 +34,12 @@ namespace Windows_UI
         private Order _saved_order;
         private Order _first_order;
         private Create_Special_Food _Special_Food;
+        private List<FoodOption> _food_options;
 
         public Edit_Order(ICustomerService customerService, IFoodService foodService, IConfigFile configFile
             , IOrderService orderService, [Dependency("delete_order")] Form delete_order
             , [Dependency("login_form")] Form login_form
+            , IFoodOptionService foodOptionService
             , Create_Special_Food special_Food
             , IPrintService printService)
         {
@@ -47,6 +50,7 @@ namespace Windows_UI
             _delete_order = delete_order;
             _printService = printService;
             _Special_Food = special_Food;
+            _foodOptionService = foodOptionService;
 
             InitializeComponent();
 
@@ -56,6 +60,7 @@ namespace Windows_UI
 
         private void load_info()
         {
+            _food_options = _foodOptionService.select_active_items().Where(s => s.DefaultExist).ToList();
             _foods = _foodService.select_active_items();
             _customers = _customerService.select_active_items();
         }
@@ -152,7 +157,14 @@ namespace Windows_UI
             && s.Price == food.Price).FirstOrDefault();
 
             if (order_item == null || order_item.FoodID <= 0)
-                _order_items.Add(new OrderItem() { FoodID = food.ID, Name = food.Name, Price = food.Price, Count = 1 });
+                _order_items.Add(new OrderItem()
+                {
+                    FoodID = food.ID,
+                    Name = food.Name,
+                    Price = food.Price,
+                    Count = 1 ,
+                    FoodOptions = _food_options
+                });
             else
                 order_item.Count++;
 
@@ -296,7 +308,8 @@ namespace Windows_UI
                     Food = item.Food,
                     FoodID = item.FoodID,
                     Name = item.Name,
-                    Price = item.Price
+                    Price = item.Price,
+                    FoodOptions = item.FoodOptions
                 });
             }
 

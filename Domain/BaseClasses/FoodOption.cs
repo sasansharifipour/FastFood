@@ -22,5 +22,7 @@ namespace Domain.BaseClasses
         public double PercentPriceIfExist { get; set; } = 0;
 
         public bool Deleted { get; set; } = false;
+
+        public List<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
     }
 }

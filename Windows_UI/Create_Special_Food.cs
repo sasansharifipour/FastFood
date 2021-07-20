@@ -24,21 +24,6 @@ namespace Windows_UI
 
         public event select_food select_food_Event;
 
-        public bool IsEventHandlerRegistered(Delegate prospectiveHandler)
-        {
-            if (this.select_food_Event != null)
-            {
-                foreach (Delegate existingHandler in this.select_food_Event.GetInvocationList())
-                {
-                    if (existingHandler == prospectiveHandler)
-                    {
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }
-
         public Create_Special_Food(IFoodService foodService, IFoodOptionService foodOptionService)
         {
             _foodService = foodService;
@@ -185,6 +170,29 @@ namespace Windows_UI
             return price * (percentage / 100);
         }
 
+        private List<FoodOption> get_selected_options()
+        {
+            List<FoodOption> selected_options = new List<FoodOption>();
+            
+            foreach (var item in _foodOptions)
+            {
+                string cntrl_name = String.Format("{0}{1}", food_option_prefix, item.ID);
+
+                var chk_box = this.Controls.Find(cntrl_name, true);
+
+                if (chk_box != null && chk_box.Count() > 0 && chk_box[0] is CheckBox)
+                {
+                    CheckBox checkBox = (CheckBox)chk_box[0];
+
+                    if (checkBox.Checked)
+                        selected_options.Add(item);
+                }
+
+            }
+
+            return selected_options;
+        }
+
         private void btn_select_Click(object sender, EventArgs e)
         {
             var eventSubscribers = select_food_Event;
@@ -196,7 +204,8 @@ namespace Windows_UI
                     FoodID = _food.ID,
                     Food = _food,
                     Name = get_new_name(),
-                    Price = get_new_price()
+                    Price = get_new_price(),
+                    FoodOptions = get_selected_options()
                 });
             }
 
