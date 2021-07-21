@@ -56,6 +56,25 @@ namespace Windows_UI
                                     ingredient[consume.Ingredient] = volume;
                                 }
                             }
+
+                            if (order_item.FoodOptions != null)
+                                foreach (var order_option in order_item.FoodOptions)
+                                {
+                                    if (order_option.ConsumeFoodOptions != null)
+                                    {
+                                        foreach (var consume in order_option.ConsumeFoodOptions)
+                                        {
+                                            double volume = 0;
+
+                                            if (ingredient.ContainsKey(consume.Ingredient))
+                                                volume = ingredient[consume.Ingredient];
+
+                                            volume += order_item.Count * consume.Volume;
+                                            ingredient[consume.Ingredient] = volume;
+                                        }
+                                    }
+
+                                }
                         }
                 }
 
