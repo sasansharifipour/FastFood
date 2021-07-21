@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,5 +25,20 @@ namespace Domain.BaseClasses
         public bool Deleted { get; set; } = false;
 
         public List<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
+
+        public List<ConsumeFoodOption> ConsumeFoodOptions { get; set; }
+
+        public IEnumerable<ConsumeViewModel> ConsumeViewModels()
+        {
+            List<ConsumeViewModel> consumeViewModels = new List<ConsumeViewModel>();
+
+            foreach (var item in this.ConsumeFoodOptions)
+                consumeViewModels.Add(item.GetViewModel());
+
+            if (consumeViewModels == null)
+                consumeViewModels = new List<ConsumeViewModel>();
+
+            return consumeViewModels;
+        }
     }
 }
