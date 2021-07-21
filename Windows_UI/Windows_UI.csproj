@@ -124,6 +124,12 @@
     <Compile Include="Add_FoodOption.Designer.cs">
       <DependentUpon>Add_FoodOption.cs</DependentUpon>
     </Compile>
+    <Compile Include="Add_FoodOption_Ingredient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Add_FoodOption_Ingredient.Designer.cs">
+      <DependentUpon>Add_FoodOption_Ingredient.cs</DependentUpon>
+    </Compile>
     <Compile Include="Add_Food_Ingredient.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -211,6 +217,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Add_FoodOption.resx">
       <DependentUpon>Add_FoodOption.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Add_FoodOption_Ingredient.resx">
+      <DependentUpon>Add_FoodOption_Ingredient.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Add_Food_Ingredient.resx">
       <DependentUpon>Add_Food_Ingredient.cs</DependentUpon>

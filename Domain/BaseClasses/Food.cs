@@ -16,7 +16,7 @@ namespace Domain.BaseClasses
 
         public bool Deleted { get; set; } = false;
 
-        public List<Consume> Consumes { get; set; }
+        public List<Consume> Consumes { get; set; } = new List<Consume>();
 
         public IEnumerable<ConsumeViewModel> ConsumeViewModels()
         {

@@ -26,7 +26,7 @@ namespace Domain.BaseClasses
 
         public List<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
 
-        public List<ConsumeFoodOption> ConsumeFoodOptions { get; set; }
+        public List<ConsumeFoodOption> ConsumeFoodOptions { get; set; } = new List<ConsumeFoodOption>();
 
         public IEnumerable<ConsumeViewModel> ConsumeViewModels()
         {

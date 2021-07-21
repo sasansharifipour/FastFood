@@ -71,6 +71,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConsumeFoodOptionService.cs" />
     <Compile Include="ConsumeService.cs" />
     <Compile Include="FoodOptionService.cs" />
     <Compile Include="IngredientService.cs" />
