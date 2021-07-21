@@ -39,6 +39,8 @@
             this.lbl_sum_price = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.dt_gd_viw_reportlist = new System.Windows.Forms.DataGridView();
+            this.chkblst_customers = new System.Windows.Forms.CheckedListBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -47,6 +49,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.chkblst_customers);
             this.panel1.Controls.Add(this.dat_tim_picker_to_date);
             this.panel1.Controls.Add(this.dat_tim_picker_from_date);
             this.panel1.Controls.Add(this.btn_search);
@@ -55,14 +59,14 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(924, 100);
+            this.panel1.Size = new System.Drawing.Size(987, 159);
             this.panel1.TabIndex = 0;
             // 
             // dat_tim_picker_to_date
             // 
             this.dat_tim_picker_to_date.CustomFormat = "dddd dd MMMM ماه yyyy";
             this.dat_tim_picker_to_date.Format = Atf.UI.DateTimeSelectorFormat.Custom;
-            this.dat_tim_picker_to_date.Location = new System.Drawing.Point(245, 35);
+            this.dat_tim_picker_to_date.Location = new System.Drawing.Point(698, 89);
             this.dat_tim_picker_to_date.Name = "dat_tim_picker_to_date";
             this.dat_tim_picker_to_date.Size = new System.Drawing.Size(219, 32);
             this.dat_tim_picker_to_date.TabIndex = 18;
@@ -72,7 +76,7 @@
             // 
             this.dat_tim_picker_from_date.CustomFormat = "dddd dd MMMM ماه yyyy";
             this.dat_tim_picker_from_date.Format = Atf.UI.DateTimeSelectorFormat.Custom;
-            this.dat_tim_picker_from_date.Location = new System.Drawing.Point(578, 35);
+            this.dat_tim_picker_from_date.Location = new System.Drawing.Point(698, 39);
             this.dat_tim_picker_from_date.Name = "dat_tim_picker_from_date";
             this.dat_tim_picker_from_date.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.dat_tim_picker_from_date.Size = new System.Drawing.Size(219, 32);
@@ -81,7 +85,7 @@
             // 
             // btn_search
             // 
-            this.btn_search.Location = new System.Drawing.Point(50, 26);
+            this.btn_search.Location = new System.Drawing.Point(63, 30);
             this.btn_search.Name = "btn_search";
             this.btn_search.Size = new System.Drawing.Size(115, 43);
             this.btn_search.TabIndex = 15;
@@ -92,7 +96,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(470, 35);
+            this.label1.Location = new System.Drawing.Point(923, 89);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(57, 24);
             this.label1.TabIndex = 14;
@@ -101,7 +105,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(803, 35);
+            this.label3.Location = new System.Drawing.Point(923, 39);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(57, 24);
             this.label3.TabIndex = 12;
@@ -114,7 +118,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 308);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(924, 100);
+            this.panel2.Size = new System.Drawing.Size(987, 100);
             this.panel2.TabIndex = 1;
             // 
             // label2
@@ -140,9 +144,9 @@
             // 
             this.panel3.Controls.Add(this.dt_gd_viw_reportlist);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 100);
+            this.panel3.Location = new System.Drawing.Point(0, 159);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(924, 208);
+            this.panel3.Size = new System.Drawing.Size(987, 149);
             this.panel3.TabIndex = 2;
             // 
             // dt_gd_viw_reportlist
@@ -154,14 +158,31 @@
             this.dt_gd_viw_reportlist.Location = new System.Drawing.Point(0, 0);
             this.dt_gd_viw_reportlist.Name = "dt_gd_viw_reportlist";
             this.dt_gd_viw_reportlist.ReadOnly = true;
-            this.dt_gd_viw_reportlist.Size = new System.Drawing.Size(924, 208);
+            this.dt_gd_viw_reportlist.Size = new System.Drawing.Size(987, 149);
             this.dt_gd_viw_reportlist.TabIndex = 0;
+            // 
+            // chkblst_customers
+            // 
+            this.chkblst_customers.FormattingEnabled = true;
+            this.chkblst_customers.Location = new System.Drawing.Point(214, 39);
+            this.chkblst_customers.Name = "chkblst_customers";
+            this.chkblst_customers.Size = new System.Drawing.Size(362, 108);
+            this.chkblst_customers.TabIndex = 19;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(582, 39);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(63, 24);
+            this.label4.TabIndex = 20;
+            this.label4.Text = "مشتریان : ";
             // 
             // Report_Orders
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(924, 408);
+            this.ClientSize = new System.Drawing.Size(987, 408);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -173,6 +194,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "گزارش فروش محصولات";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.Report_Orders_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -196,5 +218,7 @@
         private System.Windows.Forms.Label lbl_sum_price;
         private Atf.UI.DateTimeSelector dat_tim_picker_from_date;
         private Atf.UI.DateTimeSelector dat_tim_picker_to_date;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckedListBox chkblst_customers;
     }
 }

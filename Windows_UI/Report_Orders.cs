@@ -17,13 +17,16 @@ namespace Windows_UI
     {
         private IOrderService _orderService;
         private IConfigFile _configFile;
+        private ICustomerService _customerService;
+        private List<Customer> _customers = new List<Customer>();
 
-        public Report_Orders(IOrderService orderService, IConfigFile configFile)
+        public Report_Orders(IOrderService orderService, IConfigFile configFile, ICustomerService customerService)
         {
             InitializeComponent();
 
             _orderService = orderService;
             _configFile = configFile;
+            _customerService = customerService;
 
             dat_tim_picker_from_date.Value = DateTime.Now;
             dat_tim_picker_to_date.Value = DateTime.Now;
@@ -35,44 +38,72 @@ namespace Windows_UI
             dat_tim_picker_to_date.CustomFormat = "dddd dd MMMM ماه yyyy";
         }
 
+        private void show_customers(List<Customer> customers, CheckedListBox checkedListBox)
+        {
+            checkedListBox.Items.Clear();
+
+            foreach (var item in customers)
+                checkedListBox.Items.Add(String.Format("{0}-{1}", item.ID, item.FullName));
+        }
+
+        private List<Customer> get_selected_customers(List<Customer> customers, CheckedListBox checkedListBox)
+        {
+            List<Customer> selected_customers = new List<Customer>();
+            foreach (var item in checkedListBox.CheckedItems)
+            {
+                var item_title_list = item.ToString().Split('-');
+                int id = 0;
+
+                if (item_title_list != null && item_title_list.Length > 0)
+                {
+                    int.TryParse(item_title_list[0], out id);
+
+                    var customer = customers.FirstOrDefault(s => s.ID == id);
+
+                    if (customer != null || customer.ID > 0)
+                        selected_customers.Add(customer);
+                }
+            }
+
+            return selected_customers;
+        }
+
         private void btn_search_Click(object sender, EventArgs e)
         {
+            List<Customer> selected_customers = get_selected_customers(_customers, chkblst_customers);
             DateTime from_date = dat_tim_picker_from_date.Value.Value.Date;
             DateTime to_date = dat_tim_picker_to_date.Value.Value.Date;
 
             var data = _orderService.Eager_Select(s => EntityFunctions.TruncateTime(s.Insert_time) >=
                 EntityFunctions.TruncateTime(from_date) && EntityFunctions.TruncateTime(s.Insert_time) <=
-                EntityFunctions.TruncateTime(to_date) && s.Deleted == false).ToList();
+                EntityFunctions.TruncateTime(to_date) && s.Deleted == false ).ToList();
 
             Dictionary<Food, FoodViewModel> foods = new Dictionary<Food, FoodViewModel>();
 
             if (data != null)
                 foreach (var item in data)
-                {
-                    if (item.OrderItems != null)
-                        foreach (var order_item in item.OrderItems)
-                        {
-                            if (order_item.Food != null)
-                            {
-                                FoodViewModel model = new FoodViewModel();
-
-                                if (foods.ContainsKey(order_item.Food))
+                    if (selected_customers.Contains(item.Customer))
+                        if (item.OrderItems != null)
+                            foreach (var order_item in item.OrderItems)
+                                if (order_item.Food != null)
                                 {
-                                    model = foods[order_item.Food];
-                                    model.Count += order_item.Count;
-                                    model.Price += order_item.Price * order_item.Count;
-                                }
-                                else
-                                {
-                                    model.FoodName = order_item.Food.Name;
-                                    model.Count = order_item.Count;
-                                    model.Price = order_item.Price * order_item.Count;
-                                }
+                                    FoodViewModel model = new FoodViewModel();
 
-                                foods[order_item.Food] = model;
-                            }
-                        }
-                }
+                                    if (foods.ContainsKey(order_item.Food))
+                                    {
+                                        model = foods[order_item.Food];
+                                        model.Count += order_item.Count;
+                                        model.Price += order_item.Price * order_item.Count;
+                                    }
+                                    else
+                                    {
+                                        model.FoodName = order_item.Food.Name;
+                                        model.Count = order_item.Count;
+                                        model.Price = order_item.Price * order_item.Count;
+                                    }
+
+                                    foods[order_item.Food] = model;
+                                }
 
             List<FoodViewModel> all_consume = new List<FoodViewModel>();
 
@@ -97,6 +128,12 @@ namespace Windows_UI
 
             string txt = string.Format("{0:#,##0}", sum_price);
             lbl_sum_price.Text = String.Format("{0} {1}", txt, _configFile.get_currency_title());
+        }
+
+        private void Report_Orders_Load(object sender, EventArgs e)
+        {
+            _customers = _customerService.select_active_items().ToList();
+            show_customers(_customers, chkblst_customers);
         }
     }
 }
