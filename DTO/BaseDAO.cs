@@ -35,12 +35,16 @@ namespace DAO
             
             try
             {
-                var context = _db.Set<T>();
-                context.Add(data);
-                int cnt = _db.SaveChanges();
+                using (var db = new DbContext("name=DBContext"))
+                {
+                    var context = db.Set<T>();
+                    context.Add(data);
+                    int cnt = db.SaveChanges();
 
-                if (cnt > 0)
-                    added = true;
+                    if (cnt > 0)
+                        added = true;
+                }
+
             }
             catch (Exception e)
             {
@@ -55,12 +59,15 @@ namespace DAO
 
             try
             {
-                var context = _db.Set<T>();
-                context.Remove(data);
-                int cnt = _db.SaveChanges();
+                using (var db = new DbContext("name=DBContext"))
+                {
+                    var context = db.Set<T>();
+                    context.Remove(data);
+                    int cnt = db.SaveChanges();
 
-                if (cnt > 0)
-                    deleted = true;
+                    if (cnt > 0)
+                        deleted = true;
+                }
             }
             catch (Exception e)
             {
@@ -75,8 +82,11 @@ namespace DAO
 
             try
             {
-                var context = _db.Set<T>();
-                result = context.Where<T>(filter).ToList();
+                using (var db = new DbContext("name=DBContext"))
+                {
+                    var context = db.Set<T>();
+                    result = context.Where<T>(filter).ToList();
+                }
             }
             catch (Exception e)
             {
@@ -94,11 +104,14 @@ namespace DAO
 
             try
             {
-                _db.Entry(data);
-                int cnt = _db.SaveChanges();
+                using (var db = new DbContext("name=DBContext"))
+                {
+                    db.Entry(data);
+                    int cnt = db.SaveChanges();
 
-                if (cnt > 0)
-                    added = true;
+                    if (cnt > 0)
+                        added = true;
+                }
             }
             catch (Exception e)
             {

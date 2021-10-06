@@ -14,7 +14,7 @@ namespace Windows_UI
         public static IUnityContainer Init()
         {
             var container = new UnityContainer();
-            container.RegisterSingleton<DBContext, DBContext>();
+            container.RegisterType<DBContext, DBContext>();
             container.RegisterSingleton<DbContext, DBContext>();
             container.RegisterSingleton<IPrintService, PrintService>();
 

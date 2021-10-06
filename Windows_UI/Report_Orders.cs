@@ -82,7 +82,7 @@ namespace Windows_UI
 
             if (data != null)
                 foreach (var item in data)
-                    if (selected_customers.Contains(item.Customer))
+                    if (selected_customers.Select(s => s.ID).Contains(item.Customer.ID))
                         if (item.OrderItems != null)
                             foreach (var order_item in item.OrderItems)
                                 if (order_item.Food != null)

@@ -31,7 +31,6 @@ namespace Windows_UI
         private Form _edit_order;
         private Create_Special_Food _Special_Food;
         private Order _saved_order;
-        private List<FoodOption> _food_options;
 
         int free_number = 0;
 
@@ -60,7 +59,6 @@ namespace Windows_UI
 
         private void load_info()
         {
-            _food_options = _foodOptionService.select_active_items().Where(s => s.DefaultExist).ToList();
             get_free_number();
             _foods = _foodService.select_active_items();
             _customers = _customerService.select_active_items();
@@ -164,7 +162,7 @@ namespace Windows_UI
                     Name = food.Name,
                     Price = food.Price,
                     Count = 1,
-                    FoodOptions = _food_options
+                    FoodOptions = _foodOptionService.select_active_items().Where(s => s.DefaultExist).ToList()
                 });
             else
                 order_item.Count++;
@@ -241,13 +239,10 @@ namespace Windows_UI
         {
             try
             {
-                _Special_Food.select_food_Event -= _Special_Food_select_food_Event;
-                _Special_Food.select_food_Event -= _Special_Food_select_food_Event;
-                _Special_Food.select_food_Event -= _Special_Food_select_food_Event;
-                _Special_Food.select_food_Event -= _Special_Food_select_food_Event;
-                _Special_Food.select_food_Event -= _Special_Food_select_food_Event;
+                _Special_Food.remove_all_listeners();
             }
-            catch { }
+            catch {
+            }
 
             _Special_Food.select_food_Event += _Special_Food_select_food_Event;
             _order_items = new BindingList<OrderItem>();

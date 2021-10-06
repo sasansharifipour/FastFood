@@ -8,6 +8,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 
 namespace DAO
 {
@@ -18,31 +19,89 @@ namespace DAO
 
     public class ConsumeFoodOptionDAO : IConsumeFoodOptionDAO
     {
-        private IBaseDAO<ConsumeFoodOption> _crud_operator;
-
-        public ConsumeFoodOptionDAO(IBaseDAO<ConsumeFoodOption> crud_operator)
-        {
-            _crud_operator = crud_operator;
-        }
-
         public bool Add(ConsumeFoodOption data)
         {
-            return _crud_operator.Add(data);
+            try
+            {
+                using (var db = new DBContext())
+                {
+                    db.ConsumeFoodOptions.Add(data);
+                    int cnt = db.SaveChanges();
+
+                    if (cnt > 0)
+                        return true;
+                }
+            }
+            catch (Exception e)
+            { }
+
+            return false;
         }
 
         public bool Delete(ConsumeFoodOption data)
         {
-            return _crud_operator.Delete(data);
+            bool deleted = false;
+
+            try
+            {
+                using (var db = new DBContext())
+                {
+                    db.ConsumeFoodOptions.Remove(data);
+                    int cnt = db.SaveChanges();
+
+                    if (cnt > 0)
+                        deleted = true;
+                }
+            }
+            catch (Exception e)
+            {
+            }
+
+            return deleted;
         }
 
         public IEnumerable<ConsumeFoodOption> Select(Expression<Func<ConsumeFoodOption, bool>> filter)
         {
-            return _crud_operator.Select(filter);
+            IEnumerable<ConsumeFoodOption> result = new List<ConsumeFoodOption>();
+
+            try
+            {
+                using (var db = new DBContext())
+                {
+                    result = db.ConsumeFoodOptions.Where(filter).ToList();
+                }
+            }
+            catch (Exception e)
+            {
+            }
+
+            if (result == null)
+                result = new List<ConsumeFoodOption>();
+
+            return result;
         }
 
         public bool Update(ConsumeFoodOption data)
         {
-            return _crud_operator.Update(data);
+            bool added = false;
+
+            try
+            {
+                using (var db = new DBContext())
+                {
+                    var new_data = db.Entry(data);
+                    new_data.State = System.Data.Entity.EntityState.Modified;
+                    int cnt = db.SaveChanges();
+
+                    if (cnt > 0)
+                        added = true;
+                }
+            }
+            catch (Exception e)
+            {
+            }
+
+            return added;
         }
     }
 }

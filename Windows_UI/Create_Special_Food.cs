@@ -24,6 +24,12 @@ namespace Windows_UI
 
         public event select_food select_food_Event;
 
+        public void remove_all_listeners()
+        {
+            if (select_food_Event != null)
+                select_food_Event = null;
+        }
+
         public Create_Special_Food(IFoodService foodService, IFoodOptionService foodOptionService)
         {
             _foodService = foodService;

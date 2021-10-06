@@ -27,6 +27,10 @@ namespace Model
 
         public DbSet<Customer> Customers { get; set; }
 
+        public DbSet<ConsumeFoodOption> ConsumeFoodOptions { get; set; }
+
+        public DbSet<Consume> Consumes { get; set; }
+
         public DbSet<Food> Foods { get; set; }
 
         public DbSet<Order> Orders { get; set; }

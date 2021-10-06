@@ -34,7 +34,6 @@ namespace Windows_UI
         private Order _saved_order;
         private Order _first_order;
         private Create_Special_Food _Special_Food;
-        private List<FoodOption> _food_options;
 
         public Edit_Order(ICustomerService customerService, IFoodService foodService, IConfigFile configFile
             , IOrderService orderService, [Dependency("delete_order")] Form delete_order
@@ -60,7 +59,6 @@ namespace Windows_UI
 
         private void load_info()
         {
-            _food_options = _foodOptionService.select_active_items().Where(s => s.DefaultExist).ToList();
             _foods = _foodService.select_active_items();
             _customers = _customerService.select_active_items();
         }
@@ -163,7 +161,7 @@ namespace Windows_UI
                     Name = food.Name,
                     Price = food.Price,
                     Count = 1 ,
-                    FoodOptions = _food_options
+                    FoodOptions = _foodOptionService.select_active_items().Where(s => s.DefaultExist).ToList()
                 });
             else
                 order_item.Count++;
@@ -238,11 +236,7 @@ namespace Windows_UI
         {
             try
             {
-                _Special_Food.select_food_Event -= _Special_Food_select_food_Event;
-                _Special_Food.select_food_Event -= _Special_Food_select_food_Event;
-                _Special_Food.select_food_Event -= _Special_Food_select_food_Event;
-                _Special_Food.select_food_Event -= _Special_Food_select_food_Event;
-                _Special_Food.select_food_Event -= _Special_Food_select_food_Event;
+                _Special_Food.remove_all_listeners();
             }
             catch { }
 
@@ -303,6 +297,7 @@ namespace Windows_UI
             {
                 orderItems.Add(new OrderItem()
                 {
+                    ID = item.ID,
                     Count = item.Count,
                     Deleted = item.Deleted,
                     Food = item.Food,
@@ -378,9 +373,13 @@ namespace Windows_UI
 
         private void Edit_Order_FormClosing(object sender, FormClosingEventArgs e)
         {
-            _saved_order = _first_order;
-            _saved_order.OrderItems = _first_order_items;
-            _order_items = new BindingList<OrderItem>(_first_order_items);
+            try
+            {
+                _saved_order = _first_order;
+                _saved_order.OrderItems = _first_order_items;
+                _order_items = new BindingList<OrderItem>(_first_order_items);
+            }
+            catch (Exception ex) { }
         }
     }
 }
