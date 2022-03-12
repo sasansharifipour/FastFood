@@ -135,6 +135,10 @@
     <Compile Include="Migrations\202110131200474_adddiscount.designer.cs">
       <DependentUpon>202110131200474_adddiscount.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202203121034045_add_credit.cs" />
+    <Compile Include="Migrations\202203121034045_add_credit.designer.cs">
+      <DependentUpon>202203121034045_add_credit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -200,6 +204,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202110131200474_adddiscount.resx">
       <DependentUpon>202110131200474_adddiscount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203121034045_add_credit.resx">
+      <DependentUpon>202203121034045_add_credit.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

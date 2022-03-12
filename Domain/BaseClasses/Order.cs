@@ -26,6 +26,8 @@ namespace Domain.BaseClasses
 
         public double discount { get; set; } = 0;
 
+        public bool credit { get; set; } = false;
+
         public object Clone()
         {
             Order order = new Order()
