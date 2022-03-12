@@ -76,6 +76,9 @@ namespace Windows_UI
 
             double sum_price = 0;
             double discount = 0;
+            double paying_amount = 0;
+            double credit_amount = 0;
+            double credit_amount_payment = 0;
 
             var data = _orderService.Eager_Select(s => EntityFunctions.TruncateTime(s.Insert_time) >=
                 EntityFunctions.TruncateTime(from_date) && EntityFunctions.TruncateTime(s.Insert_time) <=
@@ -88,6 +91,9 @@ namespace Windows_UI
                     if (selected_customers.Select(s => s.ID).Contains(item.Customer.ID))
                     {
                         discount += item.discount;
+                        paying_amount += item.paying_amount;
+                        credit_amount += item.credit_amount;
+                        credit_amount_payment += item.credit_amount_payment;
 
                         if (item.OrderItems != null)
                             foreach (var order_item in item.OrderItems)
@@ -132,14 +138,31 @@ namespace Windows_UI
             dt_gd_viw_reportlist.Columns["Count"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dt_gd_viw_reportlist.Columns["FoodName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
 
+            List<ItemViewModel> payment_data = new List<ItemViewModel>();
+
             string txt = string.Format("{0:#,##0}", sum_price);
-            lbl_sum_price.Text = String.Format("{0} {1}", txt, _configFile.get_currency_title());
-
             string discount_txt = string.Format("{0:#,##0}", discount);
-            lbl_sum_discount.Text = String.Format("{0} {1}", discount_txt, _configFile.get_currency_title());
-
             string all_paying_txt = string.Format("{0:#,##0}", sum_price - discount);
-            lbl_sum_paying.Text = String.Format("{0} {1}", all_paying_txt, _configFile.get_currency_title());
+            string paying_amount_txt = string.Format("{0:#,##0}", paying_amount);
+            string credit_amount_txt = string.Format("{0:#,##0}", credit_amount);
+            string credit_amount_payment_txt = string.Format("{0:#,##0}", credit_amount_payment);
+
+            payment_data.Add(new ItemViewModel() { Name = "جمع کل", Value = txt });
+            payment_data.Add(new ItemViewModel() { Name = "تخفیف", Value = discount_txt });
+            payment_data.Add(new ItemViewModel() { Name = "مبلغ قابل پرداخت", Value = all_paying_txt });
+            payment_data.Add(new ItemViewModel() { Name = "کل مبالغ پرداخت شده", Value = paying_amount_txt });
+            payment_data.Add(new ItemViewModel() { Name = "کل مبلغ قرضی", Value = credit_amount_txt });
+            payment_data.Add(new ItemViewModel() { Name = "کل مبلغ برگشتی قرضی", Value = credit_amount_payment_txt });
+
+            dt_gd_viw_payment_data.DataSource = payment_data;
+            dt_gd_viw_payment_data.Columns["Name"].HeaderText = "عنوان";
+            dt_gd_viw_payment_data.Columns["Value"].HeaderText = "مقدار";
+
+            dt_gd_viw_payment_data.Columns["Value"].DefaultCellStyle.Format = "N0";
+
+            dt_gd_viw_payment_data.Columns["Value"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dt_gd_viw_payment_data.Columns["Name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+
         }
 
         private void Report_Orders_Load(object sender, EventArgs e)

@@ -225,6 +225,12 @@ namespace Windows_UI
             string net_price_txt = string.Format("{0:#,##0}", net_price);
             lbl_sum_price.Text = String.Format("{0} {1}", txt, _configFile.get_currency_title());
             lbl_net_price.Text = String.Format("{0} {1}", net_price_txt, _configFile.get_currency_title());
+
+
+            TB_Paying.Text = net_price_txt;
+
+            if (_saved_order != null)
+                    TB_Paying.Text = _saved_order.paying_amount.ToString();
         }
 
         private void Button_Click(object sender, EventArgs e)
@@ -273,17 +279,26 @@ namespace Windows_UI
                 return;
 
             btn_print.Enabled = false;
+
+            bool credit = chb_credit.Checked;
+
             int customer_id = 0;
             int.TryParse(cmb_customers.SelectedValue.ToString(), out customer_id);
 
             int discount = 0;
             int.TryParse(TB_discount.Text.Replace(",", "").Trim(), out discount);
 
+            int paying_amount = 0;
+            int.TryParse(TB_Paying.Text.Replace(",", "").Trim(), out paying_amount);
+
             if (customer_id <= 0)
                 return;
 
+            _saved_order.paying_amount = paying_amount;
             _saved_order.CustomerID = customer_id;
             _saved_order.discount = discount;
+            _saved_order.credit = credit;
+
             _saved_order.OrderItems = get_order_items(_order_items);
 
             bool register = _orderService.update(_saved_order);
@@ -370,6 +385,9 @@ namespace Windows_UI
         {
             lbl_sum_price.Text = "";
             TB_discount.Text = "";
+            TB_Paying.Text = "";
+
+            chb_credit.Checked = false;
             dt_gd_viw_orderlist.DataSource = null;
             dt_gd_viw_orderlist.Refresh();
         }
@@ -380,6 +398,8 @@ namespace Windows_UI
             _saved_order = order;
             cmb_customers.SelectedValue = order.CustomerID;
             TB_discount.Text = order.discount.ToString();
+            chb_credit.Checked = order.credit;
+            TB_Paying.Text = order.paying_amount.ToString();
 
             btn_print.Enabled = true;
             show_order_list(_order_items);
@@ -409,6 +429,25 @@ namespace Windows_UI
             TB_discount.Text = txt;
             TB_discount.Select(TB_discount.Text.Length, 0);
 
+            update_order_show();
+        }
+
+        private void TB_Paying_TextChanged(object sender, EventArgs e)
+        {
+            string text = TB_Paying.Text;
+            double value = 0;
+            double.TryParse(text, out value);
+            string txt = string.Format("{0:#,##0}", value);
+
+            if (txt.Trim() == "0")
+                txt = "";
+
+            TB_Paying.Text = txt;
+            TB_Paying.Select(TB_Paying.Text.Length, 0);
+        }
+
+        private void Chb_credit_CheckedChanged(object sender, EventArgs e)
+        {
             update_order_show();
         }
     }

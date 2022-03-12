@@ -227,6 +227,12 @@ namespace Windows_UI
 
             lbl_sum_price.Text = String.Format("{0} {1}", txt, _configFile.get_currency_title());
             lbl_net_price.Text = String.Format("{0} {1}", net_price_txt, _configFile.get_currency_title());
+
+            TB_Paying.Text = net_price_txt;
+
+
+            if (chb_credit.Checked)
+                TB_Paying.Text = "";
         }
 
         private void Button_Click(object sender, EventArgs e)
@@ -281,11 +287,17 @@ namespace Windows_UI
         {
             _saved_order = null;
             btn_print.Enabled = false;
+
+            bool credit = chb_credit.Checked;
+
             int customer_id = 0;
             int.TryParse(cmb_customers.SelectedValue.ToString(), out customer_id);
 
             int discount = 0;
             int.TryParse(TB_discount.Text.Replace(",","").Trim(), out discount);
+
+            int paying_amount = 0;
+            int.TryParse(TB_Paying.Text.Replace(",", "").Trim(), out paying_amount);
 
             get_free_number();
 
@@ -298,6 +310,8 @@ namespace Windows_UI
                 OrderItems = get_order_items(_order_items),
                 Number = free_number,
                 discount = discount,
+                credit = credit,
+                paying_amount = paying_amount,
                 Insert_time = DateTime.Now
             };
 
@@ -341,6 +355,7 @@ namespace Windows_UI
             _saved_order = null;
             btn_print.Enabled = false;
             TB_discount.Text = "";
+            chb_credit.Checked = false;
             free_number = _orderService.get_free_number();
             _order_items = new BindingList<OrderItem>();
 
@@ -386,6 +401,25 @@ namespace Windows_UI
             TB_discount.Text = txt;
             TB_discount.Select(TB_discount.Text.Length, 0);
 
+            update_order_show();
+        }
+
+        private void TB_Paying_TextChanged(object sender, EventArgs e)
+        {
+            string text = TB_Paying.Text;
+            double value = 0;
+            double.TryParse(text, out value);
+            string txt = string.Format("{0:#,##0}", value);
+
+            if (txt.Trim() == "0")
+                txt = "";
+
+            TB_Paying.Text = txt;
+            TB_Paying.Select(TB_Paying.Text.Length, 0);
+        }
+
+        private void Chb_credit_CheckedChanged(object sender, EventArgs e)
+        {
             update_order_show();
         }
     }

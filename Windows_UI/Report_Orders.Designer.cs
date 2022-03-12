@@ -36,19 +36,17 @@
             this.btn_search = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lbl_sum_price = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.dt_gd_viw_reportlist = new System.Windows.Forms.DataGridView();
-            this.label5 = new System.Windows.Forms.Label();
-            this.lbl_sum_discount = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.lbl_sum_paying = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.dt_gd_viw_payment_data = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dt_gd_viw_reportlist)).BeginInit();
+            this.panel2.SuspendLayout();
+            this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dt_gd_viw_payment_data)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -132,46 +130,14 @@
             this.label3.TabIndex = 12;
             this.label3.Text = "از تاریخ : ";
             // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.label6);
-            this.panel2.Controls.Add(this.lbl_sum_paying);
-            this.panel2.Controls.Add(this.label5);
-            this.panel2.Controls.Add(this.lbl_sum_discount);
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.lbl_sum_price);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 308);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(987, 100);
-            this.panel2.TabIndex = 1;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(803, 40);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(64, 24);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "جمع کل : ";
-            // 
-            // lbl_sum_price
-            // 
-            this.lbl_sum_price.AutoSize = true;
-            this.lbl_sum_price.Location = new System.Drawing.Point(604, 40);
-            this.lbl_sum_price.Name = "lbl_sum_price";
-            this.lbl_sum_price.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lbl_sum_price.Size = new System.Drawing.Size(0, 24);
-            this.lbl_sum_price.TabIndex = 5;
-            this.lbl_sum_price.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.dt_gd_viw_reportlist);
+            this.panel3.Controls.Add(this.panel4);
+            this.panel3.Controls.Add(this.panel2);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 159);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(987, 149);
+            this.panel3.Size = new System.Drawing.Size(987, 249);
             this.panel3.TabIndex = 2;
             // 
             // dt_gd_viw_reportlist
@@ -183,46 +149,35 @@
             this.dt_gd_viw_reportlist.Location = new System.Drawing.Point(0, 0);
             this.dt_gd_viw_reportlist.Name = "dt_gd_viw_reportlist";
             this.dt_gd_viw_reportlist.ReadOnly = true;
-            this.dt_gd_viw_reportlist.Size = new System.Drawing.Size(987, 149);
+            this.dt_gd_viw_reportlist.Size = new System.Drawing.Size(987, 249);
             this.dt_gd_viw_reportlist.TabIndex = 0;
             // 
-            // label5
+            // panel2
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(516, 40);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(75, 24);
-            this.label5.TabIndex = 6;
-            this.label5.Text = "تخفیف کل : ";
+            this.panel2.Controls.Add(this.dt_gd_viw_reportlist);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(987, 249);
+            this.panel2.TabIndex = 3;
             // 
-            // lbl_sum_discount
+            // panel4
             // 
-            this.lbl_sum_discount.AutoSize = true;
-            this.lbl_sum_discount.Location = new System.Drawing.Point(317, 40);
-            this.lbl_sum_discount.Name = "lbl_sum_discount";
-            this.lbl_sum_discount.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lbl_sum_discount.Size = new System.Drawing.Size(0, 24);
-            this.lbl_sum_discount.TabIndex = 7;
-            this.lbl_sum_discount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.panel4.Controls.Add(this.dt_gd_viw_payment_data);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(407, 249);
+            this.panel4.TabIndex = 4;
             // 
-            // label6
+            // dt_gd_viw_payment_data
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(227, 40);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(82, 24);
-            this.label6.TabIndex = 8;
-            this.label6.Text = "پرداختی کل : ";
-            // 
-            // lbl_sum_paying
-            // 
-            this.lbl_sum_paying.AutoSize = true;
-            this.lbl_sum_paying.Location = new System.Drawing.Point(28, 40);
-            this.lbl_sum_paying.Name = "lbl_sum_paying";
-            this.lbl_sum_paying.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lbl_sum_paying.Size = new System.Drawing.Size(0, 24);
-            this.lbl_sum_paying.TabIndex = 9;
-            this.lbl_sum_paying.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.dt_gd_viw_payment_data.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dt_gd_viw_payment_data.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dt_gd_viw_payment_data.Location = new System.Drawing.Point(0, 0);
+            this.dt_gd_viw_payment_data.Name = "dt_gd_viw_payment_data";
+            this.dt_gd_viw_payment_data.Size = new System.Drawing.Size(407, 249);
+            this.dt_gd_viw_payment_data.TabIndex = 0;
             // 
             // Report_Orders
             // 
@@ -230,7 +185,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(987, 408);
             this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("B Nazanin", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
@@ -243,10 +197,11 @@
             this.Load += new System.EventHandler(this.Report_Orders_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dt_gd_viw_reportlist)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dt_gd_viw_payment_data)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -255,20 +210,16 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.DataGridView dt_gd_viw_reportlist;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btn_search;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label lbl_sum_price;
         private Atf.UI.DateTimeSelector dat_tim_picker_from_date;
         private Atf.UI.DateTimeSelector dat_tim_picker_to_date;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckedListBox chkblst_customers;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label lbl_sum_paying;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label lbl_sum_discount;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.DataGridView dt_gd_viw_payment_data;
+        private System.Windows.Forms.Panel panel2;
     }
 }

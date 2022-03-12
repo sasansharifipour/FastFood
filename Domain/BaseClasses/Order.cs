@@ -26,7 +26,20 @@ namespace Domain.BaseClasses
 
         public double discount { get; set; } = 0;
 
+        public double paying_amount { get; set; } = 0;
+
         public bool credit { get; set; } = false;
+
+        public virtual double credit_amount { get {
+                return Math.Max(0, OrderItems.Sum(s => s.All_Price) - discount - paying_amount);
+            } }
+        public virtual double credit_amount_payment
+        {
+            get
+            {
+                return Math.Max(0, paying_amount - OrderItems.Sum(s => s.All_Price));
+            }
+        }
 
         public object Clone()
         {

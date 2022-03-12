@@ -53,6 +53,9 @@
             this.lbl_net_price = new System.Windows.Forms.Label();
             this.TB_discount = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.chb_credit = new System.Windows.Forms.CheckBox();
+            this.TB_Paying = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dt_gd_viw_orderlist)).BeginInit();
@@ -149,7 +152,9 @@
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.TB_Paying);
             this.panel5.Controls.Add(this.label6);
+            this.panel5.Controls.Add(this.label8);
             this.panel5.Controls.Add(this.lbl_net_price);
             this.panel5.Controls.Add(this.TB_discount);
             this.panel5.Controls.Add(this.label7);
@@ -182,6 +187,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.chb_credit);
             this.panel2.Controls.Add(this.btn_search);
             this.panel2.Controls.Add(this.dat_tim_picker_order_date);
             this.panel2.Controls.Add(this.label4);
@@ -245,9 +251,9 @@
             // cmb_customers
             // 
             this.cmb_customers.FormattingEnabled = true;
-            this.cmb_customers.Location = new System.Drawing.Point(27, 126);
+            this.cmb_customers.Location = new System.Drawing.Point(91, 126);
             this.cmb_customers.Name = "cmb_customers";
-            this.cmb_customers.Size = new System.Drawing.Size(378, 32);
+            this.cmb_customers.Size = new System.Drawing.Size(314, 32);
             this.cmb_customers.TabIndex = 3;
             // 
             // label1
@@ -314,6 +320,35 @@
             this.label7.TabIndex = 8;
             this.label7.Text = "تخفیف   :";
             // 
+            // chb_credit
+            // 
+            this.chb_credit.AutoSize = true;
+            this.chb_credit.Location = new System.Drawing.Point(17, 128);
+            this.chb_credit.Name = "chb_credit";
+            this.chb_credit.Size = new System.Drawing.Size(58, 28);
+            this.chb_credit.TabIndex = 100;
+            this.chb_credit.Text = "قرضی";
+            this.chb_credit.UseVisualStyleBackColor = true;
+            this.chb_credit.CheckedChanged += new System.EventHandler(this.Chb_credit_CheckedChanged);
+            // 
+            // TB_Paying
+            // 
+            this.TB_Paying.Location = new System.Drawing.Point(101, 159);
+            this.TB_Paying.Name = "TB_Paying";
+            this.TB_Paying.Size = new System.Drawing.Size(209, 31);
+            this.TB_Paying.TabIndex = 102;
+            this.TB_Paying.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.TB_Paying.TextChanged += new System.EventHandler(this.TB_Paying_TextChanged);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(400, 162);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(92, 24);
+            this.label8.TabIndex = 101;
+            this.label8.Text = "مبلغ پرداختی   :";
+            // 
             // Edit_Order
             // 
             this.AcceptButton = this.btn_search;
@@ -373,5 +408,8 @@
         private System.Windows.Forms.Label lbl_net_price;
         private System.Windows.Forms.TextBox TB_discount;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.CheckBox chb_credit;
+        private System.Windows.Forms.TextBox TB_Paying;
+        private System.Windows.Forms.Label label8;
     }
 }

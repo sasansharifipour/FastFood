@@ -41,6 +41,9 @@ namespace Service
 
         private void Print_For_Kitchen()
         {
+            if (_order.OrderItems.Count <= 0)
+                return;
+
             PrintDocument printDocument1 = new PrintDocument();
             printDocument1.PrintPage += PrintDocument_Kitchen_PrintPage;
 
@@ -210,6 +213,7 @@ namespace Service
 
             double sum = _order.OrderItems.Sum(s => s.All_Price);
             double discount = _order.discount;
+            double paying_amount = _order.paying_amount;
 
             string Grosstotal = "جمع کل : " + sum.ToString("N0") + "ریال";
             Offset = print_right(graphics, b_nazanin_14, Grosstotal, max_paper_width, Offset) + 5;
@@ -222,6 +226,9 @@ namespace Service
                 string paytotal = "قابل پرداخت : " + (sum - discount).ToString("N0") + "ریال";
                 Offset = print_right(graphics, b_nazanin_14, paytotal, max_paper_width, Offset) + 5;
             }
+
+            string payingamount = "مبلغ پرداختی : " + paying_amount.ToString("N0") + "ریال";
+            Offset = print_right(graphics, b_nazanin_14, payingamount, max_paper_width, Offset) + 5;
 
             string Message = "حد فاصل چهارراه جهاد و چهارراه دانشگاه ساندویچی چی چی";
             Offset = print_right(graphics, b_nazanin_10, Message, max_paper_width, Offset) + 5;
