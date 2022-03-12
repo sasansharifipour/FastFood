@@ -214,12 +214,19 @@ namespace Windows_UI
 
             dt_gd_viw_orderlist.Refresh();
 
+            double discount = 0;
+            double.TryParse(TB_discount.Text.Trim(), out discount);
+
             double sum_price = _order_items.Sum(s => Math.Abs(s.All_Price));
+            double net_price = sum_price - discount;
+
             string txt = string.Format("{0:#,##0}", sum_price);
+            string net_price_txt = string.Format("{0:#,##0}", net_price);
 
             lbl_order_number.Text = free_number.ToString();
 
             lbl_sum_price.Text = String.Format("{0} {1}", txt, _configFile.get_currency_title());
+            lbl_net_price.Text = String.Format("{0} {1}", net_price_txt, _configFile.get_currency_title());
         }
 
         private void Button_Click(object sender, EventArgs e)
@@ -277,6 +284,9 @@ namespace Windows_UI
             int customer_id = 0;
             int.TryParse(cmb_customers.SelectedValue.ToString(), out customer_id);
 
+            int discount = 0;
+            int.TryParse(TB_discount.Text.Replace(",","").Trim(), out discount);
+
             get_free_number();
 
             if (customer_id <= 0)
@@ -287,6 +297,7 @@ namespace Windows_UI
                 CustomerID = customer_id,
                 OrderItems = get_order_items(_order_items),
                 Number = free_number,
+                discount = discount,
                 Insert_time = DateTime.Now
             };
 
@@ -359,6 +370,22 @@ namespace Windows_UI
         private void btn_edit_Click(object sender, EventArgs e)
         {
             _edit_order.ShowDialog();
+        }
+
+        private void TB_discount_TextChanged(object sender, EventArgs e)
+        {
+            string text = TB_discount.Text;
+            double value = 0;
+            double.TryParse(text, out value);
+            string txt = string.Format("{0:#,##0}", value);
+
+            if (txt.Trim() == "0")
+                txt = "";
+
+            TB_discount.Text = txt;
+            TB_discount.Select(TB_discount.Text.Length, 0);
+
+            update_order_show();
         }
     }
 }

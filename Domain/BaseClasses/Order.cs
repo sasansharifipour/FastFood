@@ -24,12 +24,15 @@ namespace Domain.BaseClasses
 
         public bool Deleted { get; set; } = false;
 
+        public double discount { get; set; } = 0;
+
         public object Clone()
         {
             Order order = new Order()
             {
                 ID = ID,
                 Customer = Customer,
+                discount = discount,
                 CustomerID = CustomerID,
                 Deleted = Deleted,
                 Deliver_time = Deliver_time,

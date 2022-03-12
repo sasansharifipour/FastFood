@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.chkblst_customers = new System.Windows.Forms.CheckedListBox();
             this.dat_tim_picker_to_date = new Atf.UI.DateTimeSelector();
             this.dat_tim_picker_from_date = new Atf.UI.DateTimeSelector();
             this.btn_search = new System.Windows.Forms.Button();
@@ -39,8 +41,10 @@
             this.lbl_sum_price = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.dt_gd_viw_reportlist = new System.Windows.Forms.DataGridView();
-            this.chkblst_customers = new System.Windows.Forms.CheckedListBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.lbl_sum_discount = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.lbl_sum_paying = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -61,6 +65,23 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(987, 159);
             this.panel1.TabIndex = 0;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(582, 39);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(63, 24);
+            this.label4.TabIndex = 20;
+            this.label4.Text = "مشتریان : ";
+            // 
+            // chkblst_customers
+            // 
+            this.chkblst_customers.FormattingEnabled = true;
+            this.chkblst_customers.Location = new System.Drawing.Point(214, 39);
+            this.chkblst_customers.Name = "chkblst_customers";
+            this.chkblst_customers.Size = new System.Drawing.Size(362, 108);
+            this.chkblst_customers.TabIndex = 19;
             // 
             // dat_tim_picker_to_date
             // 
@@ -113,6 +134,10 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.label6);
+            this.panel2.Controls.Add(this.lbl_sum_paying);
+            this.panel2.Controls.Add(this.label5);
+            this.panel2.Controls.Add(this.lbl_sum_discount);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.lbl_sum_price);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -133,7 +158,7 @@
             // lbl_sum_price
             // 
             this.lbl_sum_price.AutoSize = true;
-            this.lbl_sum_price.Location = new System.Drawing.Point(500, 40);
+            this.lbl_sum_price.Location = new System.Drawing.Point(604, 40);
             this.lbl_sum_price.Name = "lbl_sum_price";
             this.lbl_sum_price.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.lbl_sum_price.Size = new System.Drawing.Size(0, 24);
@@ -161,22 +186,43 @@
             this.dt_gd_viw_reportlist.Size = new System.Drawing.Size(987, 149);
             this.dt_gd_viw_reportlist.TabIndex = 0;
             // 
-            // chkblst_customers
+            // label5
             // 
-            this.chkblst_customers.FormattingEnabled = true;
-            this.chkblst_customers.Location = new System.Drawing.Point(214, 39);
-            this.chkblst_customers.Name = "chkblst_customers";
-            this.chkblst_customers.Size = new System.Drawing.Size(362, 108);
-            this.chkblst_customers.TabIndex = 19;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(516, 40);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(75, 24);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "تخفیف کل : ";
             // 
-            // label4
+            // lbl_sum_discount
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(582, 39);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(63, 24);
-            this.label4.TabIndex = 20;
-            this.label4.Text = "مشتریان : ";
+            this.lbl_sum_discount.AutoSize = true;
+            this.lbl_sum_discount.Location = new System.Drawing.Point(317, 40);
+            this.lbl_sum_discount.Name = "lbl_sum_discount";
+            this.lbl_sum_discount.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lbl_sum_discount.Size = new System.Drawing.Size(0, 24);
+            this.lbl_sum_discount.TabIndex = 7;
+            this.lbl_sum_discount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(227, 40);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(82, 24);
+            this.label6.TabIndex = 8;
+            this.label6.Text = "پرداختی کل : ";
+            // 
+            // lbl_sum_paying
+            // 
+            this.lbl_sum_paying.AutoSize = true;
+            this.lbl_sum_paying.Location = new System.Drawing.Point(28, 40);
+            this.lbl_sum_paying.Name = "lbl_sum_paying";
+            this.lbl_sum_paying.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lbl_sum_paying.Size = new System.Drawing.Size(0, 24);
+            this.lbl_sum_paying.TabIndex = 9;
+            this.lbl_sum_paying.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Report_Orders
             // 
@@ -220,5 +266,9 @@
         private Atf.UI.DateTimeSelector dat_tim_picker_to_date;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckedListBox chkblst_customers;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lbl_sum_paying;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lbl_sum_discount;
     }
 }

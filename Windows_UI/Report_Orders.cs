@@ -74,6 +74,9 @@ namespace Windows_UI
             DateTime from_date = dat_tim_picker_from_date.Value.Value.Date;
             DateTime to_date = dat_tim_picker_to_date.Value.Value.Date;
 
+            double sum_price = 0;
+            double discount = 0;
+
             var data = _orderService.Eager_Select(s => EntityFunctions.TruncateTime(s.Insert_time) >=
                 EntityFunctions.TruncateTime(from_date) && EntityFunctions.TruncateTime(s.Insert_time) <=
                 EntityFunctions.TruncateTime(to_date) && s.Deleted == false ).ToList();
@@ -83,6 +86,9 @@ namespace Windows_UI
             if (data != null)
                 foreach (var item in data)
                     if (selected_customers.Select(s => s.ID).Contains(item.Customer.ID))
+                    {
+                        discount += item.discount;
+
                         if (item.OrderItems != null)
                             foreach (var order_item in item.OrderItems)
                                 if (order_item.Food != null)
@@ -104,10 +110,10 @@ namespace Windows_UI
 
                                     foods[order_item.Food] = model;
                                 }
+                    }
 
             List<FoodViewModel> all_consume = new List<FoodViewModel>();
 
-            double sum_price = 0;
 
             foreach (var item in foods)
             {
@@ -128,6 +134,12 @@ namespace Windows_UI
 
             string txt = string.Format("{0:#,##0}", sum_price);
             lbl_sum_price.Text = String.Format("{0} {1}", txt, _configFile.get_currency_title());
+
+            string discount_txt = string.Format("{0:#,##0}", discount);
+            lbl_sum_discount.Text = String.Format("{0} {1}", discount_txt, _configFile.get_currency_title());
+
+            string all_paying_txt = string.Format("{0:#,##0}", sum_price - discount);
+            lbl_sum_paying.Text = String.Format("{0} {1}", all_paying_txt, _configFile.get_currency_title());
         }
 
         private void Report_Orders_Load(object sender, EventArgs e)

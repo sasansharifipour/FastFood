@@ -33,11 +33,16 @@
             this.dt_gd_viw_orderlist = new System.Windows.Forms.DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.btn_edit = new System.Windows.Forms.Button();
             this.btn_delete = new System.Windows.Forms.Button();
             this.btn_new_order = new System.Windows.Forms.Button();
             this.btn_print = new System.Windows.Forms.Button();
             this.btn_save_order = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.lbl_net_price = new System.Windows.Forms.Label();
+            this.TB_discount = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lbl_sum_price = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -46,7 +51,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pnl_Foods = new System.Windows.Forms.Panel();
-            this.btn_edit = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dt_gd_viw_orderlist)).BeginInit();
@@ -107,14 +111,24 @@
             this.panel6.Controls.Add(this.btn_print);
             this.panel6.Controls.Add(this.btn_save_order);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel6.Location = new System.Drawing.Point(0, 88);
+            this.panel6.Location = new System.Drawing.Point(0, 183);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(522, 202);
+            this.panel6.Size = new System.Drawing.Size(522, 107);
             this.panel6.TabIndex = 5;
+            // 
+            // btn_edit
+            // 
+            this.btn_edit.Location = new System.Drawing.Point(27, 31);
+            this.btn_edit.Name = "btn_edit";
+            this.btn_edit.Size = new System.Drawing.Size(99, 47);
+            this.btn_edit.TabIndex = 4;
+            this.btn_edit.Text = "ویرایش سفارش";
+            this.btn_edit.UseVisualStyleBackColor = true;
+            this.btn_edit.Click += new System.EventHandler(this.btn_edit_Click);
             // 
             // btn_delete
             // 
-            this.btn_delete.Location = new System.Drawing.Point(147, 86);
+            this.btn_delete.Location = new System.Drawing.Point(132, 31);
             this.btn_delete.Name = "btn_delete";
             this.btn_delete.Size = new System.Drawing.Size(87, 47);
             this.btn_delete.TabIndex = 3;
@@ -124,7 +138,7 @@
             // 
             // btn_new_order
             // 
-            this.btn_new_order.Location = new System.Drawing.Point(333, 86);
+            this.btn_new_order.Location = new System.Drawing.Point(318, 31);
             this.btn_new_order.Name = "btn_new_order";
             this.btn_new_order.Size = new System.Drawing.Size(89, 47);
             this.btn_new_order.TabIndex = 2;
@@ -135,7 +149,7 @@
             // btn_print
             // 
             this.btn_print.Enabled = false;
-            this.btn_print.Location = new System.Drawing.Point(240, 86);
+            this.btn_print.Location = new System.Drawing.Point(225, 31);
             this.btn_print.Name = "btn_print";
             this.btn_print.Size = new System.Drawing.Size(87, 47);
             this.btn_print.TabIndex = 1;
@@ -145,7 +159,7 @@
             // 
             // btn_save_order
             // 
-            this.btn_save_order.Location = new System.Drawing.Point(428, 86);
+            this.btn_save_order.Location = new System.Drawing.Point(413, 31);
             this.btn_save_order.Name = "btn_save_order";
             this.btn_save_order.Size = new System.Drawing.Size(82, 47);
             this.btn_save_order.TabIndex = 0;
@@ -155,18 +169,59 @@
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.label5);
+            this.panel5.Controls.Add(this.lbl_net_price);
+            this.panel5.Controls.Add(this.TB_discount);
+            this.panel5.Controls.Add(this.label4);
             this.panel5.Controls.Add(this.label3);
             this.panel5.Controls.Add(this.lbl_sum_price);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.Location = new System.Drawing.Point(0, 0);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(522, 88);
+            this.panel5.Size = new System.Drawing.Size(522, 183);
             this.panel5.TabIndex = 4;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(400, 104);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(110, 24);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "مبلغ قابل پرداخت : ";
+            // 
+            // lbl_net_price
+            // 
+            this.lbl_net_price.AutoSize = true;
+            this.lbl_net_price.Location = new System.Drawing.Point(97, 104);
+            this.lbl_net_price.Name = "lbl_net_price";
+            this.lbl_net_price.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lbl_net_price.Size = new System.Drawing.Size(0, 24);
+            this.lbl_net_price.TabIndex = 7;
+            this.lbl_net_price.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // TB_discount
+            // 
+            this.TB_discount.Location = new System.Drawing.Point(97, 59);
+            this.TB_discount.Name = "TB_discount";
+            this.TB_discount.Size = new System.Drawing.Size(209, 31);
+            this.TB_discount.TabIndex = 5;
+            this.TB_discount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.TB_discount.TextChanged += new System.EventHandler(this.TB_discount_TextChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(407, 62);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(59, 24);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "تخفیف   :";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(400, 38);
+            this.label3.Location = new System.Drawing.Point(400, 21);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(64, 24);
             this.label3.TabIndex = 2;
@@ -175,7 +230,7 @@
             // lbl_sum_price
             // 
             this.lbl_sum_price.AutoSize = true;
-            this.lbl_sum_price.Location = new System.Drawing.Point(97, 38);
+            this.lbl_sum_price.Location = new System.Drawing.Point(97, 21);
             this.lbl_sum_price.Name = "lbl_sum_price";
             this.lbl_sum_price.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.lbl_sum_price.Size = new System.Drawing.Size(0, 24);
@@ -206,7 +261,7 @@
             // cmb_customers
             // 
             this.cmb_customers.FormattingEnabled = true;
-            this.cmb_customers.Location = new System.Drawing.Point(78, 56);
+            this.cmb_customers.Location = new System.Drawing.Point(118, 55);
             this.cmb_customers.Name = "cmb_customers";
             this.cmb_customers.Size = new System.Drawing.Size(328, 32);
             this.cmb_customers.TabIndex = 2;
@@ -223,7 +278,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(412, 59);
+            this.label2.Location = new System.Drawing.Point(452, 58);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(52, 24);
             this.label2.TabIndex = 1;
@@ -237,16 +292,6 @@
             this.pnl_Foods.Name = "pnl_Foods";
             this.pnl_Foods.Size = new System.Drawing.Size(811, 749);
             this.pnl_Foods.TabIndex = 1;
-            // 
-            // btn_edit
-            // 
-            this.btn_edit.Location = new System.Drawing.Point(42, 86);
-            this.btn_edit.Name = "btn_edit";
-            this.btn_edit.Size = new System.Drawing.Size(99, 47);
-            this.btn_edit.TabIndex = 4;
-            this.btn_edit.Text = "ویرایش سفارش";
-            this.btn_edit.UseVisualStyleBackColor = true;
-            this.btn_edit.Click += new System.EventHandler(this.btn_edit_Click);
             // 
             // Add_Order
             // 
@@ -299,5 +344,9 @@
         private System.Windows.Forms.Label lbl_order_number;
         private System.Windows.Forms.Button btn_delete;
         private System.Windows.Forms.Button btn_edit;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox TB_discount;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lbl_net_price;
     }
 }
