@@ -340,6 +340,7 @@ namespace Windows_UI
         {
             _saved_order = null;
             btn_print.Enabled = false;
+            TB_discount.Text = "";
             free_number = _orderService.get_free_number();
             _order_items = new BindingList<OrderItem>();
 

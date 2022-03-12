@@ -369,6 +369,7 @@ namespace Windows_UI
         private void clean_form()
         {
             lbl_sum_price.Text = "";
+            TB_discount.Text = "";
             dt_gd_viw_orderlist.DataSource = null;
             dt_gd_viw_orderlist.Refresh();
         }
@@ -378,6 +379,7 @@ namespace Windows_UI
             _order_items = new BindingList<OrderItem>(order.OrderItems);
             _saved_order = order;
             cmb_customers.SelectedValue = order.CustomerID;
+            TB_discount.Text = order.discount.ToString();
 
             btn_print.Enabled = true;
             show_order_list(_order_items);

@@ -136,6 +136,7 @@ namespace Service
             string greeting = "*  به چی چی خوش آمدید  *";
             Font b_nazanin_18 = new Font("B Nazanin", 32, FontStyle.Bold);
             Font b_nazanin_14 = new Font("B Nazanin", 14, FontStyle.Bold);
+            Font b_nazanin_12 = new Font("B Nazanin", 12, FontStyle.Bold);
             Font b_nazanin_10 = new Font("B Nazanin", 10);
             int max_paper_width = 275;
 
@@ -206,14 +207,30 @@ namespace Service
             graphics.DrawLine(Pens.Black, new Point((int)table_position.price + 1, start_offset), new Point((int)table_position.price + 1, end_offset));
 
             graphics.DrawLine(Pens.Black, new Point(0, Offset), new Point(275, Offset));
-            string Grosstotal = "جمع کل : " + _order.OrderItems.Sum(s => s.All_Price).ToString("N0") + "ریال";
+
+            double sum = _order.OrderItems.Sum(s => s.All_Price);
+            double discount = _order.discount;
+
+            string Grosstotal = "جمع کل : " + sum.ToString("N0") + "ریال";
             Offset = print_right(graphics, b_nazanin_14, Grosstotal, max_paper_width, Offset) + 5;
+
+            if (discount > 0)
+            {
+                string discounttotal = "تخفیف : " + discount.ToString("N0") + "ریال";
+                Offset = print_right(graphics, b_nazanin_14, discounttotal, max_paper_width, Offset) + 5;
+
+                string paytotal = "قابل پرداخت : " + (sum - discount).ToString("N0") + "ریال";
+                Offset = print_right(graphics, b_nazanin_14, paytotal, max_paper_width, Offset) + 5;
+            }
 
             string Message = "حد فاصل چهارراه جهاد و چهارراه دانشگاه ساندویچی چی چی";
             Offset = print_right(graphics, b_nazanin_10, Message, max_paper_width, Offset) + 5;
 
-            string Mobile = "09139497717";
-            Offset = print_right(graphics, b_nazanin_14, Mobile, max_paper_width, Offset) + 5;
+            string Mobile = "سفارش : 09139497717 و 09057103100";
+            Offset = print_right(graphics, b_nazanin_12, Mobile, max_paper_width, Offset) + 5;
+
+            string management = "با مدیریت : علی شریفی";
+            Offset = print_right(graphics, b_nazanin_12, management, max_paper_width, Offset) + 5;
         }
 
         private enum table_position
