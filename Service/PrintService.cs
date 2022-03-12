@@ -162,6 +162,10 @@ namespace Service
 
             Offset = print_right(graphics, b_nazanin_10, data, max_paper_width, Offset) + 5;
 
+            string custumer_name = string.Format("{0}:{1}/{2}-{3}", "مشتری محترم", "جناب آقای", "سرکار خانم", _order.Customer.FullName);
+
+            Offset = print_right(graphics, b_nazanin_10, custumer_name, max_paper_width, Offset) + 5;
+
             int start_offset = Offset;
 
             graphics.DrawLine(Pens.Black, new Point(0, Offset), new Point(275, Offset));
@@ -216,19 +220,19 @@ namespace Service
             double paying_amount = _order.paying_amount;
 
             string Grosstotal = "جمع کل : " + sum.ToString("N0") + "ریال";
-            Offset = print_right(graphics, b_nazanin_14, Grosstotal, max_paper_width, Offset) + 5;
+            Offset = print_right(graphics, b_nazanin_10, Grosstotal, max_paper_width, Offset) + 5;
 
             if (discount > 0)
             {
                 string discounttotal = "تخفیف : " + discount.ToString("N0") + "ریال";
-                Offset = print_right(graphics, b_nazanin_14, discounttotal, max_paper_width, Offset) + 5;
+                Offset = print_right(graphics, b_nazanin_10, discounttotal, max_paper_width, Offset) + 5;
 
                 string paytotal = "قابل پرداخت : " + (sum - discount).ToString("N0") + "ریال";
-                Offset = print_right(graphics, b_nazanin_14, paytotal, max_paper_width, Offset) + 5;
+                Offset = print_right(graphics, b_nazanin_10, paytotal, max_paper_width, Offset) + 5;
             }
 
             string payingamount = "مبلغ پرداختی : " + paying_amount.ToString("N0") + "ریال";
-            Offset = print_right(graphics, b_nazanin_14, payingamount, max_paper_width, Offset) + 5;
+            Offset = print_right(graphics, b_nazanin_12, payingamount, max_paper_width, Offset) + 5;
 
             string Message = "حد فاصل چهارراه جهاد و چهارراه دانشگاه ساندویچی چی چی";
             Offset = print_right(graphics, b_nazanin_10, Message, max_paper_width, Offset) + 5;
@@ -237,7 +241,7 @@ namespace Service
             Offset = print_right(graphics, b_nazanin_12, Mobile, max_paper_width, Offset) + 5;
 
             string management = "با مدیریت : علی شریفی";
-            Offset = print_right(graphics, b_nazanin_12, management, max_paper_width, Offset) + 5;
+            Offset = print_center(graphics, b_nazanin_12, management, max_paper_width, Offset) + 5;
         }
 
         private enum table_position
