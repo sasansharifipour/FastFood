@@ -21,12 +21,14 @@ namespace Windows_UI
     public partial class Report_Orders : Form
     {
         private IOrderService _orderService;
-        private IConfigFile _configFile;
-        private ICustomerService _customerService;
+        private IConfigService _configFile;
         private IReportService _reportService;
+        private ISendInformationService _sendInformationService;
+        private ICustomerService _customerService;
         private List<Customer> _customers = new List<Customer>();
 
-        public Report_Orders(IOrderService orderService, IReportService reportService, IConfigFile configFile, ICustomerService customerService)
+        public Report_Orders(IOrderService orderService, IReportService reportService, IConfigService configFile, 
+            ICustomerService customerService, ISendInformationService sendInformationService)
         {
             InitializeComponent();
 
@@ -34,6 +36,7 @@ namespace Windows_UI
             _orderService = orderService;
             _configFile = configFile;
             _customerService = customerService;
+            _sendInformationService = sendInformationService;
 
             dat_tim_picker_from_date.Value = DateTime.Now;
             dat_tim_picker_to_date.Value = DateTime.Now;
@@ -81,6 +84,8 @@ namespace Windows_UI
 
         private void btn_search_Click(object sender, EventArgs e)
         {
+            string date_time = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
+
             List<Customer> selected_customers = get_selected_customers(_customers, chkblst_customers);
             DateTime from_date = dat_tim_picker_from_date.Value.Value.Date;
             DateTime to_date = dat_tim_picker_to_date.Value.Value.Date;
@@ -97,10 +102,18 @@ namespace Windows_UI
             fill_dt_gd_viw_report(all_consume);
             fill_dt_gd_viw_payment(payment_data);
 
-            var dt_payment_data = payment_data.convert_to_datatable();
-            dt_payment_data.convert_object_to_csv("test.csv");
+            var dt_payment_data = payment_data.convert_to_datatable(from_date, to_date, selected_customers);
+            var dt_consumes = all_consume.convert_to_datatable(from_date, to_date, selected_customers);
 
-            Task.Factory.StartNew(() => Email());
+            string consume_path = string.Format("{0}-{1}.{2}", "Sales", date_time, "csv");
+            string payment_path = string.Format("{0}-{1}.{2}", "Payment", date_time, "csv");
+
+            dt_payment_data.convert_object_to_csv(payment_path);
+            dt_consumes.convert_object_to_csv(consume_path);
+
+            List<string> files = new List<string>() { consume_path, payment_path };
+
+            Task.Factory.StartNew(() => _sendInformationService.Send_Email(files));
         }
 
         private void fill_dt_gd_viw_report(List<FoodViewModel> all_consume)
@@ -128,30 +141,7 @@ namespace Windows_UI
             dt_gd_viw_payment_data.Columns["Value"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dt_gd_viw_payment_data.Columns["Name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
         }
-
-        public void Email()
-        {
-            try
-            {
-                MailMessage message = new MailMessage();
-                SmtpClient smtp = new SmtpClient();
-                message.From = new MailAddress("chichi.fastfood.business@gmail.com");
-                message.To.Add(new MailAddress("sasansharifipour@gmail.com"));
-                message.Subject = "Test";
-                message.IsBodyHtml = true;  
-                message.Body = "Test";
-                message.Attachments.Add(new Attachment("test.csv"));
-                smtp.Port = 587;
-                smtp.Host = "smtp.gmail.com";                
-                smtp.EnableSsl = true;
-                smtp.UseDefaultCredentials = false;
-                smtp.Credentials = new NetworkCredential("chichi.fastfood.business@gmail.com", "koad xnpq pbod vtbc");
-                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-                smtp.Send(message);
-            }
-            catch (Exception) { }
-        }
-
+        
         private void Report_Orders_Load(object sender, EventArgs e)
         {
             _customers = _customerService.select_active_items().ToList();

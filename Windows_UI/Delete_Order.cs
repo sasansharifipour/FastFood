@@ -15,11 +15,11 @@ namespace Windows_UI
     public partial class Delete_Order : Form
     {
         private IOrderService _orderService;
-        private IConfigFile _configFile;
+        private IConfigService _configFile;
         private IPrintService _printService;
         private Order _order;
 
-        public Delete_Order(IOrderService orderService,IConfigFile configFile, IPrintService printService)
+        public Delete_Order(IOrderService orderService,IConfigService configFile, IPrintService printService)
         {
             InitializeComponent();
 

@@ -27,7 +27,7 @@ namespace Windows_UI
         private string special_button_prefix_name = "special_food_button_";
         private BindingList<OrderItem> _order_items;
         private List<OrderItem> _first_order_items = new List<OrderItem>();
-        private IConfigFile _configFile;
+        private IConfigService _configFile;
         private IOrderService _orderService;
         private IPrintService _printService;
         private Form _delete_order;
@@ -35,7 +35,7 @@ namespace Windows_UI
         private Order _first_order;
         private Create_Special_Food _Special_Food;
 
-        public Edit_Order(ICustomerService customerService, IFoodService foodService, IConfigFile configFile
+        public Edit_Order(ICustomerService customerService, IFoodService foodService, IConfigService configFile
             , IOrderService orderService, [Dependency("delete_order")] Form delete_order
             , [Dependency("login_form")] Form login_form
             , IFoodOptionService foodOptionService

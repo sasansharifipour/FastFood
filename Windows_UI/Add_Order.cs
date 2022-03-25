@@ -24,7 +24,7 @@ namespace Windows_UI
         private string button_prefix_name = "food_button_";
         private string special_button_prefix_name = "special_food_button_";
         private BindingList<OrderItem> _order_items;
-        private IConfigFile _configFile;
+        private IConfigService _configFile;
         private IOrderService _orderService;
         private IPrintService _printService;
         private Form _delete_order;
@@ -34,7 +34,7 @@ namespace Windows_UI
 
         int free_number = 0;
 
-        public Add_Order(ICustomerService customerService, IFoodService foodService, IConfigFile configFile
+        public Add_Order(ICustomerService customerService, IFoodService foodService, IConfigService configFile
             , IOrderService orderService , [Dependency("delete_order")] Form delete_order
             , [Dependency("edit_order")] Form edit_order
             , [Dependency("login_form")] Form login_form
@@ -265,6 +265,9 @@ namespace Windows_UI
             show_foods(_foods);
             show_customers(_customers);
             show_order_list(_order_items);
+
+            chb_credit.Checked = false;
+            TB_discount.Text = "";
         }
 
         private void dt_gd_viw_orderlist_CellParsing(object sender, DataGridViewCellParsingEventArgs e)
@@ -421,6 +424,11 @@ namespace Windows_UI
         private void Chb_credit_CheckedChanged(object sender, EventArgs e)
         {
             update_order_show();
+        }
+
+        private void Pnl_Foods_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

@@ -37,6 +37,7 @@
             this.add_ingredient_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.add_ingredient_to_food_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.add_user_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addingredienttofoodoptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.سفارشToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.add_order_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.edit_order_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,7 +45,7 @@
             this.گزارشToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.report_orders_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.report_ingredient_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addingredienttofoodoptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btn_send_email = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -125,6 +126,13 @@
             this.add_user_ToolStripMenuItem.Text = "افزودن کاربر";
             this.add_user_ToolStripMenuItem.Click += new System.EventHandler(this.add_user_ToolStripMenuItem_Click);
             // 
+            // addingredienttofoodoptionsToolStripMenuItem
+            // 
+            this.addingredienttofoodoptionsToolStripMenuItem.Name = "addingredienttofoodoptionsToolStripMenuItem";
+            this.addingredienttofoodoptionsToolStripMenuItem.Size = new System.Drawing.Size(248, 28);
+            this.addingredienttofoodoptionsToolStripMenuItem.Text = "افزودن مواد اولیه به افزودنی محصول";
+            this.addingredienttofoodoptionsToolStripMenuItem.Click += new System.EventHandler(this.addingredienttofoodoptionsToolStripMenuItem_Click);
+            // 
             // سفارشToolStripMenuItem
             // 
             this.سفارشToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -179,18 +187,22 @@
             this.report_ingredient_ToolStripMenuItem.Text = "گزارش مواد مصرفی";
             this.report_ingredient_ToolStripMenuItem.Click += new System.EventHandler(this.report_ingredient_ToolStripMenuItem_Click);
             // 
-            // addingredienttofoodoptionsToolStripMenuItem
+            // btn_send_email
             // 
-            this.addingredienttofoodoptionsToolStripMenuItem.Name = "addingredienttofoodoptionsToolStripMenuItem";
-            this.addingredienttofoodoptionsToolStripMenuItem.Size = new System.Drawing.Size(248, 28);
-            this.addingredienttofoodoptionsToolStripMenuItem.Text = "افزودن مواد اولیه به افزودنی محصول";
-            this.addingredienttofoodoptionsToolStripMenuItem.Click += new System.EventHandler(this.addingredienttofoodoptionsToolStripMenuItem_Click);
+            this.btn_send_email.Location = new System.Drawing.Point(326, 136);
+            this.btn_send_email.Name = "btn_send_email";
+            this.btn_send_email.Size = new System.Drawing.Size(144, 51);
+            this.btn_send_email.TabIndex = 1;
+            this.btn_send_email.Text = "ارسال گزارش";
+            this.btn_send_email.UseVisualStyleBackColor = true;
+            this.btn_send_email.Click += new System.EventHandler(this.Btn_send_email_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1136, 550);
+            this.Controls.Add(this.btn_send_email);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("B Nazanin", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.MainMenuStrip = this.menuStrip1;
@@ -228,6 +240,7 @@
         private System.Windows.Forms.ToolStripMenuItem edit_order_ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem add_foodoption_toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem addingredienttofoodoptionsToolStripMenuItem;
+        private System.Windows.Forms.Button btn_send_email;
     }
 }
 

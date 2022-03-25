@@ -9,10 +9,10 @@ namespace Windows_UI
 {
     public partial class Add_Food : Form
     {
-        private IConfigFile _configFile;
+        private IConfigService _configFile;
         private IFoodService _foodService;
 
-        public Add_Food(IConfigFile configFile, IFoodService foodService)
+        public Add_Food(IConfigService configFile, IFoodService foodService)
         {
             InitializeComponent();
 

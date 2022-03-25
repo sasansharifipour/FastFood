@@ -62,6 +62,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
@@ -71,6 +72,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConfigService.cs" />
     <Compile Include="ConsumeFoodOptionService.cs" />
     <Compile Include="ConsumeService.cs" />
     <Compile Include="FoodOptionService.cs" />
@@ -78,6 +80,7 @@
     <Compile Include="LoginInfo.cs" />
     <Compile Include="PrintService.cs" />
     <Compile Include="ReportService.cs" />
+    <Compile Include="SendInformationService.cs" />
     <Compile Include="UserService.cs" />
     <Compile Include="UnitService.cs" />
     <Compile Include="OrderItemService.cs" />

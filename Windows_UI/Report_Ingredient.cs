@@ -1,4 +1,5 @@
-﻿using Domain.BaseClasses;
+﻿using CommonCodes;
+using Domain.BaseClasses;
 using Domain.ViewModels;
 using Service;
 using System;
@@ -9,6 +10,7 @@ using System.Data.Entity.Core.Objects;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Windows_UI
@@ -16,80 +18,45 @@ namespace Windows_UI
     public partial class Report_Ingredient : Form
     {
         private IOrderService _orderService;
+        private IReportService _reportService;
+        private ISendInformationService _sendInformationService;
 
-        public Report_Ingredient(IOrderService orderService)
+        public Report_Ingredient(IOrderService orderService, IReportService reportService,
+            ISendInformationService sendInformationService)
         {
             InitializeComponent();
 
             _orderService = orderService;
+            _reportService = reportService;
+            _sendInformationService = sendInformationService;
             dat_tim_picker_from_date.Value = DateTime.Now;
             dat_tim_picker_to_date.Value = DateTime.Now;
         }
 
         private void btn_search_Click(object sender, EventArgs e)
         {
+            string date_time = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
+
             DateTime from_date = dat_tim_picker_from_date.Value.Value.Date;
             DateTime to_date = dat_tim_picker_to_date.Value.Value.Date;
 
-            var data = _orderService.Eager_Select(s => EntityFunctions.TruncateTime(s.Insert_time) >=
-                EntityFunctions.TruncateTime(from_date) && EntityFunctions.TruncateTime(s.Insert_time) <=
-                EntityFunctions.TruncateTime(to_date) && s.Deleted == false).ToList();
+            List<ConsumeViewModel> all_consume = _reportService.Get_Ingrediants_FromDate_ToDate(from_date, to_date);
 
-            Dictionary<Ingredient, double> ingredient = new Dictionary<Ingredient, double>();
+            fill_dt_gd_viw_report(all_consume);
 
-            if (data != null)
-                foreach (var item in data)
-                {
-                    if (item.OrderItems != null)
-                        foreach (var order_item in item.OrderItems)
-                        {
-                            if (order_item.Food != null && order_item.Food.Consumes != null)
-                            {
-                                foreach (var consume in order_item.Food.Consumes)
-                                {
-                                    double volume = 0;
-                                    
-                                    if (ingredient.ContainsKey(consume.Ingredient))
-                                        volume = ingredient[consume.Ingredient];
+            var dt_consumes = all_consume.convert_to_datatable(from_date, to_date);
 
-                                    volume += order_item.Count * consume.Volume;
-                                    ingredient[consume.Ingredient] = volume;
-                                }
-                            }
+            string consume_path = string.Format("{0}-{1}.{2}", "Consume", date_time, "csv");
 
-                            if (order_item.FoodOptions != null)
-                                foreach (var order_option in order_item.FoodOptions)
-                                {
-                                    if (order_option.ConsumeFoodOptions != null)
-                                    {
-                                        foreach (var consume in order_option.ConsumeFoodOptions)
-                                        {
-                                            double volume = 0;
+            dt_consumes.convert_object_to_csv(consume_path);
 
-                                            if (ingredient.ContainsKey(consume.Ingredient))
-                                                volume = ingredient[consume.Ingredient];
+            List<string> files = new List<string>() { consume_path };
 
-                                            volume += order_item.Count * consume.Volume;
-                                            ingredient[consume.Ingredient] = volume;
-                                        }
-                                    }
+            Task.Factory.StartNew(() => _sendInformationService.Send_Email(files));
+        }
 
-                                }
-                        }
-                }
-
-            List<ConsumeViewModel> all_consume = new List<ConsumeViewModel>();
-
-            foreach (var item in ingredient)
-            {
-                ConsumeViewModel model = new ConsumeViewModel();
-                model.Volume = Math.Round(item.Value, 2);
-                model.IngredientName = item.Key.Name;
-                model.UnitName = item.Key.Unit.Name;
-
-                all_consume.Add(model);
-            }
-
+        private void fill_dt_gd_viw_report(List<ConsumeViewModel> all_consume)
+        {
             dt_gd_viw_reportlist.DataSource = all_consume;
             dt_gd_viw_reportlist.Columns["IngredientName"].HeaderText = "محصول";
             dt_gd_viw_reportlist.Columns["Volume"].HeaderText = "مقدار";

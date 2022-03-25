@@ -18,13 +18,14 @@ namespace Windows_UI
             container.RegisterSingleton<DbContext, DBContext>();
             container.RegisterSingleton<IPrintService, PrintService>();
 
-            container.RegisterSingleton<IConfigFile, ConfigFile>();
+            container.RegisterSingleton<IConfigService, ConfigService>();
 
             container.RegisterSingleton<IBaseDAO<Customer>, BaseDAO<Customer>>();
             container.RegisterSingleton<ICustomerDAO, CustomerDAO>();
             container.RegisterSingleton<ICustomerService, CustomerService>();
 
             container.RegisterSingleton<IReportService, ReportService>();
+            container.RegisterSingleton<ISendInformationService, SendEmailService>();
 
             container.RegisterSingleton<IBaseDAO<User>, BaseDAO<User>>();
             container.RegisterSingleton<IUserDAO, UserDAO>();
