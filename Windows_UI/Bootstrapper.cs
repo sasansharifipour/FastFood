@@ -24,6 +24,8 @@ namespace Windows_UI
             container.RegisterSingleton<ICustomerDAO, CustomerDAO>();
             container.RegisterSingleton<ICustomerService, CustomerService>();
 
+            container.RegisterSingleton<IReportService, ReportService>();
+
             container.RegisterSingleton<IBaseDAO<User>, BaseDAO<User>>();
             container.RegisterSingleton<IUserDAO, UserDAO>();
             container.RegisterSingleton<IUserService, UserService>();

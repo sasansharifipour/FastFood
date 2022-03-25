@@ -1,4 +1,5 @@
-﻿using Domain.BaseClasses;
+﻿using CommonCodes;
+using Domain.BaseClasses;
 using Domain.ViewModels;
 using Service;
 using System;
@@ -7,8 +8,12 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.Entity.Core.Objects;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Windows_UI
@@ -18,12 +23,14 @@ namespace Windows_UI
         private IOrderService _orderService;
         private IConfigFile _configFile;
         private ICustomerService _customerService;
+        private IReportService _reportService;
         private List<Customer> _customers = new List<Customer>();
 
-        public Report_Orders(IOrderService orderService, IConfigFile configFile, ICustomerService customerService)
+        public Report_Orders(IOrderService orderService, IReportService reportService, IConfigFile configFile, ICustomerService customerService)
         {
             InitializeComponent();
 
+            _reportService = reportService;
             _orderService = orderService;
             _configFile = configFile;
             _customerService = customerService;
@@ -49,6 +56,7 @@ namespace Windows_UI
         private List<Customer> get_selected_customers(List<Customer> customers, CheckedListBox checkedListBox)
         {
             List<Customer> selected_customers = new List<Customer>();
+
             foreach (var item in checkedListBox.CheckedItems)
             {
                 var item_title_list = item.ToString().Split('-');
@@ -65,6 +73,9 @@ namespace Windows_UI
                 }
             }
 
+            if (selected_customers.Count <= 0)
+                selected_customers = customers.ToList();
+
             return selected_customers;
         }
 
@@ -74,59 +85,26 @@ namespace Windows_UI
             DateTime from_date = dat_tim_picker_from_date.Value.Value.Date;
             DateTime to_date = dat_tim_picker_to_date.Value.Value.Date;
 
-            double sum_price = 0;
-            double discount = 0;
-            double paying_amount = 0;
-            double credit_amount = 0;
-            double credit_amount_payment = 0;
+            List<int> customers = selected_customers.Select(s => s.ID).ToList();
 
-            var data = _orderService.Eager_Select(s => EntityFunctions.TruncateTime(s.Insert_time) >=
-                EntityFunctions.TruncateTime(from_date) && EntityFunctions.TruncateTime(s.Insert_time) <=
-                EntityFunctions.TruncateTime(to_date) && s.Deleted == false ).ToList();
+            List<Order> data = _reportService.Get_Orders_FromDate_ToDate_For_Some_Customers
+                (from_date, to_date, customers);
 
-            Dictionary<Food, FoodViewModel> foods = new Dictionary<Food, FoodViewModel>();
+            List<FoodViewModel> all_consume = data.Extract_Food();
+            
+            List<ItemViewModel> payment_data = data.Create_Payment_Data();
 
-            if (data != null)
-                foreach (var item in data)
-                    if (selected_customers.Select(s => s.ID).Contains(item.Customer.ID))
-                    {
-                        discount += item.discount;
-                        paying_amount += item.paying_amount;
-                        credit_amount += item.credit_amount;
-                        credit_amount_payment += item.credit_amount_payment;
+            fill_dt_gd_viw_report(all_consume);
+            fill_dt_gd_viw_payment(payment_data);
 
-                        if (item.OrderItems != null)
-                            foreach (var order_item in item.OrderItems)
-                                if (order_item.Food != null)
-                                {
-                                    FoodViewModel model = new FoodViewModel();
+            var dt_payment_data = payment_data.convert_to_datatable();
+            dt_payment_data.convert_object_to_csv("test.csv");
 
-                                    if (foods.ContainsKey(order_item.Food))
-                                    {
-                                        model = foods[order_item.Food];
-                                        model.Count += order_item.Count;
-                                        model.Price += order_item.Price * order_item.Count;
-                                    }
-                                    else
-                                    {
-                                        model.FoodName = order_item.Food.Name;
-                                        model.Count = order_item.Count;
-                                        model.Price = order_item.Price * order_item.Count;
-                                    }
+            Task.Factory.StartNew(() => Email());
+        }
 
-                                    foods[order_item.Food] = model;
-                                }
-                    }
-
-            List<FoodViewModel> all_consume = new List<FoodViewModel>();
-
-
-            foreach (var item in foods)
-            {
-                all_consume.Add(item.Value);
-                sum_price += item.Value.Price;
-            }
-
+        private void fill_dt_gd_viw_report(List<FoodViewModel> all_consume)
+        {
             dt_gd_viw_reportlist.DataSource = all_consume;
             dt_gd_viw_reportlist.Columns["FoodName"].HeaderText = "محصول";
             dt_gd_viw_reportlist.Columns["Count"].HeaderText = "مقدار";
@@ -137,23 +115,10 @@ namespace Windows_UI
             dt_gd_viw_reportlist.Columns["Price"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dt_gd_viw_reportlist.Columns["Count"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dt_gd_viw_reportlist.Columns["FoodName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+        }
 
-            List<ItemViewModel> payment_data = new List<ItemViewModel>();
-
-            string txt = string.Format("{0:#,##0}", sum_price);
-            string discount_txt = string.Format("{0:#,##0}", discount);
-            string all_paying_txt = string.Format("{0:#,##0}", sum_price - discount);
-            string paying_amount_txt = string.Format("{0:#,##0}", paying_amount);
-            string credit_amount_txt = string.Format("{0:#,##0}", credit_amount);
-            string credit_amount_payment_txt = string.Format("{0:#,##0}", credit_amount_payment);
-
-            payment_data.Add(new ItemViewModel() { Name = "جمع کل", Value = txt });
-            payment_data.Add(new ItemViewModel() { Name = "تخفیف", Value = discount_txt });
-            payment_data.Add(new ItemViewModel() { Name = "مبلغ قابل پرداخت", Value = all_paying_txt });
-            payment_data.Add(new ItemViewModel() { Name = "کل مبالغ پرداخت شده", Value = paying_amount_txt });
-            payment_data.Add(new ItemViewModel() { Name = "کل مبلغ قرضی", Value = credit_amount_txt });
-            payment_data.Add(new ItemViewModel() { Name = "کل مبلغ برگشتی قرضی", Value = credit_amount_payment_txt });
-
+        private void fill_dt_gd_viw_payment(List<ItemViewModel> payment_data)
+        {
             dt_gd_viw_payment_data.DataSource = payment_data;
             dt_gd_viw_payment_data.Columns["Name"].HeaderText = "عنوان";
             dt_gd_viw_payment_data.Columns["Value"].HeaderText = "مقدار";
@@ -162,7 +127,29 @@ namespace Windows_UI
 
             dt_gd_viw_payment_data.Columns["Value"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dt_gd_viw_payment_data.Columns["Name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+        }
 
+        public void Email()
+        {
+            try
+            {
+                MailMessage message = new MailMessage();
+                SmtpClient smtp = new SmtpClient();
+                message.From = new MailAddress("chichi.fastfood.business@gmail.com");
+                message.To.Add(new MailAddress("sasansharifipour@gmail.com"));
+                message.Subject = "Test";
+                message.IsBodyHtml = true;  
+                message.Body = "Test";
+                message.Attachments.Add(new Attachment("test.csv"));
+                smtp.Port = 587;
+                smtp.Host = "smtp.gmail.com";                
+                smtp.EnableSsl = true;
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = new NetworkCredential("chichi.fastfood.business@gmail.com", "koad xnpq pbod vtbc");
+                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                smtp.Send(message);
+            }
+            catch (Exception) { }
         }
 
         private void Report_Orders_Load(object sender, EventArgs e)
