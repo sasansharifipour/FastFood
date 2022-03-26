@@ -226,11 +226,11 @@ namespace Windows_UI
             lbl_sum_price.Text = String.Format("{0} {1}", txt, _configFile.get_currency_title());
             lbl_net_price.Text = String.Format("{0} {1}", net_price_txt, _configFile.get_currency_title());
 
-
-            TB_Paying.Text = net_price_txt;
-
+            
             if (_saved_order != null)
                     TB_Paying.Text = _saved_order.paying_amount.ToString();
+
+            TB_Paying.Text = net_price_txt;
         }
 
         private void Button_Click(object sender, EventArgs e)
@@ -262,6 +262,9 @@ namespace Windows_UI
             show_foods(_foods);
             show_customers(_customers);
             show_order_list(_order_items);
+
+            chb_credit.Checked = false;
+            TB_discount.Text = "";
         }
 
         private void dt_gd_viw_orderlist_CellParsing(object sender, DataGridViewCellParsingEventArgs e)
@@ -449,6 +452,9 @@ namespace Windows_UI
         private void Chb_credit_CheckedChanged(object sender, EventArgs e)
         {
             update_order_show();
+
+            if (chb_credit.Checked)
+                TB_Paying.Text = "";
         }
     }
 }
