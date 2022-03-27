@@ -264,6 +264,7 @@ namespace Windows_UI
             show_order_list(_order_items);
 
             chb_credit.Checked = false;
+            chb_Is_Serving_In_Saloon.Checked = false;
             TB_discount.Text = "";
         }
 
@@ -301,6 +302,7 @@ namespace Windows_UI
             _saved_order.CustomerID = customer_id;
             _saved_order.discount = discount;
             _saved_order.credit = credit;
+            _saved_order.Is_Serving_In_Saloon = chb_Is_Serving_In_Saloon.Checked;
 
             _saved_order.OrderItems = get_order_items(_order_items);
 
@@ -391,6 +393,7 @@ namespace Windows_UI
             TB_Paying.Text = "";
 
             chb_credit.Checked = false;
+            chb_Is_Serving_In_Saloon.Checked = false;
             dt_gd_viw_orderlist.DataSource = null;
             dt_gd_viw_orderlist.Refresh();
         }
@@ -402,6 +405,7 @@ namespace Windows_UI
             cmb_customers.SelectedValue = order.CustomerID;
             TB_discount.Text = order.discount.ToString();
             chb_credit.Checked = order.credit;
+            chb_Is_Serving_In_Saloon.Checked = order.Is_Serving_In_Saloon;
             TB_Paying.Text = order.paying_amount.ToString();
 
             btn_print.Enabled = true;

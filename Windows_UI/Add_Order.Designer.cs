@@ -54,6 +54,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pnl_Foods = new System.Windows.Forms.Panel();
+            this.chb_Is_Serving_In_Saloon = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dt_gd_viw_orderlist)).BeginInit();
@@ -262,6 +263,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.chb_Is_Serving_In_Saloon);
             this.panel2.Controls.Add(this.chb_credit);
             this.panel2.Controls.Add(this.lbl_order_number);
             this.panel2.Controls.Add(this.cmb_customers);
@@ -276,7 +278,7 @@
             // chb_credit
             // 
             this.chb_credit.AutoSize = true;
-            this.chb_credit.Location = new System.Drawing.Point(35, 57);
+            this.chb_credit.Location = new System.Drawing.Point(6, 57);
             this.chb_credit.Name = "chb_credit";
             this.chb_credit.Size = new System.Drawing.Size(58, 28);
             this.chb_credit.TabIndex = 4;
@@ -296,9 +298,9 @@
             // cmb_customers
             // 
             this.cmb_customers.FormattingEnabled = true;
-            this.cmb_customers.Location = new System.Drawing.Point(118, 55);
+            this.cmb_customers.Location = new System.Drawing.Point(148, 55);
             this.cmb_customers.Name = "cmb_customers";
-            this.cmb_customers.Size = new System.Drawing.Size(328, 32);
+            this.cmb_customers.Size = new System.Drawing.Size(298, 32);
             this.cmb_customers.TabIndex = 2;
             // 
             // label1
@@ -328,6 +330,16 @@
             this.pnl_Foods.Size = new System.Drawing.Size(811, 749);
             this.pnl_Foods.TabIndex = 1;
             this.pnl_Foods.Paint += new System.Windows.Forms.PaintEventHandler(this.Pnl_Foods_Paint);
+            // 
+            // chb_Is_Serving_In_Saloon
+            // 
+            this.chb_Is_Serving_In_Saloon.AutoSize = true;
+            this.chb_Is_Serving_In_Saloon.Location = new System.Drawing.Point(84, 57);
+            this.chb_Is_Serving_In_Saloon.Name = "chb_Is_Serving_In_Saloon";
+            this.chb_Is_Serving_In_Saloon.Size = new System.Drawing.Size(54, 28);
+            this.chb_Is_Serving_In_Saloon.TabIndex = 5;
+            this.chb_Is_Serving_In_Saloon.Text = "سالن";
+            this.chb_Is_Serving_In_Saloon.UseVisualStyleBackColor = true;
             // 
             // Add_Order
             // 
@@ -387,5 +399,6 @@
         private System.Windows.Forms.CheckBox chb_credit;
         private System.Windows.Forms.TextBox TB_Paying;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.CheckBox chb_Is_Serving_In_Saloon;
     }
 }

@@ -267,6 +267,7 @@ namespace Windows_UI
             show_order_list(_order_items);
 
             chb_credit.Checked = false;
+            chb_Is_Serving_In_Saloon.Checked = false;
             TB_discount.Text = "";
         }
 
@@ -310,6 +311,7 @@ namespace Windows_UI
             Order order = new Order()
             {
                 CustomerID = customer_id,
+                Is_Serving_In_Saloon = chb_Is_Serving_In_Saloon.Checked,
                 OrderItems = get_order_items(_order_items),
                 Number = free_number,
                 discount = discount,
@@ -359,6 +361,7 @@ namespace Windows_UI
             btn_print.Enabled = false;
             TB_discount.Text = "";
             chb_credit.Checked = false;
+            chb_Is_Serving_In_Saloon.Checked = false;
             free_number = _orderService.get_free_number();
             _order_items = new BindingList<OrderItem>();
 

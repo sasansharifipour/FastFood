@@ -25,6 +25,8 @@ namespace Domain.BaseClasses
 
         public bool Deleted { get; set; } = false;
 
+        public bool Is_Serving_In_Saloon { get; set; } = false;
+
         public double discount { get; set; } = 0;
 
         public double paying_amount { get; set; } = 0;

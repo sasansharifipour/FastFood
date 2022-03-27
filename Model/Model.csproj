@@ -143,6 +143,10 @@
     <Compile Include="Migrations\202203121207572_add_paying_amount.designer.cs">
       <DependentUpon>202203121207572_add_paying_amount.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202203271041299_add_Is_Serving_In_Saloon.cs" />
+    <Compile Include="Migrations\202203271041299_add_Is_Serving_In_Saloon.designer.cs">
+      <DependentUpon>202203271041299_add_Is_Serving_In_Saloon.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -214,6 +218,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202203121207572_add_paying_amount.resx">
       <DependentUpon>202203121207572_add_paying_amount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203271041299_add_Is_Serving_In_Saloon.resx">
+      <DependentUpon>202203271041299_add_Is_Serving_In_Saloon.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

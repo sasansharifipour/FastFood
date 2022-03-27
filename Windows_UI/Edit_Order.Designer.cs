@@ -37,9 +37,16 @@
             this.btn_print = new System.Windows.Forms.Button();
             this.btn_save_order = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.TB_Paying = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.lbl_net_price = new System.Windows.Forms.Label();
+            this.TB_discount = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lbl_sum_price = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.chb_credit = new System.Windows.Forms.CheckBox();
             this.btn_search = new System.Windows.Forms.Button();
             this.dat_tim_picker_order_date = new Atf.UI.DateTimeSelector();
             this.label4 = new System.Windows.Forms.Label();
@@ -49,13 +56,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pnl_Foods = new System.Windows.Forms.Panel();
-            this.label6 = new System.Windows.Forms.Label();
-            this.lbl_net_price = new System.Windows.Forms.Label();
-            this.TB_discount = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.chb_credit = new System.Windows.Forms.CheckBox();
-            this.TB_Paying = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
+            this.chb_Is_Serving_In_Saloon = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dt_gd_viw_orderlist)).BeginInit();
@@ -166,6 +167,61 @@
             this.panel5.Size = new System.Drawing.Size(522, 196);
             this.panel5.TabIndex = 4;
             // 
+            // TB_Paying
+            // 
+            this.TB_Paying.Location = new System.Drawing.Point(101, 159);
+            this.TB_Paying.Name = "TB_Paying";
+            this.TB_Paying.Size = new System.Drawing.Size(209, 31);
+            this.TB_Paying.TabIndex = 102;
+            this.TB_Paying.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.TB_Paying.TextChanged += new System.EventHandler(this.TB_Paying_TextChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(400, 121);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(110, 24);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "مبلغ قابل پرداخت : ";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(400, 162);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(92, 24);
+            this.label8.TabIndex = 101;
+            this.label8.Text = "مبلغ پرداختی   :";
+            // 
+            // lbl_net_price
+            // 
+            this.lbl_net_price.AutoSize = true;
+            this.lbl_net_price.Location = new System.Drawing.Point(101, 121);
+            this.lbl_net_price.Name = "lbl_net_price";
+            this.lbl_net_price.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lbl_net_price.Size = new System.Drawing.Size(0, 24);
+            this.lbl_net_price.TabIndex = 11;
+            this.lbl_net_price.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // TB_discount
+            // 
+            this.TB_discount.Location = new System.Drawing.Point(101, 76);
+            this.TB_discount.Name = "TB_discount";
+            this.TB_discount.Size = new System.Drawing.Size(209, 31);
+            this.TB_discount.TabIndex = 4;
+            this.TB_discount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.TB_discount.TextChanged += new System.EventHandler(this.TB_discount_TextChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(400, 79);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(59, 24);
+            this.label7.TabIndex = 8;
+            this.label7.Text = "تخفیف   :";
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -187,6 +243,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.chb_Is_Serving_In_Saloon);
             this.panel2.Controls.Add(this.chb_credit);
             this.panel2.Controls.Add(this.btn_search);
             this.panel2.Controls.Add(this.dat_tim_picker_order_date);
@@ -201,6 +258,17 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(522, 178);
             this.panel2.TabIndex = 4;
+            // 
+            // chb_credit
+            // 
+            this.chb_credit.AutoSize = true;
+            this.chb_credit.Location = new System.Drawing.Point(17, 128);
+            this.chb_credit.Name = "chb_credit";
+            this.chb_credit.Size = new System.Drawing.Size(58, 28);
+            this.chb_credit.TabIndex = 100;
+            this.chb_credit.Text = "قرضی";
+            this.chb_credit.UseVisualStyleBackColor = true;
+            this.chb_credit.CheckedChanged += new System.EventHandler(this.Chb_credit_CheckedChanged);
             // 
             // btn_search
             // 
@@ -251,9 +319,9 @@
             // cmb_customers
             // 
             this.cmb_customers.FormattingEnabled = true;
-            this.cmb_customers.Location = new System.Drawing.Point(91, 126);
+            this.cmb_customers.Location = new System.Drawing.Point(156, 126);
             this.cmb_customers.Name = "cmb_customers";
-            this.cmb_customers.Size = new System.Drawing.Size(314, 32);
+            this.cmb_customers.Size = new System.Drawing.Size(249, 32);
             this.cmb_customers.TabIndex = 3;
             // 
             // label1
@@ -283,71 +351,15 @@
             this.pnl_Foods.Size = new System.Drawing.Size(811, 749);
             this.pnl_Foods.TabIndex = 1;
             // 
-            // label6
+            // chb_Is_Serving_In_Saloon
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(400, 121);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(110, 24);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "مبلغ قابل پرداخت : ";
-            // 
-            // lbl_net_price
-            // 
-            this.lbl_net_price.AutoSize = true;
-            this.lbl_net_price.Location = new System.Drawing.Point(101, 121);
-            this.lbl_net_price.Name = "lbl_net_price";
-            this.lbl_net_price.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lbl_net_price.Size = new System.Drawing.Size(0, 24);
-            this.lbl_net_price.TabIndex = 11;
-            this.lbl_net_price.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // TB_discount
-            // 
-            this.TB_discount.Location = new System.Drawing.Point(101, 76);
-            this.TB_discount.Name = "TB_discount";
-            this.TB_discount.Size = new System.Drawing.Size(209, 31);
-            this.TB_discount.TabIndex = 4;
-            this.TB_discount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.TB_discount.TextChanged += new System.EventHandler(this.TB_discount_TextChanged);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(400, 79);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(59, 24);
-            this.label7.TabIndex = 8;
-            this.label7.Text = "تخفیف   :";
-            // 
-            // chb_credit
-            // 
-            this.chb_credit.AutoSize = true;
-            this.chb_credit.Location = new System.Drawing.Point(17, 128);
-            this.chb_credit.Name = "chb_credit";
-            this.chb_credit.Size = new System.Drawing.Size(58, 28);
-            this.chb_credit.TabIndex = 100;
-            this.chb_credit.Text = "قرضی";
-            this.chb_credit.UseVisualStyleBackColor = true;
-            this.chb_credit.CheckedChanged += new System.EventHandler(this.Chb_credit_CheckedChanged);
-            // 
-            // TB_Paying
-            // 
-            this.TB_Paying.Location = new System.Drawing.Point(101, 159);
-            this.TB_Paying.Name = "TB_Paying";
-            this.TB_Paying.Size = new System.Drawing.Size(209, 31);
-            this.TB_Paying.TabIndex = 102;
-            this.TB_Paying.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.TB_Paying.TextChanged += new System.EventHandler(this.TB_Paying_TextChanged);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(400, 162);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(92, 24);
-            this.label8.TabIndex = 101;
-            this.label8.Text = "مبلغ پرداختی   :";
+            this.chb_Is_Serving_In_Saloon.AutoSize = true;
+            this.chb_Is_Serving_In_Saloon.Location = new System.Drawing.Point(81, 128);
+            this.chb_Is_Serving_In_Saloon.Name = "chb_Is_Serving_In_Saloon";
+            this.chb_Is_Serving_In_Saloon.Size = new System.Drawing.Size(54, 28);
+            this.chb_Is_Serving_In_Saloon.TabIndex = 101;
+            this.chb_Is_Serving_In_Saloon.Text = "سالن";
+            this.chb_Is_Serving_In_Saloon.UseVisualStyleBackColor = true;
             // 
             // Edit_Order
             // 
@@ -411,5 +423,6 @@
         private System.Windows.Forms.CheckBox chb_credit;
         private System.Windows.Forms.TextBox TB_Paying;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.CheckBox chb_Is_Serving_In_Saloon;
     }
 }
