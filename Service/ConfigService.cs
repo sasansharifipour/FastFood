@@ -23,6 +23,10 @@ namespace Service
         string get_email_key();
 
         string get_value_from_config(string key);
+
+        string get_cash_desk_printer_name();
+
+        string get_kitchen_printer_name();
     }
 
     public class ConfigService : IConfigService
@@ -76,6 +80,18 @@ namespace Service
         public string get_email_key()
         {
             string key = "email_key";
+            return get_value_from_config(key);
+        }
+        
+        public string get_cash_desk_printer_name()
+        {
+            string key = "cash_desk_printer_name";
+            return get_value_from_config(key);
+        }
+        
+        public string get_kitchen_printer_name()
+        {
+            string key = "kitchen_printer_name";
             return get_value_from_config(key);
         }
 
