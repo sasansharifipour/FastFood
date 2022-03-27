@@ -14,7 +14,7 @@ using Unity;
 
 namespace Windows_UI
 {
-    public partial class Add_Order : Form
+    public partial class Add_Order : SpecialForm
     {
         private ICustomerService _customerService;
         private IFoodService _foodService;
@@ -37,10 +37,10 @@ namespace Windows_UI
         public Add_Order(ICustomerService customerService, IFoodService foodService, IConfigService configFile
             , IOrderService orderService , [Dependency("delete_order")] Form delete_order
             , [Dependency("edit_order")] Form edit_order
-            , [Dependency("login_form")] Form login_form
             , IFoodOptionService foodOptionService
             , Create_Special_Food special_Food
-            , IPrintService printService)
+            , IPrintService printService, [Dependency("login_form")] Form login_form)
+            : base(login_form)
         {
             _customerService = customerService;
             _orderService = orderService;

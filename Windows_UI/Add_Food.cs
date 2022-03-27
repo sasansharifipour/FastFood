@@ -4,15 +4,18 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Unity;
 
 namespace Windows_UI
 {
-    public partial class Add_Food : Form
+    public partial class Add_Food : SpecialForm
     {
         private IConfigService _configFile;
         private IFoodService _foodService;
 
-        public Add_Food(IConfigService configFile, IFoodService foodService)
+        public Add_Food(IConfigService configFile, IFoodService foodService, [Dependency("login_form")]
+        Form login_form) 
+            : base(login_form)
         {
             InitializeComponent();
 

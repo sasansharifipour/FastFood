@@ -12,17 +12,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Unity;
 
 namespace Windows_UI
 {
-    public partial class Report_Ingredient : Form
+    public partial class Report_Ingredient : SpecialForm
     {
         private IOrderService _orderService;
         private IReportService _reportService;
         private ISendInformationService _sendInformationService;
 
         public Report_Ingredient(IOrderService orderService, IReportService reportService,
-            ISendInformationService sendInformationService)
+            ISendInformationService sendInformationService, [Dependency("login_form")] Form login_form)
+            : base(login_form)
         {
             InitializeComponent();
 

@@ -11,7 +11,7 @@ using Unity;
 
 namespace Windows_UI
 {
-    public partial class Form1 : Form
+    public partial class Form1 : SpecialForm
     {
         private IOrderService _orderService;
         private IOrderItemService _orderItemService;
@@ -50,7 +50,9 @@ namespace Windows_UI
             , [Dependency("add_food_ingredient")] Form add_food_ingredient
             , [Dependency("add_foodoption_ingredient")] Form add_foodoption_ingredient
             , [Dependency("report_ingredient")] Form report_ingredient
-            , [Dependency("report_orders")] Form report_orders)
+            , [Dependency("report_orders")] Form report_orders
+            , [Dependency("login_form")] Form login_form)
+            : base(login_form)
         {
             InitializeComponent();
 

@@ -9,17 +9,20 @@ using System.ComponentModel;
 using Domain.BaseClasses;
 using System.Collections.Generic;
 using CommonCodes;
+using Unity;
 
 namespace Windows_UI
 {
-    public partial class Delete_Order : Form
+    public partial class Delete_Order : SpecialForm
     {
         private IOrderService _orderService;
         private IConfigService _configFile;
         private IPrintService _printService;
         private Order _order;
 
-        public Delete_Order(IOrderService orderService,IConfigService configFile, IPrintService printService)
+        public Delete_Order(IOrderService orderService,IConfigService configFile, IPrintService printService
+            , [Dependency("login_form")] Form login_form)
+            : base(login_form)
         {
             InitializeComponent();
 

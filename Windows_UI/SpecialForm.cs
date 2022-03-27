@@ -8,13 +8,13 @@ using Unity;
 
 namespace Windows_UI
 {
-    public class Custom_Form : Form
+    public class SpecialForm : Form
     {
-        private Form _login_Form;
+        private Form _login_form;
 
-        public Custom_Form([Dependency("login_form")] Form login_form)
+        public SpecialForm([Dependency("login_form")] Form login_form)
         {
-            _login_Form = login_form;
+            _login_form = login_form;
         }
 
         protected override void OnLoad(EventArgs e)
@@ -23,7 +23,7 @@ namespace Windows_UI
             {
                 while (!LoginInfo.IsLoggedIn())
                 {
-                    var result = _login_Form.ShowDialog();
+                    var result = _login_form.ShowDialog();
 
                     if (result == DialogResult.Cancel)
                         Application.Exit();
@@ -31,8 +31,7 @@ namespace Windows_UI
 
                 base.OnLoad(e);
             }
-            catch(Exception ex) { }
+            catch (Exception ex) { }
         }
-
     }
 }

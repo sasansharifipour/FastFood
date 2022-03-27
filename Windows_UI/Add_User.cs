@@ -10,14 +10,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Unity;
 
 namespace Windows_UI
 {
-    public partial class Add_User : Form
+    public partial class Add_User : SpecialForm
     {
         private IUserService _userService;
 
-        public Add_User(IUserService userService)
+        public Add_User(IUserService userService, [Dependency("login_form")] Form login_form)
+            : base(login_form)
         {
             InitializeComponent();
 

@@ -15,26 +15,25 @@ using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Unity;
 
 namespace Windows_UI
 {
-    public partial class Report_Orders : Form
+    public partial class Report_Orders : SpecialForm
     {
-        private IOrderService _orderService;
-        private IConfigService _configFile;
         private IReportService _reportService;
         private ISendInformationService _sendInformationService;
         private ICustomerService _customerService;
         private List<Customer> _customers = new List<Customer>();
 
-        public Report_Orders(IOrderService orderService, IReportService reportService, IConfigService configFile, 
-            ICustomerService customerService, ISendInformationService sendInformationService)
+        public Report_Orders(IReportService reportService, 
+            ICustomerService customerService, ISendInformationService sendInformationService, 
+            [Dependency("login_form")] Form login_form)
+            : base(login_form)
         {
             InitializeComponent();
 
             _reportService = reportService;
-            _orderService = orderService;
-            _configFile = configFile;
             _customerService = customerService;
             _sendInformationService = sendInformationService;
 

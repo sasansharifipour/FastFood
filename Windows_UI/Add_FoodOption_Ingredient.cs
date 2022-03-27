@@ -9,10 +9,11 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Unity;
 
 namespace Windows_UI
 {
-    public partial class Add_FoodOption_Ingredient : Form
+    public partial class Add_FoodOption_Ingredient : SpecialForm
     {
         private IFoodOptionService _foodOptionService;
         private IUnitService _unitService;
@@ -20,7 +21,9 @@ namespace Windows_UI
         private IConsumeFoodOptionService _consumeFoodOptionService;
 
         public Add_FoodOption_Ingredient(IFoodOptionService foodOptionService, IIngredientService ingredientService
-            , IUnitService unitService , IConsumeFoodOptionService consumeFoodOptionService)
+            , IUnitService unitService , IConsumeFoodOptionService consumeFoodOptionService
+            , [Dependency("login_form")] Form login_form)
+            : base(login_form)
         {
             InitializeComponent();
 

@@ -9,15 +9,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Domain.BaseClasses;
+using Unity;
 
 namespace Windows_UI
 {
-    public partial class Add_Ingredient : Form
+    public partial class Add_Ingredient : SpecialForm
     {
         private IIngredientService _IngredientService;
         private IUnitService _unitService;
 
-        public Add_Ingredient(IIngredientService IngredientService, IUnitService unitService)
+        public Add_Ingredient(IIngredientService IngredientService, IUnitService unitService
+            , [Dependency("login_form")] Form login_form)
+            : base(login_form)
         {
             InitializeComponent();
 

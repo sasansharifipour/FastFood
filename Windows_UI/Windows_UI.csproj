@@ -161,9 +161,6 @@
     <Compile Include="Create_Special_Food.Designer.cs">
       <DependentUpon>Create_Special_Food.cs</DependentUpon>
     </Compile>
-    <Compile Include="Custom_Form.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Delete_Order.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -209,6 +206,9 @@
     <Compile Include="Report_Orders.Designer.cs">
       <DependentUpon>Report_Orders.cs</DependentUpon>
     </Compile>
+    <Compile Include="SpecialForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <EmbeddedResource Include="Add_Customer.resx">
       <DependentUpon>Add_Customer.cs</DependentUpon>
     </EmbeddedResource>
@@ -235,9 +235,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Create_Special_Food.resx">
       <DependentUpon>Create_Special_Food.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Custom_Form.resx">
-      <DependentUpon>Custom_Form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Delete_Order.resx">
       <DependentUpon>Delete_Order.cs</DependentUpon>

@@ -9,14 +9,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Unity;
 
 namespace Windows_UI
 {
-    public partial class Add_Customer : Form
+    public partial class Add_Customer : SpecialForm
     {
         private ICustomerService _customerService; 
 
-        public Add_Customer(ICustomerService customerService)
+        public Add_Customer(ICustomerService customerService, [Dependency("login_form")] Form login_form) 
+            : base(login_form)
         {
             InitializeComponent();
 
