@@ -35,10 +35,24 @@ namespace Service
             Print_For_Kitchen();
         }
 
+        private bool Is_Printer_Available(string printer_name)
+        {
+            foreach (string item in PrinterSettings.InstalledPrinters)
+                if (item.Trim().CompareTo(printer_name) == 0)
+                    return true;
+
+            return false;
+        }
+
         private void Print_For_Customer()
         {
             PrintDocument printDocument1 = new PrintDocument();
-            printDocument1.PrinterSettings.PrinterName = _configService.get_cash_desk_printer_name();
+
+            string printer_name = _configService.get_cash_desk_printer_name();
+
+            if (Is_Printer_Available(printer_name))
+                printDocument1.PrinterSettings.PrinterName = printer_name;
+
             printDocument1.PrintPage += PrintDocument1_PrintPage;
 
             printDocument1.PrintController = new StandardPrintController();
@@ -52,7 +66,13 @@ namespace Service
                 return;
 
             PrintDocument printDocument1 = new PrintDocument();
-            printDocument1.PrinterSettings.PrinterName = _configService.get_kitchen_printer_name();
+
+
+            string printer_name = _configService.get_kitchen_printer_name();
+
+            if (Is_Printer_Available(printer_name))
+                printDocument1.PrinterSettings.PrinterName = printer_name;
+
             printDocument1.PrintPage += PrintDocument_Kitchen_PrintPage;
 
             printDocument1.PrintController = new StandardPrintController();
