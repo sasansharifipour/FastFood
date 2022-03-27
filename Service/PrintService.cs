@@ -119,6 +119,10 @@ namespace Service
 
             Offset = print_right(graphics, b_nazanin_10, custumer_name, max_paper_width, Offset) + 5;
 
+            string Saloon = _order.Is_Serving_In_Saloon ? "\"سالن\"" : "\"بیرون بر\"";
+
+            Offset = print_center(graphics, b_nazanin_12, Saloon, max_paper_width, Offset) + 5;
+
             int start_offset = Offset;
 
             graphics.DrawLine(Pens.Black, new Point(0, Offset), new Point(275, Offset));
@@ -212,6 +216,10 @@ namespace Service
             string custumer_name = string.Format("{0}:{1}/{2}-{3}", "مشتری محترم", "جناب آقای", "سرکار خانم", _order.Customer.FullName);
 
             Offset = print_right(graphics, b_nazanin_10, custumer_name, max_paper_width, Offset) + 5;
+
+            string Saloon = _order.Is_Serving_In_Saloon ? "\"سالن\"" : "\"بیرون بر\"";
+
+            Offset = print_center(graphics, b_nazanin_12, Saloon, max_paper_width, Offset) + 5;
 
             int start_offset = Offset;
 
