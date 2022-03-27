@@ -63,11 +63,16 @@ namespace Service
 
             Font b_nazanin_18 = new Font("B Nazanin", 32, FontStyle.Bold);
             Font b_nazanin_14 = new Font("B Nazanin", 14, FontStyle.Bold);
+            Font b_nazanin_12 = new Font("B Nazanin", 12, FontStyle.Bold);
             Font b_nazanin_10 = new Font("B Nazanin", 10);
             int max_paper_width = 275;
 
-            int Offset = 5;
+            string greeting = "*  به چی چی خوش آمدید  *";
 
+            int greeting_Y = 0;
+            int Offset = 0;
+
+            Offset = print_center(graphics, b_nazanin_14, greeting, max_paper_width, greeting_Y) + 5;
             //e.PageSettings.PaperSize.Width = 4;
 
             string data = _order.Number.ToString();
@@ -81,6 +86,10 @@ namespace Service
                 ToPersianLongDateString(), "ساعت", _order.Insert_time.ToShortTimeString());
 
             Offset = print_right(graphics, b_nazanin_10, data, max_paper_width, Offset) + 5;
+
+            string custumer_name = string.Format("{0}:{1}/{2}-{3}", "مشتری محترم", "جناب آقای", "سرکار خانم", _order.Customer.FullName);
+
+            Offset = print_right(graphics, b_nazanin_10, custumer_name, max_paper_width, Offset) + 5;
 
             int start_offset = Offset;
 
@@ -126,6 +135,16 @@ namespace Service
             graphics.DrawLine(Pens.Black, new Point((int)table_position.price + 1, start_offset), new Point((int)table_position.price + 1, end_offset));
 
             graphics.DrawLine(Pens.Black, new Point(0, Offset), new Point(275, Offset));
+
+
+            string Message = "حد فاصل چهارراه جهاد و چهارراه دانشگاه ساندویچی چی چی";
+            Offset = print_right(graphics, b_nazanin_10, Message, max_paper_width, Offset) + 5;
+
+            string Mobile = "سفارش : 09139497717 و 09057103100";
+            Offset = print_right(graphics, b_nazanin_12, Mobile, max_paper_width, Offset) + 5;
+
+            string management = "با مدیریت : علی شریفی";
+            Offset = print_center(graphics, b_nazanin_12, management, max_paper_width, Offset) + 5;
         }
 
         private void PrintDocument1_PrintPage(object sender, PrintPageEventArgs e)
