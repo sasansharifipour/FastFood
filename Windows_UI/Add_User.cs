@@ -18,8 +18,8 @@ namespace Windows_UI
     {
         private IUserService _userService;
 
-        public Add_User(IUserService userService, [Dependency("login_form")] Form login_form)
-            : base(login_form)
+        public Add_User(IUserService userService
+            , [Dependency("login_form")] Form login_form) : base(login_form)
         {
             InitializeComponent();
 
@@ -42,12 +42,26 @@ namespace Windows_UI
                 data = _userService.find(ID);
                 data.Name = Name;
                 data.Family = Family;
+
+                if (Password.Trim() == "")
+                    Password = data.Password;
+
                 data.Password = Password;
+                data.Is_Admin = chb_Is_Admin.Checked;
                 register = _userService.update(data);
             }
             else
             {
-                data = new User() { Name = Name, Family = Family, Password = Password };
+                if (Password.Trim() == "")
+                    MessageBox.Show(null, "کلمه عبور را وارد کنید", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                data = new User()
+                {
+                    Name = Name,
+                    Family = Family,
+                    Password = Password,
+                    Is_Admin = chb_Is_Admin.Checked
+                };
                 register = _userService.add(data);
             }
 
@@ -72,6 +86,26 @@ namespace Windows_UI
             data.Insert(0, new User() { ID = 0, Name = "افزودن", Family = "کاربر" });
 
             cmb_data_list.DataSource = data;
+
+            if (LoginInfo.User == null)
+                return;
+
+            if (!LoginInfo.User.Is_Admin)
+            {
+                cmb_data_list.SelectedValue = LoginInfo.User.ID;
+                cmb_data_list.Enabled = false;
+                txt_name.Enabled = false;
+                txt_family.Enabled = false;
+                chb_Is_Admin.Enabled = false;
+            }
+            else
+            {
+                cmb_data_list.SelectedIndex = 0;
+                cmb_data_list.Enabled = true;
+                txt_name.Enabled = true;
+                txt_family.Enabled = true;
+                chb_Is_Admin.Enabled = true;
+            }
         }
 
         private void Add_Customer_Load(object sender, EventArgs e)
@@ -81,6 +115,9 @@ namespace Windows_UI
 
         private void cmb_customer_list_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (cmb_data_list.SelectedValue == null)
+                return;
+
             int selected_id = (int)cmb_data_list.SelectedValue;
 
             var item = _userService.find(selected_id);
@@ -100,6 +137,7 @@ namespace Windows_UI
             txt_family.Text = "";
             txt_password.Text = "";
             txt_code.Text = "";
+            chb_Is_Admin.Checked = false;
             txt_name.Focus();
         }
 
@@ -108,12 +146,12 @@ namespace Windows_UI
             txt_name.Text = data.Name;
             txt_family.Text = data.Family;
             txt_password.Text = "";
+            chb_Is_Admin.Checked = data.Is_Admin;
             txt_code.Text = data.ID.ToString();
         }
 
         private void btn_delete_Click(object sender, EventArgs e)
         {
-
             var is_confirmed = MessageBox.Show(null, "آیا از حذف این آیتم اطمینان دارید؟", "هشدار",
                 MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button3);
 

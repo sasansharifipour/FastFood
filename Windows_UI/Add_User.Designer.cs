@@ -40,12 +40,13 @@
             this.btn_delete = new System.Windows.Forms.Button();
             this.txt_code = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.chb_Is_Admin = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // cmb_data_list
             // 
             this.cmb_data_list.FormattingEnabled = true;
-            this.cmb_data_list.Location = new System.Drawing.Point(146, 34);
+            this.cmb_data_list.Location = new System.Drawing.Point(132, 34);
             this.cmb_data_list.Name = "cmb_data_list";
             this.cmb_data_list.Size = new System.Drawing.Size(309, 32);
             this.cmb_data_list.TabIndex = 6;
@@ -54,7 +55,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(53, 37);
+            this.label3.Location = new System.Drawing.Point(39, 37);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(83, 24);
             this.label3.TabIndex = 14;
@@ -62,7 +63,7 @@
             // 
             // btn_save
             // 
-            this.btn_save.Location = new System.Drawing.Point(146, 220);
+            this.btn_save.Location = new System.Drawing.Point(132, 220);
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(108, 45);
             this.btn_save.TabIndex = 5;
@@ -73,7 +74,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(53, 149);
+            this.label2.Location = new System.Drawing.Point(39, 149);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(83, 24);
             this.label2.TabIndex = 10;
@@ -81,7 +82,7 @@
             // 
             // txt_name
             // 
-            this.txt_name.Location = new System.Drawing.Point(146, 109);
+            this.txt_name.Location = new System.Drawing.Point(132, 109);
             this.txt_name.Name = "txt_name";
             this.txt_name.Size = new System.Drawing.Size(309, 31);
             this.txt_name.TabIndex = 1;
@@ -89,7 +90,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(98, 112);
+            this.label1.Location = new System.Drawing.Point(84, 112);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(38, 24);
             this.label1.TabIndex = 8;
@@ -97,14 +98,14 @@
             // 
             // txt_family
             // 
-            this.txt_family.Location = new System.Drawing.Point(146, 146);
+            this.txt_family.Location = new System.Drawing.Point(132, 146);
             this.txt_family.Name = "txt_family";
             this.txt_family.Size = new System.Drawing.Size(309, 31);
             this.txt_family.TabIndex = 2;
             // 
             // txt_password
             // 
-            this.txt_password.Location = new System.Drawing.Point(146, 183);
+            this.txt_password.Location = new System.Drawing.Point(132, 183);
             this.txt_password.Name = "txt_password";
             this.txt_password.PasswordChar = '*';
             this.txt_password.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -114,7 +115,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(69, 186);
+            this.label4.Location = new System.Drawing.Point(55, 186);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(67, 24);
             this.label4.TabIndex = 17;
@@ -122,7 +123,7 @@
             // 
             // btn_delete
             // 
-            this.btn_delete.Location = new System.Drawing.Point(347, 220);
+            this.btn_delete.Location = new System.Drawing.Point(333, 220);
             this.btn_delete.Name = "btn_delete";
             this.btn_delete.Size = new System.Drawing.Size(108, 45);
             this.btn_delete.TabIndex = 20;
@@ -133,7 +134,7 @@
             // txt_code
             // 
             this.txt_code.Enabled = false;
-            this.txt_code.Location = new System.Drawing.Point(146, 72);
+            this.txt_code.Location = new System.Drawing.Point(132, 72);
             this.txt_code.Name = "txt_code";
             this.txt_code.Size = new System.Drawing.Size(309, 31);
             this.txt_code.TabIndex = 21;
@@ -141,18 +142,29 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(69, 75);
+            this.label5.Location = new System.Drawing.Point(55, 75);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(67, 24);
             this.label5.TabIndex = 22;
             this.label5.Text = "کد کاربر  : ";
+            // 
+            // chb_Is_Admin
+            // 
+            this.chb_Is_Admin.AutoSize = true;
+            this.chb_Is_Admin.Location = new System.Drawing.Point(468, 36);
+            this.chb_Is_Admin.Name = "chb_Is_Admin";
+            this.chb_Is_Admin.Size = new System.Drawing.Size(80, 28);
+            this.chb_Is_Admin.TabIndex = 23;
+            this.chb_Is_Admin.Text = "کاربر مدیر";
+            this.chb_Is_Admin.UseVisualStyleBackColor = true;
             // 
             // Add_User
             // 
             this.AcceptButton = this.btn_save;
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(534, 293);
+            this.ClientSize = new System.Drawing.Size(560, 326);
+            this.Controls.Add(this.chb_Is_Admin);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txt_code);
             this.Controls.Add(this.btn_delete);
@@ -192,5 +204,6 @@
         private System.Windows.Forms.Button btn_delete;
         private System.Windows.Forms.TextBox txt_code;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.CheckBox chb_Is_Admin;
     }
 }

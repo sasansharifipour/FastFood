@@ -129,6 +129,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ورود به نرم افزار";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.Loggin_Form_Load);
             this.ResizeEnd += new System.EventHandler(this.Loggin_Form_ResizeEnd);
             this._thePanel.ResumeLayout(false);
             this._thePanel.PerformLayout();

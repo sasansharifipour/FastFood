@@ -62,5 +62,11 @@ namespace Windows_UI
                 this.ClientSize.Height / 2 - _thePanel.Size.Height / 2);
             _thePanel.Anchor = AnchorStyles.None;
         }
+
+        private void Loggin_Form_Load(object sender, EventArgs e)
+        {
+            txt_code.Text = "";
+            txt_password.Text = "";
+        }
     }
 }

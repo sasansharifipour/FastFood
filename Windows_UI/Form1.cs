@@ -51,8 +51,7 @@ namespace Windows_UI
             , [Dependency("add_foodoption_ingredient")] Form add_foodoption_ingredient
             , [Dependency("report_ingredient")] Form report_ingredient
             , [Dependency("report_orders")] Form report_orders
-            , [Dependency("login_form")] Form login_form)
-            : base(login_form)
+            , [Dependency("login_form")] Form login_form)            : base(login_form)
         {
             InitializeComponent();
 
@@ -177,6 +176,18 @@ namespace Windows_UI
             List<string> files = new List<string>() { consume_path, payment_path, ingrediant_path };
 
             Task.Factory.StartNew(() => _sendInformationService.Send_Email(files));
+        }
+
+        private void Exit_app_ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var is_confirmed = MessageBox.Show(null, "آیا برای خروج اطمینان دارید؟", "هشدار",
+                MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button3);
+
+            if (is_confirmed == DialogResult.Yes)
+            {
+                LoginInfo.User = null;
+                base.OnLoad(null);
+            }
         }
     }
 }
