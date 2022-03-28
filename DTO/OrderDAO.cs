@@ -25,6 +25,7 @@ namespace DAO
                 using (var db = new DBContext())
                 {
                     data.Customer = db.Customers.FirstOrDefault(s => s.ID == data.CustomerID);
+                    data.User_Registered = db.Users.FirstOrDefault(s => s.ID == data.User_Registered.ID);
 
                     foreach (var orderItem in data.OrderItems)
                     {
@@ -102,7 +103,8 @@ namespace DAO
                 using (var db = new DBContext())
                 {
                     var dbOrder = db.Orders.Include(x => x.OrderItems).Single(c => c.ID == data.ID);
-                    data.Customer = db.Customers.FirstOrDefault(s => s.ID == data.CustomerID);
+                    dbOrder.Customer = db.Customers.FirstOrDefault(s => s.ID == data.CustomerID);
+                    dbOrder.User_Registered = db.Users.FirstOrDefault(s => s.ID == data.User_Registered.ID);
 
                     db.Entry(dbOrder).CurrentValues.SetValues(data);
 
@@ -148,7 +150,9 @@ namespace DAO
 
             using (var db= new DBContext())
             {
-                result = db.Orders.Where(filter).Include(x => x.Customer).Include(x => x.OrderItems)
+                result = db.Orders.Where(filter).Include(x => x.Customer)
+                    .Include(x => x.User_Registered)
+                    .Include(x => x.OrderItems)
                     .Include(x => x.OrderItems.Select(s => s.FoodOptions.Select(p => p.ConsumeFoodOptions)))
                     .Include(x => x.OrderItems.Select(s => s.Food.Consumes.Select(p => p.Ingredient.Unit)))
                     .Include(x => x.OrderItems.Select(s => s.FoodOptions.Select(p => p.ConsumeFoodOptions.Select(q => q.Ingredient.Unit))))

@@ -151,6 +151,14 @@
     <Compile Include="Migrations\202203280738420_add_Is_Admin.designer.cs">
       <DependentUpon>202203280738420_add_Is_Admin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202203280939412_add_user_registerID.cs" />
+    <Compile Include="Migrations\202203280939412_add_user_registerID.designer.cs">
+      <DependentUpon>202203280939412_add_user_registerID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202203280951211_remove_user_registerID.cs" />
+    <Compile Include="Migrations\202203280951211_remove_user_registerID.designer.cs">
+      <DependentUpon>202203280951211_remove_user_registerID.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -228,6 +236,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202203280738420_add_Is_Admin.resx">
       <DependentUpon>202203280738420_add_Is_Admin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203280939412_add_user_registerID.resx">
+      <DependentUpon>202203280939412_add_user_registerID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203280951211_remove_user_registerID.resx">
+      <DependentUpon>202203280951211_remove_user_registerID.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -304,6 +304,9 @@ namespace Windows_UI
             _saved_order.credit = credit;
             _saved_order.Is_Serving_In_Saloon = chb_Is_Serving_In_Saloon.Checked;
 
+            if (_saved_order.User_Registered == null || _saved_order.User_Registered.ID <= 0)
+                _saved_order.User_Registered = LoginInfo.User;
+
             _saved_order.OrderItems = get_order_items(_order_items);
 
             bool register = _orderService.update(_saved_order);

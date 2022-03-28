@@ -32,10 +32,17 @@ namespace Domain.BaseClasses
         public double paying_amount { get; set; } = 0;
 
         public bool credit { get; set; } = false;
+        
+        public User User_Registered { get; set; }
 
-        public virtual double credit_amount { get {
+        public virtual double credit_amount
+        {
+            get
+            {
                 return Math.Max(0, OrderItems.Sum(s => s.All_Price) - discount - paying_amount);
-            } }
+            }
+        }
+
         public virtual double credit_amount_payment
         {
             get
@@ -55,6 +62,9 @@ namespace Domain.BaseClasses
                 Deleted = Deleted,
                 Deliver_time = Deliver_time,
                 Insert_time = Insert_time,
+                credit = credit,
+                Is_Serving_In_Saloon = Is_Serving_In_Saloon,
+                paying_amount = paying_amount,
                 Number = Number,
                 OrderItems = (List<OrderItem>)OrderItems.Clone<OrderItem>()
             };

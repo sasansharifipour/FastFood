@@ -316,6 +316,7 @@ namespace Windows_UI
                 Number = free_number,
                 discount = discount,
                 credit = credit,
+                User_Registered = LoginInfo.User,
                 paying_amount = paying_amount,
                 Insert_time = DateTime.Now
             };
