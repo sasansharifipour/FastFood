@@ -147,6 +147,10 @@
     <Compile Include="Migrations\202203271041299_add_Is_Serving_In_Saloon.designer.cs">
       <DependentUpon>202203271041299_add_Is_Serving_In_Saloon.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202203280738420_add_Is_Admin.cs" />
+    <Compile Include="Migrations\202203280738420_add_Is_Admin.designer.cs">
+      <DependentUpon>202203280738420_add_Is_Admin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -221,6 +225,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202203271041299_add_Is_Serving_In_Saloon.resx">
       <DependentUpon>202203271041299_add_Is_Serving_In_Saloon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203280738420_add_Is_Admin.resx">
+      <DependentUpon>202203280738420_add_Is_Admin.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
