@@ -363,7 +363,7 @@ namespace Windows_UI
 
         private void btn_print_Click(object sender, EventArgs e)
         {
-            _printService.Print(_saved_order);
+            _printService.Print(_saved_order, is_edited:true);
         }
 
         private void btn_search_Click(object sender, EventArgs e)

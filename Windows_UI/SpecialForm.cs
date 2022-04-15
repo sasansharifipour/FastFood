@@ -32,6 +32,6 @@ namespace Windows_UI
                 base.OnLoad(e);
             }
             catch (Exception ex) { }
-        }
+        }/**/
     }
 }

@@ -11,7 +11,7 @@ namespace Service
 {
     public interface IPrintService
     {
-        void Print(Order order);
+        void Print(Order order, bool is_edited = false);
     }
 
     public class PrintService : IPrintService
@@ -19,17 +19,20 @@ namespace Service
         private ConfigService _configService;
         private Order _order { get; set; }
 
+        private bool _is_edited { get; set; } = false;
+
         public PrintService(ConfigService configService)
         {
             _configService = configService;
         }
 
-        public void Print(Order order)
+        public void Print(Order order, bool is_edited = false)
         {
             if (order == null || order.ID <= 0 || order.Deleted)
                 return;
 
             _order = order;
+            _is_edited = is_edited;
 
             Print_For_Customer();
             Print_For_Kitchen();
@@ -106,9 +109,12 @@ namespace Service
             string data = _order.Number.ToString();
             int x = Offset;
             Offset = print_center(graphics, b_nazanin_18, data, max_paper_width, Offset) + 5;
-
+            
             graphics.DrawRectangle(Pens.Black, 95, x - 5, 75, Offset - x - 5);
             graphics.DrawRectangle(Pens.Black, 100, x - 2, 75, Offset - x - 5);
+
+            if (_is_edited)
+                Offset = print_center(graphics, b_nazanin_14, "ویرایش شده", max_paper_width, Offset) + 5;
 
             data = string.Format("{0} : {1} - {2} : {3}", "تاریخ", _order.Insert_time.
                 ToPersianLongDateString(), "ساعت", _order.Insert_time.ToShortTimeString());

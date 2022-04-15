@@ -101,7 +101,7 @@ namespace Windows_UI
             fill_dt_gd_viw_report(all_consume);
             fill_dt_gd_viw_payment(payment_data);
 
-            var dt_payment_data = payment_data.convert_to_datatable(from_date, to_date, selected_customers);
+            var dt_payment_data = data.convert_to_datatable(from_date, to_date, selected_customers);
             var dt_consumes = all_consume.convert_to_datatable(from_date, to_date, selected_customers);
 
             string consume_path = string.Format("{0}-{1}.{2}", "Sales", date_time, "csv");

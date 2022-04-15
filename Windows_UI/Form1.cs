@@ -162,7 +162,7 @@ namespace Windows_UI
             List<ItemViewModel> payment_data = data.Create_Payment_Data();
 
             var dt_ingrediants = all_ingredients.convert_to_datatable(date, date);
-            var dt_payment_data = payment_data.convert_to_datatable(date, date, _customers);
+            var dt_payment_data = data.convert_to_datatable(date, date, _customers);
             var dt_consumes = all_consume.convert_to_datatable(date, date, _customers);
 
             string ingrediant_path = string.Format("{0}-{1}.{2}", "Consume", date_time, "csv");
@@ -176,6 +176,7 @@ namespace Windows_UI
             List<string> files = new List<string>() { consume_path, payment_path, ingrediant_path };
 
             Task.Factory.StartNew(() => _sendInformationService.Send_Email(files));
+            MessageBox.Show("گزارش با موفقیت ارسال شد");
         }
 
         private void Exit_app_ToolStripMenuItem_Click(object sender, EventArgs e)
