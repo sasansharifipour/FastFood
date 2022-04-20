@@ -120,6 +120,15 @@ namespace Windows_UI
 
         private void Button_special_Click(object sender, EventArgs e)
         {
+            try
+            {
+                _Special_Food.remove_all_listeners();
+            }
+            catch
+            {
+            }
+            _Special_Food.select_food_Event += _Special_Food_select_food_Event;
+
             Button button = (Button)sender;
 
             string button_name = button.Name;
