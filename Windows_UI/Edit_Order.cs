@@ -124,7 +124,8 @@ namespace Windows_UI
                 Button button = new Button();
                 Button button_special = new Button();
 
-                button.Text = item.Name;
+                string price = string.Format("{0:#,##0}", item.Price);
+                button.Text = String.Format("{0} - {1}", item.Name, price);
                 button.Name = String.Format("{0}{1}", button_prefix_name, item.ID.ToString());
                 button_special.Text = "..";
                 button_special.Name = String.Format("{0}{1}", special_button_prefix_name, item.ID.ToString());
