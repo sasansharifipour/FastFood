@@ -206,6 +206,12 @@
     <Compile Include="Report_Orders.Designer.cs">
       <DependentUpon>Report_Orders.cs</DependentUpon>
     </Compile>
+    <Compile Include="Show_All_Foods.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Show_All_Foods.Designer.cs">
+      <DependentUpon>Show_All_Foods.cs</DependentUpon>
+    </Compile>
     <Compile Include="SpecialForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -266,6 +272,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Report_Orders.resx">
       <DependentUpon>Report_Orders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Show_All_Foods.resx">
+      <DependentUpon>Show_All_Foods.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="packages.config" />

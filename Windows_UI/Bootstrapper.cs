@@ -65,6 +65,7 @@ namespace Windows_UI
 
             container.RegisterSingleton<Form, Form1>("Form1");
             container.RegisterSingleton<Form, Add_Food>("add_food");
+            container.RegisterSingleton<Form, Show_All_Foods>("all_foods");
             container.RegisterSingleton<Form, Add_FoodOption>("add_foodoption");
             container.RegisterSingleton<Form, Add_Unit>("add_unit");
             container.RegisterSingleton<Form, Add_Order>("add_order");

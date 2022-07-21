@@ -20,6 +20,7 @@ namespace Windows_UI
         private ICustomerService _customerService;
         private List<Customer> _customers = new List<Customer>();
         private Form _add_food;
+        private Form _all_foods;
         private Form _add_foodoption;
         private Form _add_order;
         private Form _add_customer;
@@ -39,6 +40,7 @@ namespace Windows_UI
             , ISendInformationService sendInformationService
             , ICustomerService customerService
             , [Dependency("add_food")] Form add_food
+            , [Dependency("all_foods")] Form all_foods
             , [Dependency("add_foodoption")] Form add_foodoption
             , [Dependency("add_order")] Form add_order
             , [Dependency("edit_order")] Form edit_order
@@ -60,6 +62,7 @@ namespace Windows_UI
             _customerService = customerService;
             _edit_order = edit_order;
             _add_food = add_food;
+            _all_foods = all_foods;
             _add_foodoption = add_foodoption;
             _add_order = add_order;
             _add_customer = add_customer;
@@ -205,6 +208,11 @@ namespace Windows_UI
                 LoginInfo.User = null;
                 base.OnLoad(null);
             }
+        }
+
+        private void All_Foods_List_ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _all_foods.ShowDialog();
         }
     }
 }
