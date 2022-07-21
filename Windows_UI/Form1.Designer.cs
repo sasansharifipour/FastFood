@@ -32,6 +32,7 @@
             this.محصولاتToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.add_customer_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.add_food_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.All_Foods_List_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.add_foodoption_toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.add_unit_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.add_ingredient_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,7 +48,7 @@
             this.report_ingredient_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Exit_app_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btn_send_email = new System.Windows.Forms.Button();
-            this.All_Foods_List_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.PersonDebtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -69,6 +70,7 @@
             // 
             this.محصولاتToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.add_customer_ToolStripMenuItem,
+            this.PersonDebtToolStripMenuItem,
             this.add_food_ToolStripMenuItem,
             this.All_Foods_List_ToolStripMenuItem,
             this.add_foodoption_toolStripMenuItem1,
@@ -94,6 +96,13 @@
             this.add_food_ToolStripMenuItem.Size = new System.Drawing.Size(248, 28);
             this.add_food_ToolStripMenuItem.Text = "افزودن محصول";
             this.add_food_ToolStripMenuItem.Click += new System.EventHandler(this.add_food_ToolStripMenuItem_Click);
+            // 
+            // All_Foods_List_ToolStripMenuItem
+            // 
+            this.All_Foods_List_ToolStripMenuItem.Name = "All_Foods_List_ToolStripMenuItem";
+            this.All_Foods_List_ToolStripMenuItem.Size = new System.Drawing.Size(248, 28);
+            this.All_Foods_List_ToolStripMenuItem.Text = "لیست تمام محصولات";
+            this.All_Foods_List_ToolStripMenuItem.Click += new System.EventHandler(this.All_Foods_List_ToolStripMenuItem_Click);
             // 
             // add_foodoption_toolStripMenuItem1
             // 
@@ -208,12 +217,12 @@
             this.btn_send_email.UseVisualStyleBackColor = true;
             this.btn_send_email.Click += new System.EventHandler(this.Btn_send_email_Click);
             // 
-            // All_Foods_List_ToolStripMenuItem
+            // PersonDebtToolStripMenuItem
             // 
-            this.All_Foods_List_ToolStripMenuItem.Name = "All_Foods_List_ToolStripMenuItem";
-            this.All_Foods_List_ToolStripMenuItem.Size = new System.Drawing.Size(248, 28);
-            this.All_Foods_List_ToolStripMenuItem.Text = "لیست تمام محصولات";
-            this.All_Foods_List_ToolStripMenuItem.Click += new System.EventHandler(this.All_Foods_List_ToolStripMenuItem_Click);
+            this.PersonDebtToolStripMenuItem.Name = "PersonDebtToolStripMenuItem";
+            this.PersonDebtToolStripMenuItem.Size = new System.Drawing.Size(248, 28);
+            this.PersonDebtToolStripMenuItem.Text = "بدهی مشتریان";
+            this.PersonDebtToolStripMenuItem.Click += new System.EventHandler(this.PersonDebtToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -261,6 +270,7 @@
         private System.Windows.Forms.Button btn_send_email;
         private System.Windows.Forms.ToolStripMenuItem Exit_app_ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem All_Foods_List_ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem PersonDebtToolStripMenuItem;
     }
 }
 

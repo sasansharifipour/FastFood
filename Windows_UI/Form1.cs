@@ -24,6 +24,7 @@ namespace Windows_UI
         private Form _add_foodoption;
         private Form _add_order;
         private Form _add_customer;
+        private Form _person_debt;
         private Form _add_user;
         private Form _delete_order;
         private Form _edit_order;
@@ -45,6 +46,7 @@ namespace Windows_UI
             , [Dependency("add_order")] Form add_order
             , [Dependency("edit_order")] Form edit_order
             , [Dependency("add_customer")] Form add_customer
+            , [Dependency("person_debt")] Form person_debt
             , [Dependency("add_user")] Form add_user
             , [Dependency("delete_order")] Form delete_order
             , [Dependency("add_unit")] Form add_unit
@@ -66,6 +68,7 @@ namespace Windows_UI
             _add_foodoption = add_foodoption;
             _add_order = add_order;
             _add_customer = add_customer;
+            _person_debt = person_debt;
             _delete_order = delete_order;
             _add_unit = add_unit;
             _add_user = add_user;
@@ -213,6 +216,11 @@ namespace Windows_UI
         private void All_Foods_List_ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _all_foods.ShowDialog();
+        }
+
+        private void PersonDebtToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _person_debt.ShowDialog();
         }
     }
 }

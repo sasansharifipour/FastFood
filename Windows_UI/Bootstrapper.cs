@@ -70,6 +70,7 @@ namespace Windows_UI
             container.RegisterSingleton<Form, Add_Unit>("add_unit");
             container.RegisterSingleton<Form, Add_Order>("add_order");
             container.RegisterSingleton<Form, Add_Customer>("add_customer");
+            container.RegisterSingleton<Form, Person_Debt>("person_debt");
             container.RegisterSingleton<Form, Add_User>("add_user");
             container.RegisterSingleton<Form, Loggin_Form>("login_form");
             container.RegisterSingleton<Form, Add_Ingredient>("add_ingredient");

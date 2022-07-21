@@ -138,5 +138,20 @@ namespace Domain.BaseClasses
 
             return payment_data;
         }
+
+        public static DebtViewModel Calculate_Debt(this List<Order> data)
+        {
+            DebtViewModel result = new DebtViewModel();
+
+            var all_consume = data.Extract_Food();
+
+            result.sum_price = all_consume.Sum(s => s.Price);
+            result.discount = data.Sum(s => s.discount);
+            result.paying_amount = data.Sum(s => s.paying_amount);
+            result.credit_amount = data.Sum(s => s.credit_amount);
+            result.credit_amount_payment = data.Sum(s => s.credit_amount_payment);
+            
+            return result;
+        }
     }
 }
