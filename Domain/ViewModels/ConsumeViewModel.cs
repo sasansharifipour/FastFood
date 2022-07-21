@@ -27,6 +27,9 @@ namespace Domain.ViewModels
             dt.Columns.Add("مقدار");
             dt.Columns.Add("واحد");
 
+            if (items == null || items.Count <= 0)
+                return dt;
+
             foreach (var item in items)
                 dt.Rows.Add(item.IngredientName, item.Volume.ToString(), item.UnitName);
 

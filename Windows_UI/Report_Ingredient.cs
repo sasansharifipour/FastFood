@@ -37,6 +37,7 @@ namespace Windows_UI
 
         private void btn_search_Click(object sender, EventArgs e)
         {
+            List<string> files = new List<string>() { };
             string date_time = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
 
             DateTime from_date = dat_tim_picker_from_date.Value.Value.Date;
@@ -50,11 +51,14 @@ namespace Windows_UI
 
             string consume_path = string.Format("{0}-{1}.{2}", "Consume", date_time, "csv");
 
-            dt_consumes.convert_object_to_csv(consume_path);
+            if (dt_consumes != null && dt_consumes.Rows !=  null && dt_consumes.Rows.Count > 0)
+            {
+                dt_consumes.convert_object_to_csv(consume_path);
+                files.Add(consume_path);
+            }
 
-            List<string> files = new List<string>() { consume_path };
-
-            Task.Factory.StartNew(() => _sendInformationService.Send_Email(files));
+            if (files != null && files.Count > 0)
+                Task.Factory.StartNew(() => _sendInformationService.Send_Email(files));
         }
 
         private void fill_dt_gd_viw_report(List<ConsumeViewModel> all_consume)

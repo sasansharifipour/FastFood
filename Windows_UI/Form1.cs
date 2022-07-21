@@ -147,6 +147,7 @@ namespace Windows_UI
 
         private void Btn_send_email_Click(object sender, EventArgs e)
         {
+            List<string> files = new List<string>() { };
             DateTime date = DateTime.Now;
             string date_time = date.ToString("yyyy-MM-dd-HH-mm-ss");
 
@@ -169,13 +170,28 @@ namespace Windows_UI
             string consume_path = string.Format("{0}-{1}.{2}", "Sales", date_time, "csv");
             string payment_path = string.Format("{0}-{1}.{2}", "Payment", date_time, "csv");
 
-            dt_ingrediants.convert_object_to_csv(ingrediant_path);
-            dt_payment_data.convert_object_to_csv(payment_path);
-            dt_consumes.convert_object_to_csv(consume_path);
+            if (dt_ingrediants != null && dt_ingrediants.Rows != null && dt_ingrediants.Rows.Count > 0)
+            {
+                dt_ingrediants.convert_object_to_csv(ingrediant_path);
+                files.Add(ingrediant_path);
+            }
 
-            List<string> files = new List<string>() { consume_path, payment_path, ingrediant_path };
+            if (dt_payment_data != null && dt_payment_data.Rows != null && dt_payment_data.Rows.Count > 0)
+            {
+                dt_payment_data.convert_object_to_csv(payment_path);
+                files.Add(payment_path);
+            }
 
-            Task.Factory.StartNew(() => _sendInformationService.Send_Email(files));
+            if (dt_consumes != null && dt_consumes.Rows != null && dt_consumes.Rows.Count > 0)
+            {
+                dt_consumes.convert_object_to_csv(consume_path);
+                files.Add(consume_path);
+            }
+
+
+            if (files != null && files.Count > 0)
+                Task.Factory.StartNew(() => _sendInformationService.Send_Email(files));
+
             MessageBox.Show("گزارش با موفقیت ارسال شد");
         }
 
