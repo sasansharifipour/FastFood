@@ -28,6 +28,9 @@ namespace Domain.ViewModels
             dt.Columns.Add("تعداد");
             dt.Columns.Add("قیمت");
 
+            if (items == null || items.Count <= 0)
+                return dt;
+
             foreach (var item in items)
                 dt.Rows.Add(item.FoodName, item.Count.ToString(), item.Price);
 

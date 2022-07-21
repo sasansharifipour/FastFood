@@ -239,7 +239,8 @@ namespace Windows_UI
             if (_saved_order != null)
                     TB_Paying.Text = _saved_order.paying_amount.ToString();
 
-            TB_Paying.Text = net_price_txt;
+            if (!_saved_order.credit)
+                TB_Paying.Text = net_price_txt;
         }
 
         private void Button_Click(object sender, EventArgs e)

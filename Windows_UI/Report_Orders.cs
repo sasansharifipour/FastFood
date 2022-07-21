@@ -83,6 +83,7 @@ namespace Windows_UI
 
         private void btn_search_Click(object sender, EventArgs e)
         {
+            List<string> files = new List<string>();
             string date_time = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
 
             List<Customer> selected_customers = get_selected_customers(_customers, chkblst_customers);
@@ -96,7 +97,8 @@ namespace Windows_UI
 
             List<FoodViewModel> all_consume = data.Extract_Food();
             
-            List<ItemViewModel> payment_data = data.Create_Payment_Data();
+            List<ItemViewModel> payment_data = data.Create_Payment_Data()
+                .Where(s => s.Name == "کل مبالغ پرداخت شده").ToList();
 
             fill_dt_gd_viw_report(all_consume);
             fill_dt_gd_viw_payment(payment_data);
@@ -107,12 +109,20 @@ namespace Windows_UI
             string consume_path = string.Format("{0}-{1}.{2}", "Sales", date_time, "csv");
             string payment_path = string.Format("{0}-{1}.{2}", "Payment", date_time, "csv");
 
-            dt_payment_data.convert_object_to_csv(payment_path);
-            dt_consumes.convert_object_to_csv(consume_path);
+            if (dt_payment_data != null && dt_payment_data.Rows != null && dt_payment_data.Rows.Count > 0)
+            {
+                dt_payment_data.convert_object_to_csv(payment_path);
+                files.Add(payment_path);
+            }
 
-            List<string> files = new List<string>() { consume_path, payment_path };
+            if (dt_consumes != null && dt_consumes.Rows != null && dt_consumes.Rows.Count > 0)
+            {
+                dt_consumes.convert_object_to_csv(consume_path);
+                files.Add(consume_path);
+            }
 
-            Task.Factory.StartNew(() => _sendInformationService.Send_Email(files));
+            if (files != null && files.Count > 0)
+                Task.Factory.StartNew(() => _sendInformationService.Send_Email(files));
         }
 
         private void fill_dt_gd_viw_report(List<FoodViewModel> all_consume)
