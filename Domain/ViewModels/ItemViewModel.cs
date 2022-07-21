@@ -47,7 +47,7 @@ namespace Domain.ViewModels
                 double credit_amount = data.Sum(s => s.credit_amount);
                 double credit_amount_payment = data.Sum(s => s.credit_amount_payment);
 
-                if (sum_price > 0)
+                if (sum_price > 0 || paying_amount > 0 || credit_amount > 0 || credit_amount_payment > 0)
                     dt.Rows.Add(from_date_string, to_date_string, item.ID.ToString(), item.FullName, sum_price.ToString(),
                     discount.ToString(), (sum_price - discount).ToString(), paying_amount.ToString(), 
                     credit_amount.ToString(), credit_amount_payment.ToString());
@@ -61,7 +61,7 @@ namespace Domain.ViewModels
             double _credit_amount = _data.Sum(s => s.credit_amount);
             double _credit_amount_payment = _data.Sum(s => s.credit_amount_payment);
 
-            if (_sum_price > 0)
+            if (_sum_price > 0 || _paying_amount > 0 || _credit_amount > 0 || _credit_amount_payment > 0)
                 dt.Rows.Add(from_date_string, to_date_string, "", "جمع کل", _sum_price.ToString(),
                 _discount.ToString(), (_sum_price - _discount).ToString(), _paying_amount.ToString(),
                 _credit_amount.ToString(), _credit_amount_payment.ToString());
