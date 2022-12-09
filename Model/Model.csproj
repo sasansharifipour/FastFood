@@ -159,6 +159,10 @@
     <Compile Include="Migrations\202203280951211_remove_user_registerID.designer.cs">
       <DependentUpon>202203280951211_remove_user_registerID.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202212091424185_addposlog.cs" />
+    <Compile Include="Migrations\202212091424185_addposlog.designer.cs">
+      <DependentUpon>202212091424185_addposlog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -242,6 +246,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202203280951211_remove_user_registerID.resx">
       <DependentUpon>202203280951211_remove_user_registerID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212091424185_addposlog.resx">
+      <DependentUpon>202212091424185_addposlog.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
