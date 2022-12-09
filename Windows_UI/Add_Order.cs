@@ -1,4 +1,5 @@
 ﻿using Domain.BaseClasses;
+using PosInterface;
 using Service;
 using System;
 using System.Collections;
@@ -31,6 +32,8 @@ namespace Windows_UI
         private Form _edit_order;
         private Create_Special_Food _Special_Food;
         private Order _saved_order;
+        PCPos pcpos = new PCPos();
+        ITransactionDoneAdvanceHandler _posResult;
 
         int free_number = 0;
 
@@ -39,6 +42,7 @@ namespace Windows_UI
             , [Dependency("edit_order")] Form edit_order
             , IFoodOptionService foodOptionService
             , Create_Special_Food special_Food
+            , ITransactionDoneAdvanceHandler posResult
             , IPrintService printService) 
             //, [Dependency("login_form")] Form login_form) : Form
             //: base(login_form)
@@ -53,9 +57,13 @@ namespace Windows_UI
             _Special_Food = special_Food;
             _foodOptionService = foodOptionService;
 
+            _posResult = posResult;
+
             InitializeComponent();
 
             Task.Factory.StartNew(load_info);
+
+            pcpos.InitLAN("192.168.1.40", 17000);
         }
 
         private void load_info()
@@ -302,6 +310,7 @@ namespace Windows_UI
         {
             _saved_order = null;
             btn_print.Enabled = false;
+            btn_cart_eghtesad.Enabled = false;
 
             bool credit = chb_credit.Checked;
 
@@ -338,6 +347,7 @@ namespace Windows_UI
             {
                 _saved_order = order;
                 btn_print.Enabled = true;
+                btn_cart_eghtesad.Enabled = true;
                 MessageBox.Show(null, "اطلاعات با موفقیت ثبت گردید", "موفق", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
@@ -371,6 +381,7 @@ namespace Windows_UI
         {
             _saved_order = null;
             btn_print.Enabled = false;
+            btn_cart_eghtesad.Enabled = false;
             TB_discount.Text = "";
             chb_credit.Checked = false;
             chb_Is_Serving_In_Saloon.Checked = false;
@@ -448,9 +459,83 @@ namespace Windows_UI
 
         private void Btn_cart_eghtesad_Click(object sender, EventArgs e)
         {
-            PosInterface.PCPos pcpos = new PosInterface.PCPos();
 
-            pcpos.InitLAN("192.168.1.50", 50040);
+            if (PCPos.IsExecutionInProgress)
+            {
+                MessageBox.Show("دستگاه کارتخوان مشغول است");
+                return;
+            }
+
+            _posResult.set_order(_saved_order);
+            pcpos.DoASyncPayment(_saved_order.paying_amount.ToString(),"", "", DateTime.Now, _posResult);
+        }
+    }
+
+    public interface ITransactionDoneAdvanceHandler : ITransactionDoneHandler
+    {
+        void set_order(Order saved_order);
+    }
+
+    public class PosResult : ITransactionDoneAdvanceHandler
+    {
+        private Order _saved_order;
+        private PrintService _printService;
+        private PosTransactionResultService _posTransactionResultService;
+
+        public PosResult(PrintService printService, PosTransactionResultService posTransactionResultService)
+        {
+            _printService = printService;
+            _posTransactionResultService = posTransactionResultService;
+        }
+
+        public void set_order(Order saved_order)
+        {
+            _saved_order = saved_order;
+        }
+
+        public void OnFinish(string message)
+        {
+            //MessageBox.Show(message);
+        }
+
+        public void OnTransactionDone(TransactionResult result)
+        {
+            try
+            {
+                _posTransactionResultService.add(new PosTransactionResult()
+                {
+                    OrderID = _saved_order.ID,
+                    TranType = result.TranType,
+                    MerchantId = result.MerchantId,
+                    MessageId = result.MessageId,
+                    PaymentAmount = result.PaymentAmount,
+                    RRN = result.RRN,
+                    Stan = result.Stan,
+                    ErrorMsg = result.ErrorMsg,
+                    ErrorCode = result.ErrorCode,
+                    CardNumber = result.CardNumber,
+                    DateTime = result.DateTime,
+                    TerminalId = result.TerminalId,
+                    SoftwareExecutionTime = DateTime.Now
+                });
+            }
+            catch(Exception ex)
+            {
+            }
+
+            if (result.ErrorCode == 0 && result.ErrorMsg == "تراکنش موفق")
+            {
+                var result_button = MessageBox.Show("تراکنش موفق به مبلغ : " + result.PaymentAmount + " پرینت سفارش چاپ شود؟", "موفق", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                if (result_button == DialogResult.Yes)
+                {
+                    _printService.Print(_saved_order);
+                }
+            }
+            else
+            {
+                MessageBox.Show("تراکنش ناموفق بود : " + result.ErrorMsg, "خظا" ,MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

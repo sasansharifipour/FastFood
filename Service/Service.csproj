@@ -76,6 +76,7 @@
     <Compile Include="ConsumeFoodOptionService.cs" />
     <Compile Include="ConsumeService.cs" />
     <Compile Include="FoodOptionService.cs" />
+    <Compile Include="PosTransactionResultService.cs" />
     <Compile Include="IngredientService.cs" />
     <Compile Include="LoginInfo.cs" />
     <Compile Include="PrintService.cs" />

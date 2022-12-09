@@ -33,6 +33,8 @@ namespace Model
 
         public DbSet<Food> Foods { get; set; }
 
+        public DbSet<PosTransactionResult> PosTransactionResults { get; set; }
+
         public DbSet<Order> Orders { get; set; }
 
         public DbSet<OrderItem> OrderItems { get; set; }

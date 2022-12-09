@@ -51,6 +51,9 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PosInterface">
+      <HintPath>..\..\..\..\PosInterface.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -68,6 +71,7 @@
     <Compile Include="BaseClasses\Ingredient.cs" />
     <Compile Include="BaseClasses\Order.cs" />
     <Compile Include="BaseClasses\OrderItem.cs" />
+    <Compile Include="BaseClasses\PosTransactionResult.cs" />
     <Compile Include="BaseClasses\Unit.cs" />
     <Compile Include="BaseClasses\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

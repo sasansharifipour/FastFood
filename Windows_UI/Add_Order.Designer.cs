@@ -39,6 +39,7 @@
             this.btn_print = new System.Windows.Forms.Button();
             this.btn_save_order = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.btn_cart_eghtesad = new System.Windows.Forms.Button();
             this.TB_Paying = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -55,7 +56,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pnl_Foods = new System.Windows.Forms.Panel();
-            this.btn_cart_eghtesad = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dt_gd_viw_orderlist)).BeginInit();
@@ -188,6 +188,17 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(522, 183);
             this.panel5.TabIndex = 4;
+            // 
+            // btn_cart_eghtesad
+            // 
+            this.btn_cart_eghtesad.Enabled = false;
+            this.btn_cart_eghtesad.Location = new System.Drawing.Point(27, 143);
+            this.btn_cart_eghtesad.Name = "btn_cart_eghtesad";
+            this.btn_cart_eghtesad.Size = new System.Drawing.Size(155, 31);
+            this.btn_cart_eghtesad.TabIndex = 5;
+            this.btn_cart_eghtesad.Text = "کارتخوان  مهراقتصاد";
+            this.btn_cart_eghtesad.UseVisualStyleBackColor = true;
+            this.btn_cart_eghtesad.Click += new System.EventHandler(this.Btn_cart_eghtesad_Click);
             // 
             // TB_Paying
             // 
@@ -342,16 +353,6 @@
             this.pnl_Foods.Size = new System.Drawing.Size(811, 749);
             this.pnl_Foods.TabIndex = 1;
             this.pnl_Foods.Paint += new System.Windows.Forms.PaintEventHandler(this.Pnl_Foods_Paint);
-            // 
-            // btn_cart_eghtesad
-            // 
-            this.btn_cart_eghtesad.Location = new System.Drawing.Point(27, 143);
-            this.btn_cart_eghtesad.Name = "btn_cart_eghtesad";
-            this.btn_cart_eghtesad.Size = new System.Drawing.Size(155, 31);
-            this.btn_cart_eghtesad.TabIndex = 5;
-            this.btn_cart_eghtesad.Text = "کارتخوان  مهراقتصاد";
-            this.btn_cart_eghtesad.UseVisualStyleBackColor = true;
-            this.btn_cart_eghtesad.Click += new System.EventHandler(this.Btn_cart_eghtesad_Click);
             // 
             // Add_Order
             // 

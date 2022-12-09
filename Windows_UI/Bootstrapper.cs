@@ -39,6 +39,10 @@ namespace Windows_UI
             container.RegisterSingleton<IConsumeFoodOptionDAO, ConsumeFoodOptionDAO>();
             container.RegisterSingleton<IConsumeFoodOptionService, ConsumeFoodOptionService>();
 
+            container.RegisterSingleton<IBaseDAO<PosTransactionResult>, BaseDAO<PosTransactionResult>>();
+            container.RegisterSingleton<IPosTransactionResultDAO, PosTransactionResultDAO>();
+            container.RegisterSingleton<IPosTransactionResultService, PosTransactionResultService>();
+
             container.RegisterSingleton<IBaseDAO<Food>, BaseDAO<Food>>();
             container.RegisterSingleton<IFoodDAO, FoodDAO>();
             container.RegisterSingleton<IFoodService, FoodService>();
@@ -81,6 +85,7 @@ namespace Windows_UI
             container.RegisterSingleton<Form, Report_Ingredient>("report_ingredient");
             container.RegisterSingleton<Form, Report_Orders>("report_orders");
             container.RegisterSingleton<Create_Special_Food, Create_Special_Food>();
+            container.RegisterSingleton<ITransactionDoneAdvanceHandler, PosResult>();
 
             return container;
         }
