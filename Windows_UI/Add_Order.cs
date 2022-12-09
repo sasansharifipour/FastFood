@@ -14,7 +14,7 @@ using Unity;
 
 namespace Windows_UI
 {
-    public partial class Add_Order : SpecialForm
+    public partial class Add_Order : Form// SpecialForm
     {
         private ICustomerService _customerService;
         private IFoodService _foodService;
@@ -39,8 +39,9 @@ namespace Windows_UI
             , [Dependency("edit_order")] Form edit_order
             , IFoodOptionService foodOptionService
             , Create_Special_Food special_Food
-            , IPrintService printService, [Dependency("login_form")] Form login_form)
-            : base(login_form)
+            , IPrintService printService) 
+            //, [Dependency("login_form")] Form login_form) : Form
+            //: base(login_form)
         {
             _customerService = customerService;
             _orderService = orderService;
@@ -443,6 +444,13 @@ namespace Windows_UI
         private void Pnl_Foods_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void Btn_cart_eghtesad_Click(object sender, EventArgs e)
+        {
+            PosInterface.PCPos pcpos = new PosInterface.PCPos();
+
+            pcpos.InitLAN("192.168.1.50", 50040);
         }
     }
 }

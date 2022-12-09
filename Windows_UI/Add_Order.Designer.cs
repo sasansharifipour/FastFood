@@ -48,13 +48,14 @@
             this.label3 = new System.Windows.Forms.Label();
             this.lbl_sum_price = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.chb_Is_Serving_In_Saloon = new System.Windows.Forms.CheckBox();
             this.chb_credit = new System.Windows.Forms.CheckBox();
             this.lbl_order_number = new System.Windows.Forms.Label();
             this.cmb_customers = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pnl_Foods = new System.Windows.Forms.Panel();
-            this.chb_Is_Serving_In_Saloon = new System.Windows.Forms.CheckBox();
+            this.btn_cart_eghtesad = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dt_gd_viw_orderlist)).BeginInit();
@@ -173,6 +174,7 @@
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.btn_cart_eghtesad);
             this.panel5.Controls.Add(this.TB_Paying);
             this.panel5.Controls.Add(this.label6);
             this.panel5.Controls.Add(this.label5);
@@ -189,7 +191,7 @@
             // 
             // TB_Paying
             // 
-            this.TB_Paying.Location = new System.Drawing.Point(97, 143);
+            this.TB_Paying.Location = new System.Drawing.Point(188, 143);
             this.TB_Paying.Name = "TB_Paying";
             this.TB_Paying.Size = new System.Drawing.Size(209, 31);
             this.TB_Paying.TabIndex = 9;
@@ -199,7 +201,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(400, 146);
+            this.label6.Location = new System.Drawing.Point(407, 146);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(92, 24);
             this.label6.TabIndex = 8;
@@ -208,7 +210,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(400, 104);
+            this.label5.Location = new System.Drawing.Point(407, 104);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(110, 24);
             this.label5.TabIndex = 6;
@@ -217,7 +219,7 @@
             // lbl_net_price
             // 
             this.lbl_net_price.AutoSize = true;
-            this.lbl_net_price.Location = new System.Drawing.Point(97, 104);
+            this.lbl_net_price.Location = new System.Drawing.Point(188, 104);
             this.lbl_net_price.Name = "lbl_net_price";
             this.lbl_net_price.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.lbl_net_price.Size = new System.Drawing.Size(0, 24);
@@ -226,7 +228,7 @@
             // 
             // TB_discount
             // 
-            this.TB_discount.Location = new System.Drawing.Point(97, 59);
+            this.TB_discount.Location = new System.Drawing.Point(188, 59);
             this.TB_discount.Name = "TB_discount";
             this.TB_discount.Size = new System.Drawing.Size(209, 31);
             this.TB_discount.TabIndex = 5;
@@ -236,7 +238,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(400, 62);
+            this.label4.Location = new System.Drawing.Point(407, 62);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(59, 24);
             this.label4.TabIndex = 4;
@@ -245,7 +247,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(400, 21);
+            this.label3.Location = new System.Drawing.Point(407, 21);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(64, 24);
             this.label3.TabIndex = 2;
@@ -254,7 +256,7 @@
             // lbl_sum_price
             // 
             this.lbl_sum_price.AutoSize = true;
-            this.lbl_sum_price.Location = new System.Drawing.Point(97, 21);
+            this.lbl_sum_price.Location = new System.Drawing.Point(188, 21);
             this.lbl_sum_price.Name = "lbl_sum_price";
             this.lbl_sum_price.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.lbl_sum_price.Size = new System.Drawing.Size(0, 24);
@@ -274,6 +276,16 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(522, 178);
             this.panel2.TabIndex = 4;
+            // 
+            // chb_Is_Serving_In_Saloon
+            // 
+            this.chb_Is_Serving_In_Saloon.AutoSize = true;
+            this.chb_Is_Serving_In_Saloon.Location = new System.Drawing.Point(84, 57);
+            this.chb_Is_Serving_In_Saloon.Name = "chb_Is_Serving_In_Saloon";
+            this.chb_Is_Serving_In_Saloon.Size = new System.Drawing.Size(54, 28);
+            this.chb_Is_Serving_In_Saloon.TabIndex = 5;
+            this.chb_Is_Serving_In_Saloon.Text = "سالن";
+            this.chb_Is_Serving_In_Saloon.UseVisualStyleBackColor = true;
             // 
             // chb_credit
             // 
@@ -331,15 +343,15 @@
             this.pnl_Foods.TabIndex = 1;
             this.pnl_Foods.Paint += new System.Windows.Forms.PaintEventHandler(this.Pnl_Foods_Paint);
             // 
-            // chb_Is_Serving_In_Saloon
+            // btn_cart_eghtesad
             // 
-            this.chb_Is_Serving_In_Saloon.AutoSize = true;
-            this.chb_Is_Serving_In_Saloon.Location = new System.Drawing.Point(84, 57);
-            this.chb_Is_Serving_In_Saloon.Name = "chb_Is_Serving_In_Saloon";
-            this.chb_Is_Serving_In_Saloon.Size = new System.Drawing.Size(54, 28);
-            this.chb_Is_Serving_In_Saloon.TabIndex = 5;
-            this.chb_Is_Serving_In_Saloon.Text = "سالن";
-            this.chb_Is_Serving_In_Saloon.UseVisualStyleBackColor = true;
+            this.btn_cart_eghtesad.Location = new System.Drawing.Point(27, 143);
+            this.btn_cart_eghtesad.Name = "btn_cart_eghtesad";
+            this.btn_cart_eghtesad.Size = new System.Drawing.Size(155, 31);
+            this.btn_cart_eghtesad.TabIndex = 5;
+            this.btn_cart_eghtesad.Text = "کارتخوان  مهراقتصاد";
+            this.btn_cart_eghtesad.UseVisualStyleBackColor = true;
+            this.btn_cart_eghtesad.Click += new System.EventHandler(this.Btn_cart_eghtesad_Click);
             // 
             // Add_Order
             // 
@@ -400,5 +412,6 @@
         private System.Windows.Forms.TextBox TB_Paying;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.CheckBox chb_Is_Serving_In_Saloon;
+        private System.Windows.Forms.Button btn_cart_eghtesad;
     }
 }
