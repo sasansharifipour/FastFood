@@ -74,10 +74,10 @@
     <Compile Include="ConsumeFoodOptionDAO.cs" />
     <Compile Include="CustomerDAO.cs" />
     <Compile Include="ConsumeDAO.cs" />
-    <Compile Include="IRepository.cs" />
+    <Compile Include="CoreRepositories\IRepository.cs" />
     <Compile Include="PosTransactionResultDAO.cs" />
     <Compile Include="FoodOptionDAO.cs" />
-    <Compile Include="Repository.cs" />
+    <Compile Include="Repositories\Repository.cs" />
     <Compile Include="UserDAO.cs" />
     <Compile Include="IngredientDAO.cs" />
     <Compile Include="UnitDAO.cs" />
