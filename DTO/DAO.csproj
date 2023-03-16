@@ -77,6 +77,7 @@
     <Compile Include="IRepository.cs" />
     <Compile Include="PosTransactionResultDAO.cs" />
     <Compile Include="FoodOptionDAO.cs" />
+    <Compile Include="Repository.cs" />
     <Compile Include="UserDAO.cs" />
     <Compile Include="IngredientDAO.cs" />
     <Compile Include="UnitDAO.cs" />
