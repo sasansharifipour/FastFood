@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Domain.BaseClasses
 {
-    public class Ingredient
+    public class Ingredient : ILogicalDeleteable
     {
         public int ID { get; set; }
 

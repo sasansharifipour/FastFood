@@ -31,11 +31,11 @@ namespace Windows_UI
         {
             cmb_foodOption_list.DisplayMember = "Name";
             cmb_foodOption_list.ValueMember = "ID";
-            cmb_foodOption_list.DataSource = _unitOfWork.FoodOptions.Find(s => !s.Deleted).ToList(); ;
+            cmb_foodOption_list.DataSource = _unitOfWork.FoodOptions.GetAll().ToList(); ;
 
             cmb_data_list.DisplayMember = "Name";
             cmb_data_list.ValueMember = "ID";
-            cmb_data_list.DataSource = _unitOfWork.Ingredients.Find(s => !s.Deleted).ToList();
+            cmb_data_list.DataSource = _unitOfWork.Ingredients.GetAll().ToList();
         }
 
         private void btn_save_Click(object sender, EventArgs e)

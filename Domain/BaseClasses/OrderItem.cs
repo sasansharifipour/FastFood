@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Domain.BaseClasses
 {
-    public class OrderItem : ICloneable
+    public class OrderItem : ICloneable, ILogicalDeleteable
     {
         public int ID { get; set; } = 0;
 

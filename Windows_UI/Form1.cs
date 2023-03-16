@@ -78,7 +78,7 @@ namespace Windows_UI
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            _customers = _unitOfWork.Customers.Find(s => !s.Deleted).ToList();
+            _customers = _unitOfWork.Customers.GetAll().ToList();
         }
 
         private void add_food_ToolStripMenuItem_Click(object sender, EventArgs e)

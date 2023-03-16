@@ -78,7 +78,7 @@ namespace Windows_UI
         {
             cmb_food_list.DisplayMember = "Name";
             cmb_food_list.ValueMember = "ID";
-            var data = _unitOfWork.Foods.Find(s => !s.Deleted).ToList();
+            var data = _unitOfWork.Foods.GetAll().ToList();
 
             data.Insert(0, new Food() { ID = 0, Name = "افزودن محصول", Price = 0 });
 

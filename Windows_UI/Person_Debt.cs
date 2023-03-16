@@ -43,7 +43,7 @@ namespace Windows_UI
 
         private void load_info()
         {
-            _customers = _unitOfWork.Customers.Find(s => !s.Deleted).ToList();
+            _customers = _unitOfWork.Customers.GetAll().ToList();
         }
 
         private void Btn_Search_Click(object sender, EventArgs e)

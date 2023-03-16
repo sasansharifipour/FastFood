@@ -83,7 +83,7 @@ namespace Windows_UI
         {
             cmb_data_list.DisplayMember = "FullName";
             cmb_data_list.ValueMember = "ID";
-            var data = _unitOfWork.Users.Find(s => !s.Deleted).ToList();
+            var data = _unitOfWork.Users.GetAll().ToList();
 
             data.Insert(0, new User() { ID = 0, Name = "افزودن", Family = "کاربر" });
 

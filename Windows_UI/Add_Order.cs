@@ -64,8 +64,8 @@ namespace Windows_UI
         private void load_info()
         {
             get_free_number();
-            _foods = _unitOfWork.Foods.Find(s => !s.Deleted).ToList();
-            _customers = _unitOfWork.Customers.Find(s => !s.Deleted).ToList();
+            _foods = _unitOfWork.Foods.GetAll().ToList();
+            _customers = _unitOfWork.Customers.GetAll().ToList();
         }
 
         private void show_customers(IEnumerable<Customer> customers)
@@ -176,7 +176,7 @@ namespace Windows_UI
                     Name = food.Name,
                     Price = food.Price,
                     Count = 1,
-                    FoodOptions = _unitOfWork.FoodOptions.Find(s => !s.Deleted && s.DefaultExist).ToList()
+                    FoodOptions = _unitOfWork.FoodOptions.Find(s => s.DefaultExist).ToList()
                 });
             else
                 order_item.Count++;

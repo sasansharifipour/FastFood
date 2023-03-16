@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Domain.BaseClasses
 {
-    public class PosTransactionResult
+    public class PosTransactionResult : ILogicalDeleteable
     {
         public int ID { get; set; } = 0;
 

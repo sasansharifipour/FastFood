@@ -154,7 +154,7 @@ namespace Windows_UI
         
         private void Report_Orders_Load(object sender, EventArgs e)
         {
-            _customers = _unitOfWork.Customers.Find(s => !s.Deleted).ToList();
+            _customers = _unitOfWork.Customers.GetAll().ToList();
             show_customers(_customers, chkblst_customers);
         }
     }

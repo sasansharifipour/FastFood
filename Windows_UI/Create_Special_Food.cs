@@ -49,7 +49,7 @@ namespace Windows_UI
 
         private void Create_Special_Food_Load(object sender, EventArgs e)
         {
-            _foodOptions = _unitOfWork.FoodOptions.Find(s => !s.Deleted).ToList();
+            _foodOptions = _unitOfWork.FoodOptions.GetAll().ToList();
 
             show_food_options(_foodOptions, panel2);
             update_info();

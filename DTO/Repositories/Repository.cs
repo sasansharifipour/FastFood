@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.BaseClasses;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Text;
 
 namespace DTO
 {
-    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
+    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class, ILogicalDeleteable
     {
         protected readonly DbContext _context;
 
@@ -23,12 +24,12 @@ namespace DTO
 
         public IEnumerable<TEntity> GetAll()
         {
-            return _context.Set<TEntity>().ToList();
+            return _context.Set<TEntity>().Where(s => !s.Deleted).ToList();
         }
 
         public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
         {
-            return _context.Set<TEntity>().Where(predicate);
+            return _context.Set<TEntity>().Where(s => !s.Deleted).Where(predicate);
         }
 
 

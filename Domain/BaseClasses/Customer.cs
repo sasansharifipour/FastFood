@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Domain.BaseClasses
 {
-    public class Customer
+    public class Customer : ILogicalDeleteable
     {
         public int ID { get; set; } = 0;
 

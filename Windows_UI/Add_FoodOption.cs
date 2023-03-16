@@ -97,7 +97,7 @@ namespace Windows_UI
         {
             cmb_foodoption_list.DisplayMember = "Name";
             cmb_foodoption_list.ValueMember = "ID";
-            var data = _unitOfWork.FoodOptions.Find(s => !s.Deleted).ToList();
+            var data = _unitOfWork.FoodOptions.GetAll().ToList();
 
             data.Insert(0, new FoodOption() { ID = 0, Name = "افزودن محصول" });
 

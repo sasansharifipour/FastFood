@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Domain.BaseClasses
 {
-    public class ConsumeFoodOption
+    public class ConsumeFoodOption : ILogicalDeleteable
     {
         public int ID { get; set; }
 
@@ -19,6 +19,7 @@ namespace Domain.BaseClasses
         public Ingredient Ingredient { get; set; }
 
         public double Volume { get; set; } = 0;
+        public bool Deleted { get; set; }
 
         public ConsumeViewModel GetViewModel()
         {

@@ -25,7 +25,7 @@ namespace Windows_UI
 
         private void Show_All_Foods_Load(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = _unitOfWork.Foods.Find(s => !s.Deleted).ToList();
+            dataGridView1.DataSource = _unitOfWork.Foods.GetAll().ToList();
 
             dataGridView1.Columns["ID"].HeaderText = "کد محصول";
             dataGridView1.Columns["Name"].HeaderText = "نام محصول";
