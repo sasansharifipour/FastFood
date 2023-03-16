@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Domain.BaseClasses
 {
-    public class Food
+    public class Food : ILogicalDeleteable
     {
         public int ID { get; set; } = 0;
 

@@ -163,6 +163,10 @@
     <Compile Include="Migrations\202212091424185_addposlog.designer.cs">
       <DependentUpon>202212091424185_addposlog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202303162248171_deleteable.cs" />
+    <Compile Include="Migrations\202303162248171_deleteable.designer.cs">
+      <DependentUpon>202303162248171_deleteable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -249,6 +253,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202212091424185_addposlog.resx">
       <DependentUpon>202212091424185_addposlog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202303162248171_deleteable.resx">
+      <DependentUpon>202303162248171_deleteable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
