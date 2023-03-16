@@ -1,4 +1,5 @@
 ﻿using Domain.BaseClasses;
+using DTO;
 using Service;
 using System;
 using System.Collections.Generic;
@@ -15,13 +16,11 @@ namespace Windows_UI
     public partial class Person_Debt : Form
     {
         private IEnumerable<Customer> _customers;
-        private ICustomerService _customerService;
-        private IOrderService _orderService;
+        private IUnitOfWork _unitOfWork;
 
-        public Person_Debt(ICustomerService customerService, IOrderService orderService)
+        public Person_Debt(IUnitOfWork unitOfWork)
         {
-            _customerService = customerService;
-            _orderService = orderService;
+            _unitOfWork = unitOfWork;
 
             InitializeComponent();
 
@@ -44,7 +43,7 @@ namespace Windows_UI
 
         private void load_info()
         {
-            _customers = _customerService.select_active_items();
+            _customers = _unitOfWork.Customers.Find(s => !s.Deleted).ToList();
         }
 
         private void Btn_Search_Click(object sender, EventArgs e)
@@ -53,7 +52,7 @@ namespace Windows_UI
             {
                 int customer_id = (int)cmb_customers.SelectedValue;
 
-                var orders = _orderService.Eager_Select(s => s.CustomerID == customer_id).ToList();
+                var orders = _unitOfWork.Orders.Eager_Select(s => s.CustomerID == customer_id).ToList();
 
                 var result = orders.Calculate_Debt();
 

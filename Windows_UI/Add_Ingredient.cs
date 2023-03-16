@@ -10,22 +10,21 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Domain.BaseClasses;
 using Unity;
+using DTO;
 
 namespace Windows_UI
 {
     public partial class Add_Ingredient : SpecialForm
     {
-        private IIngredientService _IngredientService;
-        private IUnitService _unitService;
+        private IUnitOfWork _unitOfWork;
 
-        public Add_Ingredient(IIngredientService IngredientService, IUnitService unitService
+        public Add_Ingredient(IUnitOfWork unitOfWork
             , [Dependency("login_form")] Form login_form)
             : base(login_form)
         {
             InitializeComponent();
 
-            _IngredientService = IngredientService;
-            _unitService = unitService;
+            _unitOfWork = unitOfWork;
 
             Task.Factory.StartNew(load_info);
         }
@@ -48,16 +47,14 @@ namespace Windows_UI
 
             if (ID > 0)
             {
-                data = _IngredientService.find(ID);
+                data = _unitOfWork.Ingredients.Get(ID);
                 data.Name = Name;
                 data.UnitID = unit_id;
-                register = _IngredientService.update(data);
             }
             else
-            {
-                data = new Ingredient() { Name = Name, UnitID = unit_id };
-                register = _IngredientService.add(data);
-            }
+                _unitOfWork.Ingredients.Add(new Ingredient() { Name = Name, UnitID = unit_id });
+
+            register = _unitOfWork.Complete() > 0 ? true : false;
 
             if (register)
             {
@@ -75,13 +72,13 @@ namespace Windows_UI
         {
             cmb_data_list.DisplayMember = "Name";
             cmb_data_list.ValueMember = "ID";
-            var data = _IngredientService.select_active_items().ToList();
+            var data = _unitOfWork.Ingredients.Find(unit => unit.Deleted == false).ToList();
             data.Insert(0, new Ingredient() { ID = 0, Name = "افزودن آیتم جدید"});
             cmb_data_list.DataSource = data;
 
             cmb_unit_list.DisplayMember = "Name";
             cmb_unit_list.ValueMember = "ID";
-            cmb_unit_list.DataSource = _unitService.select_active_items().ToList();
+            cmb_unit_list.DataSource = _unitOfWork.Units.Find(unit => unit.Deleted == false).ToList();
         }
 
         private void Add_Ingredient_Load(object sender, EventArgs e)
@@ -92,7 +89,7 @@ namespace Windows_UI
         private void cmb_data_list_SelectedIndexChanged(object sender, EventArgs e)
         {
             int selected_id = (int)cmb_data_list.SelectedValue;
-            var Ingredient = _IngredientService.find(selected_id);
+            var Ingredient = _unitOfWork.Ingredients.Get(selected_id);
 
             if (Ingredient == null || Ingredient.ID <= 0)
             {
@@ -126,7 +123,7 @@ namespace Windows_UI
 
                 int selected_id = (int)cmb_data_list.SelectedValue;
 
-                Ingredient Ingredient = _IngredientService.find(selected_id);
+                Ingredient Ingredient = _unitOfWork.Ingredients.Get(selected_id);
 
                 bool deleted = false;
 
@@ -135,8 +132,8 @@ namespace Windows_UI
                     MessageBox.Show(null, "در حذف اطلاعات خطایی رخ داده است", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-
-                deleted = _IngredientService.delete(Ingredient);
+                Ingredient.Deleted = true;
+                deleted = _unitOfWork.Complete() > 0 ? true : false;
 
                 if (deleted)
                 {

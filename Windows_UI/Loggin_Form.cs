@@ -1,4 +1,5 @@
 ﻿using CommonCodes;
+using DTO;
 using Service;
 using System;
 using System.Collections.Generic;
@@ -14,13 +15,13 @@ namespace Windows_UI
 {
     public partial class Loggin_Form : Form
     {
-        private IUserService _userService;
+        private IUnitOfWork _unitOfWork;
 
-        public Loggin_Form(IUserService userService)
+        public Loggin_Form(IUnitOfWork unitOfWork)
         {
             InitializeComponent();
 
-            _userService = userService;
+            _unitOfWork = unitOfWork;
 
             _thePanel.Location = new Point(
                 this.ClientSize.Width / 2 - _thePanel.Size.Width / 2,
@@ -35,7 +36,7 @@ namespace Windows_UI
             int.TryParse(txt_code.Text.Trim(), out ID);
             string Password = Hashing.Hash(txt_password.Text.Trim());
 
-            var user = _userService.find(ID);
+            var user = _unitOfWork.Users.Get(ID);
 
             if (user == null || user.ID <= 0 || !string.Equals(user.Password, Password))
             {

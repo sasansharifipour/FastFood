@@ -1,6 +1,7 @@
 ﻿using CommonCodes;
 using Domain.BaseClasses;
 using Domain.ViewModels;
+using DTO;
 using Service;
 using System;
 using System.Collections.Generic;
@@ -13,11 +14,9 @@ namespace Windows_UI
 {
     public partial class Form1 : SpecialForm
     {
-        private IOrderService _orderService;
-        private IOrderItemService _orderItemService;
         private IReportService _reportService;
         private ISendInformationService _sendInformationService;
-        private ICustomerService _customerService;
+        private IUnitOfWork _unitOfWork;
         private List<Customer> _customers = new List<Customer>();
         private Form _add_food;
         private Form _all_foods;
@@ -35,11 +34,9 @@ namespace Windows_UI
         private Form _report_ingredient;
         private Form _report_orders;
 
-        public Form1(IOrderService orderService
-            , IOrderItemService orderItemService
-            , IReportService reportService
+        public Form1(IReportService reportService
             , ISendInformationService sendInformationService
-            , ICustomerService customerService
+            , IUnitOfWork unitOfWork
             , [Dependency("add_food")] Form add_food
             , [Dependency("all_foods")] Form all_foods
             , [Dependency("add_foodoption")] Form add_foodoption
@@ -59,9 +56,7 @@ namespace Windows_UI
         {
             InitializeComponent();
 
-            _orderService = orderService;
-            _orderItemService = orderItemService;
-            _customerService = customerService;
+            _unitOfWork = unitOfWork;
             _edit_order = edit_order;
             _add_food = add_food;
             _all_foods = all_foods;
@@ -83,7 +78,7 @@ namespace Windows_UI
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            _customers = _customerService.select_active_items().ToList();
+            _customers = _unitOfWork.Customers.Find(s => !s.Deleted).ToList();
         }
 
         private void add_food_ToolStripMenuItem_Click(object sender, EventArgs e)

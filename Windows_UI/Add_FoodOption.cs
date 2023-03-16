@@ -1,4 +1,5 @@
 ﻿using Domain.BaseClasses;
+using DTO;
 using Service;
 using System;
 using System.Linq;
@@ -11,16 +12,16 @@ namespace Windows_UI
     public partial class Add_FoodOption : SpecialForm
     {
         private IConfigService _configFile;
-        private IFoodOptionService _FoodOptionService;
+        private IUnitOfWork _unitOfWork;
 
-        public Add_FoodOption(IConfigService configFile, IFoodOptionService FoodOptionService
+        public Add_FoodOption(IConfigService configFile, IUnitOfWork unitOfWork
             , [Dependency("login_form")] Form login_form)
             : base(login_form)
         {
             InitializeComponent();
 
             _configFile = configFile;
-            _FoodOptionService = FoodOptionService;
+            _unitOfWork = unitOfWork;
             lbl_currency_title.Text = _configFile.get_currency_title();
 
             Task.Factory.StartNew(load_info);
@@ -59,18 +60,16 @@ namespace Windows_UI
 
             if (ID > 0)
             {
-                data = _FoodOptionService.find(ID);
+                data = _unitOfWork.FoodOptions.Get(ID);
                 data.Name = Name;
                 data.DefaultExist = chb_default_exist.Checked;
                 data.TitleIfExist = Title_if_Exist;
                 data.TitleIfNotExist = Title_if_NotExist;
                 data.PriceIfExist = Price;
                 data.PercentPriceIfExist = percent_Price;
-                register = _FoodOptionService.update(data);
             }
             else
-            {
-                data = new FoodOption()
+                _unitOfWork.FoodOptions.Add(new FoodOption()
                 {
                     Name = Name,
                     PriceIfExist = Price,
@@ -78,9 +77,9 @@ namespace Windows_UI
                     TitleIfExist = Title_if_Exist,
                     TitleIfNotExist = Title_if_NotExist,
                     PercentPriceIfExist = percent_Price
-                };
-                register = _FoodOptionService.add(data);
-            }
+                });
+
+            register = _unitOfWork.Complete() > 0 ? true : false;
 
             if (register)
             {
@@ -98,7 +97,7 @@ namespace Windows_UI
         {
             cmb_foodoption_list.DisplayMember = "Name";
             cmb_foodoption_list.ValueMember = "ID";
-            var data = _FoodOptionService.select_active_items().ToList();
+            var data = _unitOfWork.FoodOptions.Find(s => !s.Deleted).ToList();
 
             data.Insert(0, new FoodOption() { ID = 0, Name = "افزودن محصول" });
 
@@ -113,7 +112,7 @@ namespace Windows_UI
         private void cmb_food_list_SelectedIndexChanged(object sender, EventArgs e)
         {
             int selected_id = (int)cmb_foodoption_list.SelectedValue;
-            var FoodOption = _FoodOptionService.find(selected_id);
+            var FoodOption = _unitOfWork.FoodOptions.Get(selected_id);
 
             if (FoodOption == null || FoodOption.ID <= 0)
             {
@@ -155,7 +154,7 @@ namespace Windows_UI
 
                 int selected_id = (int)cmb_foodoption_list.SelectedValue;
 
-                FoodOption FoodOption = _FoodOptionService.find(selected_id);
+                FoodOption FoodOption = _unitOfWork.FoodOptions.Get(selected_id);
 
                 bool deleted = false;
 
@@ -165,7 +164,9 @@ namespace Windows_UI
                     return;
                 }
 
-                deleted = _FoodOptionService.delete(FoodOption);
+                FoodOption.Deleted = true;
+
+                deleted = _unitOfWork.Complete() > 0 ? true : false;
 
                 if (deleted)
                 {

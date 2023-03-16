@@ -1,4 +1,5 @@
 ﻿using Domain.BaseClasses;
+using DTO;
 using Service;
 using System;
 using System.Linq;
@@ -11,16 +12,16 @@ namespace Windows_UI
     public partial class Add_Food : SpecialForm
     {
         private IConfigService _configFile;
-        private IFoodService _foodService;
+        private IUnitOfWork _unitOfWork;
 
-        public Add_Food(IConfigService configFile, IFoodService foodService, [Dependency("login_form")]
+        public Add_Food(IConfigService configFile, IUnitOfWork unitOfWork, [Dependency("login_form")]
         Form login_form) 
             : base(login_form)
         {
             InitializeComponent();
 
             _configFile = configFile;
-            _foodService = foodService;
+            _unitOfWork = unitOfWork;
             lbl_currency_title.Text = _configFile.get_currency_title();
 
             Task.Factory.StartNew(load_info);
@@ -52,16 +53,14 @@ namespace Windows_UI
 
             if (ID > 0)
             {
-                data = _foodService.find(ID);
+                data = _unitOfWork.Foods.Get(ID);
                 data.Name = Name;
                 data.Price = Price;
-                register = _foodService.update(data);
             }
             else
-            {
-                data = new Food() { Name = Name, Price = Price};
-                register = _foodService.add(data);
-            }
+                _unitOfWork.Foods.Add(new Food() { Name = Name, Price = Price });
+
+            register = _unitOfWork.Complete() > 0 ? true : false;
 
             if (register)
             {
@@ -79,7 +78,7 @@ namespace Windows_UI
         {
             cmb_food_list.DisplayMember = "Name";
             cmb_food_list.ValueMember = "ID";
-            var data = _foodService.select_active_items().ToList();
+            var data = _unitOfWork.Foods.Find(s => !s.Deleted).ToList();
 
             data.Insert(0, new Food() { ID = 0, Name = "افزودن محصول", Price = 0 });
 
@@ -94,7 +93,7 @@ namespace Windows_UI
         private void cmb_food_list_SelectedIndexChanged(object sender, EventArgs e)
         {
             int selected_id = (int)cmb_food_list.SelectedValue;
-            var food = _foodService.find(selected_id);
+            var food = _unitOfWork.Foods.Get(selected_id);
 
             if (food == null || food.ID <= 0)
             {
@@ -128,7 +127,7 @@ namespace Windows_UI
 
                 int selected_id = (int)cmb_food_list.SelectedValue;
 
-                Food food = _foodService.find(selected_id);
+                Food food = _unitOfWork.Foods.Get(selected_id);
 
                 bool deleted = false;
 
@@ -137,8 +136,9 @@ namespace Windows_UI
                     MessageBox.Show(null, "در حذف اطلاعات خطایی رخ داده است", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+                food.Deleted = true;
 
-                deleted = _foodService.delete(food);
+                deleted = _unitOfWork.Complete() > 0 ? true : false;
 
                 if (deleted)
                 {

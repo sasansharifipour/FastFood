@@ -1,4 +1,5 @@
 ﻿using Domain.BaseClasses;
+using DTO;
 using Service;
 using System;
 using System.Collections.Generic;
@@ -15,14 +16,14 @@ namespace Windows_UI
 {
     public partial class Add_Unit : SpecialForm
     {
-        private IUnitService _UnitService;
+        private IUnitOfWork _unitOfWork;
 
-        public Add_Unit(IUnitService UnitService, [Dependency("login_form")] Form login_form)
+        public Add_Unit(IUnitOfWork unitOfWork,  [Dependency("login_form")] Form login_form)
             : base(login_form)
         {
             InitializeComponent();
 
-            _UnitService = UnitService;
+            _unitOfWork = unitOfWork;
 
             Task.Factory.StartNew(load_info);
         }
@@ -37,15 +38,16 @@ namespace Windows_UI
 
             if (ID > 0)
             {
-                Unit = _UnitService.find(ID);
+                Unit = _unitOfWork.Units.Get(ID);
                 Unit.Name = Unit_Name;
-                register = _UnitService.update(Unit);
             }
             else
             {
                 Unit = new Unit() { Name = Unit_Name };
-                register = _UnitService.add(Unit);
+                _unitOfWork.Units.Add(Unit);
             }
+
+            register = _unitOfWork.Complete() > 0 ? true : false;
 
             if (register)
             {
@@ -63,7 +65,8 @@ namespace Windows_UI
         {
             cmb_data_list.DisplayMember = "Name";
             cmb_data_list.ValueMember = "ID";
-            var data = _UnitService.select_active_items().ToList();
+
+            var data = _unitOfWork.Units.Find(unit => unit.Deleted == false).ToList();
 
             data.Insert(0, new Unit() { ID = 0, Name = "افزودن یک آیتم جدید" });
 
@@ -79,7 +82,7 @@ namespace Windows_UI
         private void cmb_Unit_list_SelectedIndexChanged(object sender, EventArgs e)
         {
             int selected_id = (int)cmb_data_list.SelectedValue;
-            var Unit = _UnitService.find(selected_id);
+            var Unit = _unitOfWork.Units.Get(selected_id);
 
             if (Unit == null || Unit.ID <= 0)
             {
@@ -111,7 +114,7 @@ namespace Windows_UI
 
                 int selected_id = (int)cmb_data_list.SelectedValue;
 
-                Unit Unit = _UnitService.find(selected_id);
+                Unit Unit = _unitOfWork.Units.Get(selected_id);
 
                 bool deleted = false;
 
@@ -121,7 +124,8 @@ namespace Windows_UI
                     return;
                 }
 
-                deleted = _UnitService.delete(Unit);
+                Unit.Deleted = true;
+                deleted = _unitOfWork.Complete() > 0 ? true : false;
 
                 if (deleted)
                 {

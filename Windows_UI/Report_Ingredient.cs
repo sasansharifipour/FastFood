@@ -18,17 +18,15 @@ namespace Windows_UI
 {
     public partial class Report_Ingredient : SpecialForm
     {
-        private IOrderService _orderService;
         private IReportService _reportService;
         private ISendInformationService _sendInformationService;
 
-        public Report_Ingredient(IOrderService orderService, IReportService reportService,
+        public Report_Ingredient( IReportService reportService,
             ISendInformationService sendInformationService, [Dependency("login_form")] Form login_form)
             : base(login_form)
         {
             InitializeComponent();
 
-            _orderService = orderService;
             _reportService = reportService;
             _sendInformationService = sendInformationService;
             dat_tim_picker_from_date.Value = DateTime.Now;

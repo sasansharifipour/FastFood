@@ -73,21 +73,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfigService.cs" />
-    <Compile Include="ConsumeFoodOptionService.cs" />
-    <Compile Include="ConsumeService.cs" />
-    <Compile Include="FoodOptionService.cs" />
-    <Compile Include="PosTransactionResultService.cs" />
-    <Compile Include="IngredientService.cs" />
     <Compile Include="LoginInfo.cs" />
     <Compile Include="PrintService.cs" />
     <Compile Include="ReportService.cs" />
     <Compile Include="SendInformationService.cs" />
-    <Compile Include="UserService.cs" />
-    <Compile Include="UnitService.cs" />
-    <Compile Include="OrderItemService.cs" />
-    <Compile Include="OrderService.cs" />
-    <Compile Include="FoodService.cs" />
-    <Compile Include="CustomerService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

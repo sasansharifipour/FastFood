@@ -1,4 +1,5 @@
 ﻿using Domain.BaseClasses;
+using DTO;
 using Service;
 using System;
 using System.Collections.Generic;
@@ -15,14 +16,14 @@ namespace Windows_UI
 {
     public partial class Add_Customer : SpecialForm
     {
-        private ICustomerService _customerService; 
+        private IUnitOfWork _unitOfWork;
 
-        public Add_Customer(ICustomerService customerService, [Dependency("login_form")] Form login_form) 
+        public Add_Customer(IUnitOfWork unitOfWork, [Dependency("login_form")] Form login_form) 
             : base(login_form)
         {
             InitializeComponent();
 
-            _customerService = customerService;
+            _unitOfWork = unitOfWork;
             Task.Factory.StartNew(load_info);
         }
 
@@ -39,19 +40,19 @@ namespace Windows_UI
 
             if (ID > 0)
             {
-                data = _customerService.find(ID);
+                data = _unitOfWork.Customers.Get(ID);
                 data.Name = Name;
                 data.Family = Family;
                 data.Mobile = Mobile;
                 data.Address = Address;
-                register = _customerService.update(data);
             }
             else
             {
                 data = new Customer() { Name = Name, Family  = Family, Mobile = Mobile, Address = Address };
-                register = _customerService.add(data);
+                _unitOfWork.Customers.Add(data);
             }
 
+            register = _unitOfWork.Complete() > 0 ? true : false;
             if (register)
             {
                 MessageBox.Show(null, "اطلاعات با موفقیت ثبت گردید", "موفق", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -68,7 +69,7 @@ namespace Windows_UI
         {
             cmb_customer_list.DisplayMember = "FullName";
             cmb_customer_list.ValueMember = "ID";
-            var data = _customerService.select_active_items().ToList();
+            var data = _unitOfWork.Customers.Find(s => !s.Deleted).ToList();
 
             data.Insert(0, new Customer() { ID = 0, Name = "افزودن", Family = "مشتری" });
 
@@ -84,7 +85,7 @@ namespace Windows_UI
         {
             int selected_id = (int)cmb_customer_list.SelectedValue;
 
-            var item = _customerService.find(selected_id);
+            var item = _unitOfWork.Customers.Get(selected_id);
 
             if (item == null || item.ID <= 0)
             {
@@ -123,7 +124,7 @@ namespace Windows_UI
 
                 int selected_id = (int)cmb_customer_list.SelectedValue;
 
-                Customer item = _customerService.find(selected_id);
+                Customer item = _unitOfWork.Customers.Get(selected_id);
 
                 bool deleted = false;
 
@@ -132,8 +133,8 @@ namespace Windows_UI
                     MessageBox.Show(null, "در حذف اطلاعات خطایی رخ داده است", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-
-                deleted = _customerService.delete(item);
+                item.Deleted = true;
+                deleted = _unitOfWork.Complete() > 0 ? true : false;
 
                 if (deleted)
                 {

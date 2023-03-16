@@ -1,5 +1,6 @@
 ﻿using CommonCodes;
 using Domain.BaseClasses;
+using DTO;
 using Service;
 using System;
 using System.Collections.Generic;
@@ -16,14 +17,14 @@ namespace Windows_UI
 {
     public partial class Add_User : SpecialForm
     {
-        private IUserService _userService;
+        private IUnitOfWork _unitOfWork;
 
-        public Add_User(IUserService userService
+        public Add_User(IUnitOfWork unitOfWork
             , [Dependency("login_form")] Form login_form) : base(login_form)
         {
             InitializeComponent();
 
-            _userService = userService;
+            _unitOfWork = unitOfWork;
             Task.Factory.StartNew(load_info);
         }
 
@@ -39,7 +40,7 @@ namespace Windows_UI
 
             if (ID > 0)
             {
-                data = _userService.find(ID);
+                data = _unitOfWork.Users.Get(ID);
                 data.Name = Name;
                 data.Family = Family;
 
@@ -48,22 +49,23 @@ namespace Windows_UI
 
                 data.Password = Password;
                 data.Is_Admin = chb_Is_Admin.Checked;
-                register = _userService.update(data);
+                
             }
             else
             {
                 if (Password.Trim() == "")
                     MessageBox.Show(null, "کلمه عبور را وارد کنید", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                data = new User()
+                _unitOfWork.Users.Add(new User()
                 {
                     Name = Name,
                     Family = Family,
                     Password = Password,
                     Is_Admin = chb_Is_Admin.Checked
-                };
-                register = _userService.add(data);
+                });
             }
+
+            register = _unitOfWork.Complete() > 0 ? true : false;
 
             if (register)
             {
@@ -81,7 +83,7 @@ namespace Windows_UI
         {
             cmb_data_list.DisplayMember = "FullName";
             cmb_data_list.ValueMember = "ID";
-            var data = _userService.select_active_items().ToList();
+            var data = _unitOfWork.Users.Find(s => !s.Deleted).ToList();
 
             data.Insert(0, new User() { ID = 0, Name = "افزودن", Family = "کاربر" });
 
@@ -120,7 +122,7 @@ namespace Windows_UI
 
             int selected_id = (int)cmb_data_list.SelectedValue;
 
-            var item = _userService.find(selected_id);
+            var item = _unitOfWork.Users.Get(selected_id);
 
             if (item == null || item.ID <= 0)
             {
@@ -160,7 +162,7 @@ namespace Windows_UI
 
                 int selected_id = (int)cmb_data_list.SelectedValue;
 
-                var item = _userService.find(selected_id);
+                var item = _unitOfWork.Users.Get(selected_id);
 
                 bool deleted = false;
 
@@ -169,8 +171,9 @@ namespace Windows_UI
                     MessageBox.Show(null, "در حذف اطلاعات خطایی رخ داده است", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+                item.Deleted = true;
 
-                deleted = _userService.delete(item);
+                deleted = _unitOfWork.Complete() > 0 ? true : false;
 
                 if (deleted)
                 {

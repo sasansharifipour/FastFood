@@ -1,5 +1,6 @@
 ﻿using Domain.BaseClasses;
 using Domain.ViewModels;
+using DTO;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Objects;
@@ -17,11 +18,11 @@ namespace Service
 
     public class ReportService : IReportService
     {
-        private IOrderService _orderService;
+        private IUnitOfWork _unitOfWork;
 
-        public ReportService(IOrderService orderService)
+        public ReportService(IUnitOfWork unitOfWork)
         {
-            _orderService = orderService;
+            _unitOfWork = unitOfWork;
         }
 
         public List<Order> Get_Orders_FromDate_ToDate_For_Some_Customers(DateTime from_date, DateTime to_date,
@@ -30,11 +31,11 @@ namespace Service
             List<Order> data = new List<Order>();
 
             if (customers == null || customers.Count <= 0)
-                data = _orderService.Eager_Select(s => EntityFunctions.TruncateTime(s.Insert_time) >=
+                data = _unitOfWork.Orders.Eager_Select(s => EntityFunctions.TruncateTime(s.Insert_time) >=
                 EntityFunctions.TruncateTime(from_date) && EntityFunctions.TruncateTime(s.Insert_time) <=
                 EntityFunctions.TruncateTime(to_date) && s.Deleted == false).ToList();
             else
-                data = _orderService.Eager_Select(s => EntityFunctions.TruncateTime(s.Insert_time) >=
+                data = _unitOfWork.Orders.Eager_Select(s => EntityFunctions.TruncateTime(s.Insert_time) >=
                 EntityFunctions.TruncateTime(from_date) && EntityFunctions.TruncateTime(s.Insert_time) <=
                 EntityFunctions.TruncateTime(to_date) && s.Deleted == false &&
                 customers.Contains(s.CustomerID)).ToList();

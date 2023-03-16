@@ -10,23 +10,24 @@ using Domain.BaseClasses;
 using System.Collections.Generic;
 using CommonCodes;
 using Unity;
+using DTO;
 
 namespace Windows_UI
 {
     public partial class Delete_Order : SpecialForm
     {
-        private IOrderService _orderService;
+        private IUnitOfWork _unitOfWork;
         private IConfigService _configFile;
         private IPrintService _printService;
         private Order _order;
 
-        public Delete_Order(IOrderService orderService,IConfigService configFile, IPrintService printService
+        public Delete_Order(IUnitOfWork unitOfWork, IConfigService configFile, IPrintService printService
             , [Dependency("login_form")] Form login_form)
             : base(login_form)
         {
             InitializeComponent();
 
-            _orderService = orderService;
+            _unitOfWork = unitOfWork;
             _configFile = configFile;
             _printService = printService;
 
@@ -43,7 +44,7 @@ namespace Windows_UI
 
             DateTime selected_date = dat_tim_picker_order_date.Value.Value.Date;
 
-            _order = _orderService.Eager_Select(s => s.Number == order_number && EntityFunctions.TruncateTime(s.Insert_time) ==
+            _order = _unitOfWork.Orders.Eager_Select(s => s.Number == order_number && EntityFunctions.TruncateTime(s.Insert_time) ==
                 EntityFunctions.TruncateTime(selected_date)).FirstOrDefault();
 
             if (_order == null)
@@ -153,7 +154,9 @@ namespace Windows_UI
             {
                 bool deleted = false;
 
-                deleted = _orderService.delete(_order);
+                _order.Deleted = true;
+
+                deleted = _unitOfWork.Complete() > 0 ? true : false;
 
                 if (deleted)
                 {

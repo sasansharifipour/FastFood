@@ -1,6 +1,7 @@
 ﻿using CommonCodes;
 using Domain.BaseClasses;
 using Domain.ViewModels;
+using DTO;
 using Service;
 using System;
 using System.Collections.Generic;
@@ -23,18 +24,18 @@ namespace Windows_UI
     {
         private IReportService _reportService;
         private ISendInformationService _sendInformationService;
-        private ICustomerService _customerService;
+        private IUnitOfWork _unitOfWork;
         private List<Customer> _customers = new List<Customer>();
 
-        public Report_Orders(IReportService reportService, 
-            ICustomerService customerService, ISendInformationService sendInformationService, 
+        public Report_Orders(IReportService reportService,
+            IUnitOfWork unitOfWork, ISendInformationService sendInformationService, 
             [Dependency("login_form")] Form login_form)
             : base(login_form)
         {
             InitializeComponent();
 
             _reportService = reportService;
-            _customerService = customerService;
+            _unitOfWork = unitOfWork;
             _sendInformationService = sendInformationService;
 
             dat_tim_picker_from_date.Value = DateTime.Now;
@@ -153,7 +154,7 @@ namespace Windows_UI
         
         private void Report_Orders_Load(object sender, EventArgs e)
         {
-            _customers = _customerService.select_active_items().ToList();
+            _customers = _unitOfWork.Customers.Find(s => !s.Deleted).ToList();
             show_customers(_customers, chkblst_customers);
         }
     }

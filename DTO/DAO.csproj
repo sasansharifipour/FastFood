@@ -70,20 +70,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseDAO.cs" />
-    <Compile Include="ConsumeFoodOptionDAO.cs" />
-    <Compile Include="CustomerDAO.cs" />
-    <Compile Include="ConsumeDAO.cs" />
+    <Compile Include="CoreRepositories\IFoodRepository.cs" />
+    <Compile Include="CoreRepositories\IOrderRepository.cs" />
     <Compile Include="CoreRepositories\IRepository.cs" />
-    <Compile Include="PosTransactionResultDAO.cs" />
-    <Compile Include="FoodOptionDAO.cs" />
+    <Compile Include="CoreRepositories\IUnitOfWork.cs" />
+    <Compile Include="Repositories\FoodRepository.cs" />
+    <Compile Include="Repositories\OrderRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
-    <Compile Include="UserDAO.cs" />
-    <Compile Include="IngredientDAO.cs" />
-    <Compile Include="UnitDAO.cs" />
-    <Compile Include="OrderItemDAO.cs" />
-    <Compile Include="OrderDAO.cs" />
-    <Compile Include="FoodDAO.cs" />
+    <Compile Include="Repositories\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,5 @@
 ﻿using Domain.BaseClasses;
+using DTO;
 using Service;
 using System;
 using System.Collections.Generic;
@@ -13,8 +14,7 @@ namespace Windows_UI
 {
     public partial class Create_Special_Food : Form
     {
-        private IFoodService _foodService;
-        private IFoodOptionService _foodOptionService;
+        private IUnitOfWork _unitOfWork;
         private int selected_food_id = 0;
         private Food _food;
         private List<FoodOption> _foodOptions = new List<FoodOption>();
@@ -30,10 +30,9 @@ namespace Windows_UI
                 select_food_Event = null;
         }
 
-        public Create_Special_Food(IFoodService foodService, IFoodOptionService foodOptionService)
+        public Create_Special_Food(IUnitOfWork unitOfWork)
         {
-            _foodService = foodService;
-            _foodOptionService = foodOptionService;
+            _unitOfWork = unitOfWork;
 
             InitializeComponent();
         }
@@ -41,7 +40,7 @@ namespace Windows_UI
         public void set_food_id(int food_id)
         {
             selected_food_id = food_id;
-            _food = _foodService.find(food_id);
+            _food = _unitOfWork.Foods.Get(food_id);
 
             show_original_food_info(_food);
 
@@ -50,7 +49,7 @@ namespace Windows_UI
 
         private void Create_Special_Food_Load(object sender, EventArgs e)
         {
-            _foodOptions = _foodOptionService.select_active_items().ToList();
+            _foodOptions = _unitOfWork.FoodOptions.Find(s => !s.Deleted).ToList();
 
             show_food_options(_foodOptions, panel2);
             update_info();

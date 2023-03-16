@@ -1,5 +1,6 @@
 ﻿using Domain.BaseClasses;
 using Domain.ViewModels;
+using DTO;
 using Service;
 using System;
 using System.Collections.Generic;
@@ -15,32 +16,26 @@ namespace Windows_UI
 {
     public partial class Add_Food_Ingredient : SpecialForm
     {
-        private IFoodService _foodService;
-        private IUnitService _unitService;
-        private IIngredientService _ingredientService;
-        private IConsumeService _consumeService;
+        private IUnitOfWork _unitOfWork;
 
-        public Add_Food_Ingredient(IFoodService foodService, IIngredientService ingredientService, IUnitService unitService
-            , IConsumeService consumeService, [Dependency("login_form")] Form login_form)
+        public Add_Food_Ingredient(IUnitOfWork unitOfWork
+            , [Dependency("login_form")] Form login_form)
             : base(login_form)
         {
             InitializeComponent();
 
-            _foodService = foodService;
-            _unitService = unitService;
-            _consumeService = consumeService;
-            _ingredientService = ingredientService;
+            _unitOfWork = unitOfWork;
         }
 
         private void load_info()
         {
             cmb_food_list.DisplayMember = "Name";
             cmb_food_list.ValueMember = "ID";
-            cmb_food_list.DataSource = _foodService.select_active_items();
+            cmb_food_list.DataSource = _unitOfWork.Foods.Find(s => !s.Deleted).ToList();
 
             cmb_data_list.DisplayMember = "Name";
             cmb_data_list.ValueMember = "ID";
-            cmb_data_list.DataSource = _ingredientService.select_active_items();
+            cmb_data_list.DataSource = _unitOfWork.Ingredients.Find(s => !s.Deleted).ToList();
         }
 
         private void btn_save_Click(object sender, EventArgs e)
@@ -67,21 +62,16 @@ namespace Windows_UI
             bool register = false;
 
             if (selected_consume == null || selected_consume.ID <= 0)
-            {
-                selected_consume = new Consume()
+                _unitOfWork.Consumes.Add(new Consume()
                 {
                     FoodID = selected_food.ID,
                     IngredientID = selected_ingredient.ID,
                     Volume = amount
-                };
-
-                register = _consumeService.add(selected_consume);
-            }
+                });
             else
-            {
                 selected_consume.Volume = amount;
-                register = _consumeService.update(selected_consume);
-            }
+
+            register = _unitOfWork.Complete() > 0 ? true : false;
 
             if (register)
             {
@@ -108,7 +98,7 @@ namespace Windows_UI
         {
             try
             {
-                var unit = _unitService.find(selected_ingredient.UnitID);
+                var unit = _unitOfWork.Units.Get(selected_ingredient.UnitID);
 
                 lbl_unit_name.Text = unit.Name;
             }
@@ -127,7 +117,7 @@ namespace Windows_UI
 
                 int ingredient_id = (int)cmb_data_list.SelectedValue;
 
-                return _ingredientService.find(ingredient_id);
+                return _unitOfWork.Ingredients.Get(ingredient_id);
             }
             catch(Exception ex)
             {
@@ -148,7 +138,7 @@ namespace Windows_UI
                     return new Food();
 
                 int food_id = (int)cmb_food_list.SelectedValue;
-                return _foodService.Eager_Select(s => s.ID == food_id).FirstOrDefault();
+                return _unitOfWork.Foods.Eager_Select(s => s.ID == food_id).FirstOrDefault();
             }
             catch(Exception ex)
             {

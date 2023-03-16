@@ -1,4 +1,5 @@
 ﻿using Domain.BaseClasses;
+using DTO;
 using PosInterface;
 using Service;
 using System;
@@ -17,16 +18,13 @@ namespace Windows_UI
 {
     public partial class Add_Order : SpecialForm
     {
-        private ICustomerService _customerService;
-        private IFoodService _foodService;
-        private IFoodOptionService _foodOptionService;
+        private IUnitOfWork _unitOfWork;
         private IEnumerable<Food> _foods = new List<Food>();
         private IEnumerable<Customer> _customers;
         private string button_prefix_name = "food_button_";
         private string special_button_prefix_name = "special_food_button_";
         private BindingList<OrderItem> _order_items;
         private IConfigService _configFile;
-        private IOrderService _orderService;
         private IPrintService _printService;
         private Form _delete_order;
         private Form _edit_order;
@@ -37,25 +35,22 @@ namespace Windows_UI
 
         int free_number = 0;
 
-        public Add_Order(ICustomerService customerService, IFoodService foodService, IConfigService configFile
-            , IOrderService orderService , [Dependency("delete_order")] Form delete_order
+        public Add_Order( IConfigService configFile
+            , [Dependency("delete_order")] Form delete_order
             , [Dependency("edit_order")] Form edit_order
-            , IFoodOptionService foodOptionService
+            , IUnitOfWork unitOfWork
             , Create_Special_Food special_Food
             , ITransactionDoneAdvanceHandler posResult
             , IPrintService printService
             , [Dependency("login_form")] Form login_form)
             : base(login_form)
         {
-            _customerService = customerService;
-            _orderService = orderService;
-            _foodService = foodService;
             _configFile = configFile;
             _delete_order = delete_order;
             _printService = printService;
             _edit_order = edit_order;
             _Special_Food = special_Food;
-            _foodOptionService = foodOptionService;
+            _unitOfWork = unitOfWork;
 
             _posResult = posResult;
 
@@ -69,8 +64,8 @@ namespace Windows_UI
         private void load_info()
         {
             get_free_number();
-            _foods = _foodService.select_active_items();
-            _customers = _customerService.select_active_items();
+            _foods = _unitOfWork.Foods.Find(s => !s.Deleted).ToList();
+            _customers = _unitOfWork.Customers.Find(s => !s.Deleted).ToList();
         }
 
         private void show_customers(IEnumerable<Customer> customers)
@@ -166,7 +161,7 @@ namespace Windows_UI
 
         private void add_item_to_order(int item_id)
         {
-            var food = _foodService.select(s => s.ID == item_id).FirstOrDefault();
+            var food = _unitOfWork.Foods.Get(item_id);
 
             if (food == null || food.ID <= 0)
                 return;
@@ -181,7 +176,7 @@ namespace Windows_UI
                     Name = food.Name,
                     Price = food.Price,
                     Count = 1,
-                    FoodOptions = _foodOptionService.select_active_items().Where(s => s.DefaultExist).ToList()
+                    FoodOptions = _unitOfWork.FoodOptions.Find(s => !s.Deleted && s.DefaultExist).ToList()
                 });
             else
                 order_item.Count++;
@@ -301,7 +296,7 @@ namespace Windows_UI
 
         private void get_free_number()
         {
-            free_number = Math.Max(1, _orderService.get_free_number());
+            free_number = Math.Max(1, _unitOfWork.Orders.get_free_number());
 
             lbl_order_number.Text = free_number.ToString();
         }
@@ -341,7 +336,9 @@ namespace Windows_UI
                 Insert_time = DateTime.Now
             };
 
-            bool register = _orderService.add(order);
+            _unitOfWork.Orders.Add(order);
+
+            bool register = _unitOfWork.Complete() > 0 ? true : false;
 
             if (register)
             {
@@ -385,7 +382,7 @@ namespace Windows_UI
             TB_discount.Text = "";
             chb_credit.Checked = false;
             chb_Is_Serving_In_Saloon.Checked = false;
-            free_number = _orderService.get_free_number();
+            free_number = _unitOfWork.Orders.get_free_number();
             _order_items = new BindingList<OrderItem>();
 
             show_order_list(_order_items);
@@ -480,12 +477,12 @@ namespace Windows_UI
     {
         private Order _saved_order;
         private PrintService _printService;
-        private PosTransactionResultService _posTransactionResultService;
+        private IUnitOfWork _unitOfWork;
 
-        public PosResult(PrintService printService, PosTransactionResultService posTransactionResultService)
+        public PosResult(PrintService printService, IUnitOfWork unitOfWork)
         {
             _printService = printService;
-            _posTransactionResultService = posTransactionResultService;
+            _unitOfWork = unitOfWork;
         }
 
         public void set_order(Order saved_order)
@@ -502,7 +499,7 @@ namespace Windows_UI
         {
             try
             {
-                _posTransactionResultService.add(new PosTransactionResult()
+                _unitOfWork.PosTransactionResults.Add(new PosTransactionResult()
                 {
                     OrderID = _saved_order.ID,
                     TranType = result.TranType,
@@ -518,6 +515,8 @@ namespace Windows_UI
                     TerminalId = result.TerminalId,
                     SoftwareExecutionTime = DateTime.Now
                 });
+
+                _unitOfWork.Complete();
             }
             catch(Exception ex)
             {

@@ -1,5 +1,6 @@
 ﻿using CommonCodes;
 using Domain.BaseClasses;
+using DTO;
 using Service;
 using System;
 using System.Collections;
@@ -18,9 +19,7 @@ namespace Windows_UI
 {
     public partial class Edit_Order : SpecialForm
     {
-        private ICustomerService _customerService;
-        private IFoodService _foodService;
-        private IFoodOptionService _foodOptionService;
+        private IUnitOfWork _unitOfWork;
         private IEnumerable<Food> _foods = new List<Food>();
         private IEnumerable<Customer> _customers;
         private string button_prefix_name = "food_button_";
@@ -28,28 +27,24 @@ namespace Windows_UI
         private BindingList<OrderItem> _order_items;
         private List<OrderItem> _first_order_items = new List<OrderItem>();
         private IConfigService _configFile;
-        private IOrderService _orderService;
         private IPrintService _printService;
         private Form _delete_order;
         private Order _saved_order;
         private Order _first_order;
         private Create_Special_Food _Special_Food;
 
-        public Edit_Order(ICustomerService customerService, IFoodService foodService, IConfigService configFile
-            , IOrderService orderService, [Dependency("delete_order")] Form delete_order
-            , IFoodOptionService foodOptionService
+        public Edit_Order(IConfigService configFile
+            , [Dependency("delete_order")] Form delete_order
+            , IUnitOfWork unitOfWork
             , Create_Special_Food special_Food
             , IPrintService printService, [Dependency("login_form")] Form login_form)
             : base(login_form)
         {
-            _customerService = customerService;
-            _orderService = orderService;
-            _foodService = foodService;
             _configFile = configFile;
             _delete_order = delete_order;
             _printService = printService;
             _Special_Food = special_Food;
-            _foodOptionService = foodOptionService;
+            _unitOfWork = unitOfWork;
 
             InitializeComponent();
 
@@ -59,8 +54,8 @@ namespace Windows_UI
 
         private void load_info()
         {
-            _foods = _foodService.select_active_items();
-            _customers = _customerService.select_active_items();
+            _foods = _unitOfWork.Foods.Find(s => !s.Deleted).ToList();
+            _customers = _unitOfWork.Customers.Find(s => !s.Deleted).ToList();
         }
 
         private void show_customers(IEnumerable<Customer> customers)
@@ -156,7 +151,7 @@ namespace Windows_UI
 
         private void add_item_to_order(int item_id)
         {
-            var food = _foodService.select(s => s.ID == item_id).FirstOrDefault();
+            var food = _unitOfWork.Foods.Get(item_id);
 
             if (food == null || food.ID <= 0)
                 return;
@@ -171,7 +166,7 @@ namespace Windows_UI
                     Name = food.Name,
                     Price = food.Price,
                     Count = 1 ,
-                    FoodOptions = _foodOptionService.select_active_items().Where(s => s.DefaultExist).ToList()
+                    FoodOptions = _unitOfWork.FoodOptions.Find(s => !s.Deleted && s.DefaultExist).ToList()
                 });
             else
                 order_item.Count++;
@@ -320,7 +315,7 @@ namespace Windows_UI
 
             _saved_order.OrderItems = get_order_items(_order_items);
 
-            bool register = _orderService.update(_saved_order);
+            bool register = _unitOfWork.Complete() > 0 ? true : false;
 
             if (register)
             {
@@ -386,7 +381,7 @@ namespace Windows_UI
 
             DateTime selected_date = dat_tim_picker_order_date.Value.Value.Date;
 
-            _saved_order = _orderService.Eager_Select(s => s.Number == order_number && EntityFunctions.TruncateTime(s.Insert_time) ==
+            _saved_order = _unitOfWork.Orders.Eager_Select(s => s.Number == order_number && EntityFunctions.TruncateTime(s.Insert_time) ==
                 EntityFunctions.TruncateTime(selected_date)).FirstOrDefault();
 
             if (_saved_order == null)

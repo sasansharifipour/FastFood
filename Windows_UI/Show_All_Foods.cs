@@ -1,4 +1,5 @@
-﻿using Service;
+﻿using DTO;
+using Service;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,18 +14,18 @@ namespace Windows_UI
 {
     public partial class Show_All_Foods : Form
     {
-        private IFoodService _foodService;
+        private IUnitOfWork _unitOfWork;
 
-        public Show_All_Foods(IFoodService foodService)
+        public Show_All_Foods(IUnitOfWork unitOfWork)
         {
             InitializeComponent();
 
-            _foodService = foodService;
+            _unitOfWork = unitOfWork;
         }
 
         private void Show_All_Foods_Load(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = _foodService.select_active_items();
+            dataGridView1.DataSource = _unitOfWork.Foods.Find(s => !s.Deleted).ToList();
 
             dataGridView1.Columns["ID"].HeaderText = "کد محصول";
             dataGridView1.Columns["Name"].HeaderText = "نام محصول";
@@ -48,13 +49,12 @@ namespace Windows_UI
                 double Price = (double)drv.Cells["Price"].Value;
                 bool Deleted = (bool)drv.Cells["Deleted"].Value;
 
-                _foodService.update(new Domain.BaseClasses.Food()
-                {
-                    ID = ID,
-                    Name = Name,
-                    Price = Price,
-                    Deleted = Deleted
-                });
+                var food = _unitOfWork.Foods.Get(ID);
+                food.Name = Name;
+                food.Price = Price;
+                food.Deleted = Deleted;
+
+                _unitOfWork.Complete();
             }
             catch(Exception)
             {

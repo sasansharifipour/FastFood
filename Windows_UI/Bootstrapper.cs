@@ -1,5 +1,5 @@
-﻿using DAO;
-using Domain.BaseClasses;
+﻿using Domain.BaseClasses;
+using DTO;
 using Model;
 using Service;
 using System.Data.Entity;
@@ -15,57 +15,14 @@ namespace Windows_UI
         {
             var container = new UnityContainer();
             container.RegisterType<DBContext, DBContext>();
+            container.RegisterType<IUnitOfWork, UnitOfWork>();
             container.RegisterSingleton<DbContext, DBContext>();
             container.RegisterSingleton<IPrintService, PrintService>();
 
             container.RegisterSingleton<IConfigService, ConfigService>();
 
-            container.RegisterSingleton<IBaseDAO<Customer>, BaseDAO<Customer>>();
-            container.RegisterSingleton<ICustomerDAO, CustomerDAO>();
-            container.RegisterSingleton<ICustomerService, CustomerService>();
-
             container.RegisterSingleton<IReportService, ReportService>();
             container.RegisterSingleton<ISendInformationService, SendEmailService>();
-
-            container.RegisterSingleton<IBaseDAO<User>, BaseDAO<User>>();
-            container.RegisterSingleton<IUserDAO, UserDAO>();
-            container.RegisterSingleton<IUserService, UserService>();
-
-            container.RegisterSingleton<IBaseDAO<Consume>, BaseDAO<Consume>>();
-            container.RegisterSingleton<IConsumeDAO, ConsumeDAO>();
-            container.RegisterSingleton<IConsumeService, ConsumeService>();
-
-            container.RegisterSingleton<IBaseDAO<ConsumeFoodOption>, BaseDAO<ConsumeFoodOption>>();
-            container.RegisterSingleton<IConsumeFoodOptionDAO, ConsumeFoodOptionDAO>();
-            container.RegisterSingleton<IConsumeFoodOptionService, ConsumeFoodOptionService>();
-
-            container.RegisterSingleton<IBaseDAO<PosTransactionResult>, BaseDAO<PosTransactionResult>>();
-            container.RegisterSingleton<IPosTransactionResultDAO, PosTransactionResultDAO>();
-            container.RegisterSingleton<IPosTransactionResultService, PosTransactionResultService>();
-
-            container.RegisterSingleton<IBaseDAO<Food>, BaseDAO<Food>>();
-            container.RegisterSingleton<IFoodDAO, FoodDAO>();
-            container.RegisterSingleton<IFoodService, FoodService>();
-
-            container.RegisterSingleton<IBaseDAO<FoodOption>, BaseDAO<FoodOption>>();
-            container.RegisterSingleton<IFoodOptionDAO, FoodOptionDAO>();
-            container.RegisterSingleton<IFoodOptionService, FoodOptionService>();
-
-            container.RegisterSingleton<IBaseDAO<Order>, BaseDAO<Order>>();
-            container.RegisterSingleton<IOrderDAO, OrderDAO>();
-            container.RegisterSingleton<IOrderService, OrderService>();
-
-            container.RegisterSingleton<IBaseDAO<OrderItem>, BaseDAO<OrderItem>>();
-            container.RegisterSingleton<IOrderItemDAO, OrderItemDAO>();
-            container.RegisterSingleton<IOrderItemService, OrderItemService>();
-
-            container.RegisterSingleton<IBaseDAO<Unit>, BaseDAO<Unit>>();
-            container.RegisterSingleton<IUnitDAO, UnitDAO>();
-            container.RegisterSingleton<IUnitService, UnitService>();
-
-            container.RegisterSingleton<IBaseDAO<Ingredient>, BaseDAO<Ingredient>>();
-            container.RegisterSingleton<IIngredientDAO, IngredientDAO>();
-            container.RegisterSingleton<IIngredientService, IngredientService>();
 
             container.RegisterSingleton<Form, Form1>("Form1");
             container.RegisterSingleton<Form, Add_Food>("add_food");
