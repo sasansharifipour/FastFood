@@ -1,10 +1,8 @@
 ﻿using Domain.BaseClasses;
+using Service.Repositories;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace DTO
+namespace Service
 {
     public interface IUnitOfWork : IDisposable
     {

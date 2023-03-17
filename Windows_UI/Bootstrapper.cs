@@ -1,9 +1,7 @@
-﻿using Domain.BaseClasses;
-using DTO;
-using Model;
+﻿using Model;
+using Persistence;
 using Service;
 using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Windows.Forms;
 using Unity;
 

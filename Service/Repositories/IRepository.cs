@@ -5,7 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace DTO
+namespace Service.Repositories
 {
     public interface IRepository<TEntity> where TEntity : class, ILogicalDeleteable
     {

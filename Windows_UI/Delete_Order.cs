@@ -1,16 +1,12 @@
 ﻿using Service;
 using System;
 using System.Data.Entity.Core.Objects;
-using System.Globalization;
 using System.Linq;
-using System.Data.Entity;
 using System.Windows.Forms;
-using System.ComponentModel;
 using Domain.BaseClasses;
 using System.Collections.Generic;
 using CommonCodes;
 using Unity;
-using DTO;
 
 namespace Windows_UI
 {

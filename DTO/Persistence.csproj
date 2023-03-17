@@ -70,14 +70,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CoreRepositories\IFoodRepository.cs" />
-    <Compile Include="CoreRepositories\IOrderRepository.cs" />
-    <Compile Include="CoreRepositories\IRepository.cs" />
-    <Compile Include="CoreRepositories\IUnitOfWork.cs" />
     <Compile Include="Repositories\FoodRepository.cs" />
     <Compile Include="Repositories\OrderRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
-    <Compile Include="Repositories\UnitOfWork.cs" />
+    <Compile Include="UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -92,6 +88,10 @@
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{623CC056-F7C2-4DE1-AB49-B5C2D223991D}</Project>
       <Name>Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Service\Service.csproj">
+      <Project>{08630D28-E796-40EF-AC45-A87DEC19EFC6}</Project>
+      <Name>Service</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

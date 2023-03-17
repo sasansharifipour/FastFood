@@ -1,5 +1,6 @@
 ﻿using Domain.BaseClasses;
 using Model;
+using Service.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -7,7 +8,7 @@ using System.Data.Entity.Core.Objects;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace DTO
+namespace Persistence.Repositories
 {
     public class OrderRepository : Repository<Order>, IOrderRepository
     {

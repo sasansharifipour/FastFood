@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Domain.BaseClasses;
+﻿using Domain.BaseClasses;
 using Model;
+using Persistence.Repositories;
+using Service;
+using Service.Repositories;
 
-namespace DTO
+namespace Persistence
 {
     public class UnitOfWork : IUnitOfWork
     {

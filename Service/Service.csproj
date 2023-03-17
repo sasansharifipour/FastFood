@@ -73,6 +73,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfigService.cs" />
+    <Compile Include="Repositories\IFoodRepository.cs" />
+    <Compile Include="Repositories\IorderRepository.cs" />
+    <Compile Include="Repositories\IRepository.cs" />
+    <Compile Include="IUnitOfWork.cs" />
     <Compile Include="LoginInfo.cs" />
     <Compile Include="PrintService.cs" />
     <Compile Include="ReportService.cs" />
@@ -88,10 +92,6 @@
       <Project>{B7575DBD-3507-49DE-99DC-519BB2FD67AA}</Project>
       <Name>Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DTO\DAO.csproj">
-      <Project>{44A47B60-6C96-406C-B939-3CCB77DFF258}</Project>
-      <Name>DAO</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{623CC056-F7C2-4DE1-AB49-B5C2D223991D}</Project>
       <Name>Model</Name>
@@ -101,9 +101,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Repositories\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
