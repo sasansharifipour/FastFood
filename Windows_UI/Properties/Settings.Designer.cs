@@ -22,16 +22,5 @@ namespace Windows_UI.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.;Initial Catalog=fastfood_publish;Persist Security Info=True;User ID" +
-            "=sa;Password=P@ssw0rd")]
-        public string DBContext {
-            get {
-                return ((string)(this["DBContext"]));
-            }
-        }
     }
 }

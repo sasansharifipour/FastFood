@@ -66,13 +66,13 @@ namespace Windows_UI
         {
             cmb_data_list.DisplayMember = "Name";
             cmb_data_list.ValueMember = "ID";
-            var data = _unitOfWork.Ingredients.Find(unit => unit.Deleted == false).ToList();
+            var data = _unitOfWork.Ingredients.GetAll().ToList();
             data.Insert(0, new Ingredient() { ID = 0, Name = "افزودن آیتم جدید"});
             cmb_data_list.DataSource = data;
 
             cmb_unit_list.DisplayMember = "Name";
             cmb_unit_list.ValueMember = "ID";
-            cmb_unit_list.DataSource = _unitOfWork.Units.Find(unit => unit.Deleted == false).ToList();
+            cmb_unit_list.DataSource = _unitOfWork.Units.GetAll().ToList();
         }
 
         private void Add_Ingredient_Load(object sender, EventArgs e)

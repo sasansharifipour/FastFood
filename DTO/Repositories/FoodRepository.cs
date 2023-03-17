@@ -11,7 +11,7 @@ namespace Persistence.Repositories
 {
     public class FoodRepository : Repository<Food>, IFoodRepository
     {
-        public FoodRepository(DBContext context) : base(context)
+        public FoodRepository(DbContext context) : base(context)
         {
         }
 

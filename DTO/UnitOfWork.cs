@@ -3,14 +3,15 @@ using Model;
 using Persistence.Repositories;
 using Service;
 using Service.Repositories;
+using System.Data.Entity;
 
 namespace Persistence
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly DBContext _context;
+        private readonly DbContext _context;
 
-        public UnitOfWork(DBContext context)
+        public UnitOfWork(DbContext context)
         {
             _context = context;
 

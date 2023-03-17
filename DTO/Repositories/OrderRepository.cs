@@ -12,7 +12,7 @@ namespace Persistence.Repositories
 {
     public class OrderRepository : Repository<Order>, IOrderRepository
     {
-        public OrderRepository(DBContext context) : base(context)
+        public OrderRepository(DbContext context) : base(context)
         {
         }
 

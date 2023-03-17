@@ -12,7 +12,7 @@ namespace Model
 {
     public class DBContext : DbContext
     {
-        public DBContext() : base("name=DBContext")
+        public DBContext() : base("name=databaseContext")
         {
             Database.SetInitializer(new CreateDatabaseIfNotExists<DBContext>());
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<DBContext, Migrations.Configuration>());
