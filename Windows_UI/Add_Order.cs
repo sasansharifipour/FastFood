@@ -295,7 +295,7 @@ namespace Windows_UI
 
         private void get_free_number()
         {
-            free_number = Math.Max(1, _unitOfWork.Orders.get_free_number());
+            free_number = Math.Max(1, _unitOfWork.Orders.GetFreeNumber());
 
             lbl_order_number.Text = free_number.ToString();
         }
@@ -381,7 +381,7 @@ namespace Windows_UI
             TB_discount.Text = "";
             chb_credit.Checked = false;
             chb_Is_Serving_In_Saloon.Checked = false;
-            free_number = _unitOfWork.Orders.get_free_number();
+            free_number = _unitOfWork.Orders.GetFreeNumber();
             _order_items = new BindingList<OrderItem>();
 
             show_order_list(_order_items);

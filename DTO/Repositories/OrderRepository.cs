@@ -27,20 +27,14 @@ namespace Persistence.Repositories
                     .ToList();
         }
 
-        [Obsolete]
-        public int get_free_number()
+        public int GetFreeNumber()
         {
-            int free_number = 0;
+            var lastOrderToday = DBContext.Orders
+                .Where(s => s.Insert_time.Date == DateTime.Now.Date)
+                .OrderByDescending(s => s.Number)
+                .FirstOrDefault();
 
-            var last_order_today = DBContext.Orders.Where(s => EntityFunctions.TruncateTime(s.Insert_time) ==
-                EntityFunctions.TruncateTime(DateTime.Now)).OrderByDescending(s => s.Number).FirstOrDefault();
-
-            if (last_order_today == null || last_order_today.ID <= 0)
-                free_number = 1;
-            else
-                free_number = last_order_today.Number + 1;
-
-            return free_number;
+            return lastOrderToday == null || lastOrderToday.ID <= 0 ? 1 : lastOrderToday.Number + 1;
         }
 
         public DBContext DBContext

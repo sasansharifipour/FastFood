@@ -11,6 +11,6 @@ namespace Service.Repositories
     {
         IEnumerable<Order> Eager_Select(Expression<Func<Order, bool>> predicate);
 
-        int get_free_number();
+        int GetFreeNumber();
     }
 }
