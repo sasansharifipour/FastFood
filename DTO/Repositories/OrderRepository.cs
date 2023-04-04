@@ -30,9 +30,8 @@ namespace Persistence.Repositories
         public int GetFreeNumber()
         {
             var lastOrderToday = DBContext.Orders
-                .Where(s => s.Insert_time.Date == DateTime.Now.Date)
                 .OrderByDescending(s => s.Number)
-                .FirstOrDefault();
+                .SingleOrDefault(s => s.Insert_time.Date == DateTime.Now.Date);
 
             return lastOrderToday == null || lastOrderToday.ID <= 0 ? 1 : lastOrderToday.Number + 1;
         }

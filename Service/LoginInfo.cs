@@ -12,10 +12,7 @@ namespace Service
 
         public static bool IsLoggedIn()
         {
-            if (User == null || User.ID <= 0)
-                return false;
-            else
-                return true;
+            return (User == null || User.ID <= 0) ? false : true;
         }
     }
 }
