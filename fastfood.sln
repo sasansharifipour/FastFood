@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonCodes", "CommonCodes\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web_UI", "Web_UI\Web_UI.csproj", "{5A293E66-6680-4D99-9072-400B501F889C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DateTimeSelector", "C:\Users\ex.s.sharifipour\Downloads\datetimeselector-master\datetimeselector-master\DateTimeSelector.csproj", "{E0296F96-CDFE-465C-A2AB-024A55765493}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DateTimeSelector", "DateTimeSelector\DateTimeSelector.csproj", "{E0296F96-CDFE-465C-A2AB-024A55765493}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
