@@ -51,9 +51,6 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DateTimeSelector">
-      <HintPath>C:\Users\admin\Downloads\DateTimeSelector-v1.1.2-bin\DateTimeSelector.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Windows.Forms" />
@@ -67,6 +64,12 @@
     <Compile Include="ExtensionMethodClass.cs" />
     <Compile Include="Hashing.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\ex.s.sharifipour\Downloads\datetimeselector-master\datetimeselector-master\DateTimeSelector.csproj">
+      <Project>{E0296F96-CDFE-465C-A2AB-024A55765493}</Project>
+      <Name>DateTimeSelector</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
