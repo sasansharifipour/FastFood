@@ -51,7 +51,7 @@ namespace Service
         {
             PrintDocument printDocument1 = new PrintDocument();
 
-            string printer_name = _configService.get_cash_desk_printer_name();
+            string printer_name = _configService.CashDeskPrinterName;
 
             if (Is_Printer_Available(printer_name))
                 printDocument1.PrinterSettings.PrinterName = printer_name;
@@ -71,7 +71,7 @@ namespace Service
             PrintDocument printDocument1 = new PrintDocument();
 
 
-            string printer_name = _configService.get_kitchen_printer_name();
+            string printer_name = _configService.KitchenPrinterName;
 
             if (Is_Printer_Available(printer_name))
                 printDocument1.PrinterSettings.PrinterName = printer_name;

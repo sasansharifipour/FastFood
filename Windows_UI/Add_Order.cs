@@ -29,6 +29,7 @@ namespace Windows_UI
         private Order _saved_order;
         PCPos pcpos = new PCPos();
         ITransactionDoneAdvanceHandler _posResult;
+        private readonly string CurrencyTitle;
 
         int free_number = 0;
 
@@ -56,6 +57,7 @@ namespace Windows_UI
             Task.Factory.StartNew(load_info);
 
             pcpos.InitLAN("192.168.1.40", 17000);
+            CurrencyTitle = _configFile.CurrencyTitle;
         }
 
         private void load_info()
@@ -76,8 +78,8 @@ namespace Windows_UI
         {
             pnl_Foods.Controls.Clear();
 
-            Size button_size = _configFile.get_button_size();
-            Size special_button_size = _configFile.get_special_button_size();
+            Size button_size = _configFile.DefaultButtonSize;
+            Size special_button_size = _configFile.SpecialButtonSize;
 
             int width = pnl_Foods.Width;
             int height = pnl_Foods.Height;
@@ -236,8 +238,8 @@ namespace Windows_UI
 
             lbl_order_number.Text = free_number.ToString();
 
-            lbl_sum_price.Text = String.Format("{0} {1}", txt, _configFile.get_currency_title());
-            lbl_net_price.Text = String.Format("{0} {1}", net_price_txt, _configFile.get_currency_title());
+            lbl_sum_price.Text = String.Format("{0} {1}", txt, CurrencyTitle);
+            lbl_net_price.Text = String.Format("{0} {1}", net_price_txt, CurrencyTitle);
 
             TB_Paying.Text = net_price_txt;
 

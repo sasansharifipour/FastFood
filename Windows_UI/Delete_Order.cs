@@ -125,7 +125,7 @@ namespace Windows_UI
             double sum_price = order.OrderItems.Sum(s => s.All_Price);
             string txt = string.Format("{0:#,##0}", sum_price);
 
-            lbl_sum_price.Text = String.Format("{0} {1}", txt, _configFile.get_currency_title());
+            lbl_sum_price.Text = String.Format("{0} {1}", txt, _configFile.CurrencyTitle);
         }
 
         private void Delete_Order_Load(object sender, EventArgs e)

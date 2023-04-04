@@ -1,4 +1,6 @@
-﻿namespace Windows_UI
+﻿using Atf.UI;
+
+namespace Windows_UI
 {
     partial class Delete_Order
     {

@@ -101,7 +101,7 @@ namespace Windows_UI
 
                 lbl_unit_name.Text = unit.Name;
             }
-            catch (Exception ex)
+            catch
             {
 
             }

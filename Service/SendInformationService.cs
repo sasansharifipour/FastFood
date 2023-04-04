@@ -28,9 +28,9 @@ namespace Service
             try
             {
                 string date_time = DateTime.Now.ToPersianLongDateString();
-                string from_email_address = _configService.get_from_email_address();
-                List<string> to_email_address = _configService.get_to_email_address();
-                string email_key = _configService.get_email_key();
+                string from_email_address = _configService.FromEmailAddress;
+                List<string> to_email_address = _configService.ToEmailAddresses;
+                string email_key = _configService.EmailKey;
 
                 MailMessage message = new MailMessage();
                 SmtpClient smtp = new SmtpClient();

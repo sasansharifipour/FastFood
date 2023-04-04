@@ -21,7 +21,7 @@ namespace Windows_UI
 
             _configFile = configFile;
             _unitOfWork = unitOfWork;
-            lbl_currency_title.Text = _configFile.get_currency_title();
+            lbl_currency_title.Text = _configFile.CurrencyTitle;
 
             Task.Factory.StartNew(load_info);
         }

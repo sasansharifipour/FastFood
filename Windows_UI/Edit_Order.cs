@@ -29,6 +29,7 @@ namespace Windows_UI
         private Order _saved_order;
         private Order _first_order;
         private Create_Special_Food _Special_Food;
+        private readonly string CurrencyTitle;
 
         public Edit_Order(IConfigService configFile
             , [Dependency("delete_order")] Form delete_order
@@ -46,6 +47,7 @@ namespace Windows_UI
             InitializeComponent();
 
             dat_tim_picker_order_date.Value = DateTime.Now;
+            CurrencyTitle = _configFile.CurrencyTitle;
             Task.Factory.StartNew(load_info);
         }
 
@@ -102,8 +104,8 @@ namespace Windows_UI
         {
             pnl_Foods.Controls.Clear();
 
-            Size button_size = _configFile.get_button_size();
-            Size special_button_size = _configFile.get_special_button_size();
+            Size button_size = _configFile.DefaultButtonSize;
+            Size special_button_size = _configFile.SpecialButtonSize;
 
             int width = pnl_Foods.Width;
             int height = pnl_Foods.Height;
@@ -222,11 +224,11 @@ namespace Windows_UI
             double net_price = sum_price - discount;
 
             string txt = string.Format("{0:#,##0}", sum_price);
-            lbl_sum_price.Text = String.Format("{0} {1}", txt, _configFile.get_currency_title());
+            lbl_sum_price.Text = String.Format("{0} {1}", txt, CurrencyTitle);
 
             string net_price_txt = string.Format("{0:#,##0}", net_price);
-            lbl_sum_price.Text = String.Format("{0} {1}", txt, _configFile.get_currency_title());
-            lbl_net_price.Text = String.Format("{0} {1}", net_price_txt, _configFile.get_currency_title());
+            lbl_sum_price.Text = String.Format("{0} {1}", txt, CurrencyTitle);
+            lbl_net_price.Text = String.Format("{0} {1}", net_price_txt, CurrencyTitle);
 
             
             if (_saved_order != null)

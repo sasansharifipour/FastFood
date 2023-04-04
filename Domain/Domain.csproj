@@ -52,7 +52,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PosInterface">
-      <HintPath>..\..\..\..\PosInterface.dll</HintPath>
+      <HintPath>C:\Users\ex.s.sharifipour\Downloads\AsanPardakht\PosInterface.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

@@ -12,6 +12,7 @@ namespace Windows_UI
     {
         private IConfigService _configFile;
         private IUnitOfWork _unitOfWork;
+        private readonly string CurrencyTitle;
 
         public Add_FoodOption(IConfigService configFile, IUnitOfWork unitOfWork
             , [Dependency("login_form")] Form login_form)
@@ -21,7 +22,10 @@ namespace Windows_UI
 
             _configFile = configFile;
             _unitOfWork = unitOfWork;
-            lbl_currency_title.Text = _configFile.get_currency_title();
+
+            CurrencyTitle = _configFile.CurrencyTitle;
+
+            lbl_currency_title.Text = CurrencyTitle;
 
             Task.Factory.StartNew(load_info);
         }

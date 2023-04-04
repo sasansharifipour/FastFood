@@ -33,7 +33,7 @@
                     context.SaveChanges();
                 }
             }
-            catch(Exception e) { }
+            catch { }
         }
     }
 }

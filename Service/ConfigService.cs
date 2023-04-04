@@ -10,92 +10,78 @@ namespace Service
 
     public interface IConfigService
     {
-        string get_currency_title();
-
-        Size get_button_size();
-
-        Size get_special_button_size();
-
-        string get_from_email_address();
-
-        List<string> get_to_email_address();
-
-        string get_email_key();
-
-        string get_value_from_config(string key);
-
-        string get_cash_desk_printer_name();
-
-        string get_kitchen_printer_name();
+        string CurrencyTitle { get; }
+        Size DefaultButtonSize { get; }
+        Size SpecialButtonSize { get; }
+        string FromEmailAddress { get; }
+        List<string> ToEmailAddresses { get; }
+        string EmailKey { get; }
+        string CashDeskPrinterName { get; }
+        string KitchenPrinterName { get; }
     }
 
     public class ConfigService : IConfigService
     {
-        public Size get_button_size()
+        public string CurrencyTitle
         {
-            int button_width = 0;
-            int button_height = 0;
-
-            string button_width_string = get_value_from_config("button_width");
-            string button_height_string = get_value_from_config("button_height");
-
-            int.TryParse(button_width_string, out button_width);
-            int.TryParse(button_height_string, out button_height);
-
-            return new Size(button_width, button_height);
+            get { return GetValueFromConfig("currency_title"); }
         }
 
-        public Size get_special_button_size()
+        public Size DefaultButtonSize
         {
-            int button_width = 0;
-            int button_height = 0;
-
-            string button_width_string = get_value_from_config("special_button_width");
-            string button_height_string = get_value_from_config("special_button_height");
-
-            int.TryParse(button_width_string, out button_width);
-            int.TryParse(button_height_string, out button_height);
-
-            return new Size(button_width, button_height);
+            get
+            {
+                int width;
+                int height;
+                if (!int.TryParse(GetValueFromConfig("button_width"), out width))
+                    throw new ConfigurationErrorsException("Invalid button_width value in configuration file");
+                if (!int.TryParse(GetValueFromConfig("button_height"), out height))
+                    throw new ConfigurationErrorsException("Invalid button_height value in configuration file");
+                return new Size(width, height);
+            }
         }
 
-        public string get_currency_title()
+        public Size SpecialButtonSize
         {
-            string key = "currecny_title";
-            return get_value_from_config(key);
+            get
+            {
+                int width;
+                int height;
+                if (!int.TryParse(GetValueFromConfig("special_button_width"), out width))
+                    throw new ConfigurationErrorsException("Invalid special_button_width value in configuration file");
+                if (!int.TryParse(GetValueFromConfig("special_button_height"), out height))
+                    throw new ConfigurationErrorsException("Invalid special_button_height value in configuration file");
+                return new Size(width, height);
+            }
         }
 
-        public string get_from_email_address()
+        public string FromEmailAddress
         {
-            string key = "from_email_address";
-            return get_value_from_config(key);
+            get { return GetValueFromConfig("from_email_address"); }
         }
 
-        public List<string> get_to_email_address()
+        public List<string> ToEmailAddresses
         {
-            string key = "to_email_address";
-            return get_value_from_config(key).Split(',').ToList();
+            get { return GetValueFromConfig("to_email_address").Split(',').ToList(); }
         }
 
-        public string get_email_key()
+        public string EmailKey
         {
-            string key = "email_key";
-            return get_value_from_config(key);
-        }
-        
-        public string get_cash_desk_printer_name()
-        {
-            string key = "cash_desk_printer_name";
-            return get_value_from_config(key);
-        }
-        
-        public string get_kitchen_printer_name()
-        {
-            string key = "kitchen_printer_name";
-            return get_value_from_config(key);
+            get { return GetValueFromConfig("email_key"); }
         }
 
-        public string get_value_from_config(string key)
+        public string CashDeskPrinterName
+        {
+            get { return GetValueFromConfig("cash_desk_printer_name"); }
+        }
+
+
+        public string KitchenPrinterName
+        {
+            get { return GetValueFromConfig("kitchen_printer_name"); }
+        }
+
+        private string GetValueFromConfig(string key)
         {
             if (ConfigurationManager.AppSettings[key] == null)
                 return "";

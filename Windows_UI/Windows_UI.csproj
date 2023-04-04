@@ -76,9 +76,6 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DateTimeSelector">
-      <HintPath>C:\Users\admin\Downloads\DateTimeSelector-v1.1.2-bin\DateTimeSelector.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net40\EntityFramework.dll</HintPath>
     </Reference>
@@ -86,7 +83,7 @@
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net40\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="PosInterface">
-      <HintPath>..\..\..\..\PosInterface.dll</HintPath>
+      <HintPath>C:\Users\ex.s.sharifipour\Downloads\AsanPardakht\PosInterface.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -305,6 +302,10 @@
     <ProjectReference Include="..\CommonCodes\CommonCodes.csproj">
       <Project>{139A2B0B-9DAB-46BB-A38C-1BDF6AA247BE}</Project>
       <Name>CommonCodes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DateTimeSelector\DateTimeSelector.csproj">
+      <Project>{E0296F96-CDFE-465C-A2AB-024A55765493}</Project>
+      <Name>DateTimeSelector</Name>
     </ProjectReference>
     <ProjectReference Include="..\Domain\Domain.csproj">
       <Project>{B7575DBD-3507-49DE-99DC-519BB2FD67AA}</Project>
