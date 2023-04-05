@@ -142,7 +142,7 @@ namespace Windows_UI
 
         private void update_consume_data_grid_view(Food data)
         {
-            var consumeViewModels = data.ConsumeViewModels();
+            var consumeViewModels = data.ConsumeViewModels;
 
             dt_gd_viw_consume.DataSource = consumeViewModels;
             dt_gd_viw_consume.Columns["IngredientName"].HeaderText = "مواد اولیه";

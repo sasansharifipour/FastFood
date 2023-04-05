@@ -18,17 +18,20 @@ namespace Domain.BaseClasses
 
         public List<Consume> Consumes { get; set; } = new List<Consume>();
 
-        public IEnumerable<ConsumeViewModel> ConsumeViewModels()
+        public IEnumerable<ConsumeViewModel> ConsumeViewModels
         {
-            List<ConsumeViewModel> consumeViewModels = new List<ConsumeViewModel>();
+            get
+            {
+                List<ConsumeViewModel> consumeViewModels = new List<ConsumeViewModel>();
 
-            foreach (var item in this.Consumes)
-                consumeViewModels.Add(item.GetViewModel());
+                foreach (var item in this.Consumes)
+                    consumeViewModels.Add(item.ViewModel);
 
-            if (consumeViewModels == null)
-                consumeViewModels = new List<ConsumeViewModel>();
+                if (consumeViewModels == null)
+                    consumeViewModels = new List<ConsumeViewModel>();
 
-            return consumeViewModels;
+                return consumeViewModels;
+            }
         }
     }
 }
